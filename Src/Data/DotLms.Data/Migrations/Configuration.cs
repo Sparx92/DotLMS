@@ -1,12 +1,9 @@
-using System.Web.Security;
-using DotLms.Data.Identity;
+using DotLms.Data.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DotLms.Data.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 

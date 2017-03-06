@@ -1,13 +1,12 @@
 ﻿using System;
 using DotLms.Data;
-using DotLms.Data.Identity;
+using DotLms.Data.Models;
+using DotLms.Web.Identity.Managers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
-using DotLms.Web.Models;
 
 namespace DotLms.Web
 {

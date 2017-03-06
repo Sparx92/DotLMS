@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using DotLms.Data;
+using DotLms.Data.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace DotLms.Data.Identity
+namespace DotLms.Web.Identity.Managers
 {
     public class DotLmsUserStore : UserStore<User>
     {

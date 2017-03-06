@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DotLms.Data.Identity;
+﻿using System.Data.Entity;
 using DotLms.Data.Migrations;
+using DotLms.Data.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DotLms.Data

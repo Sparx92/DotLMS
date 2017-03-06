@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 
-namespace DotLms.Data.Identity
+namespace DotLms.Web.Identity.Helpers
 {
     public class IdentityHelper
     {

@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace DotLms.Data.Identity
+namespace DotLms.Data.Models
 {
     public class User : IdentityUser
     {
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(DotLmsUserManager manager)
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             // Note the authenticationType must match the one 
             // defined in CookieAuthenticationOptions.AuthenticationType

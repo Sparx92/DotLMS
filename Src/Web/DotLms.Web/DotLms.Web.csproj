@@ -271,6 +271,10 @@
       <Project>{31A9A504-87F8-469B-92D1-7E1DE827F38C}</Project>
       <Name>DotLms.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DotLms.Web.Identity\DotLms.Web.Identity.csproj">
+      <Project>{52638DE8-F89E-45E2-B5CF-4808BDC1E6E9}</Project>
+      <Name>DotLms.Web.Identity</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

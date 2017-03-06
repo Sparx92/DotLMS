@@ -1,10 +1,11 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
+using DotLms.Data.Models;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 
-namespace DotLms.Data.Identity
+namespace DotLms.Web.Identity.Managers
 {
     public class DotLmsSignInManager : SignInManager<User, string>
     {

@@ -1,11 +1,13 @@
 ﻿using System;
+using DotLms.Data;
+using DotLms.Data.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.DataProtection;
 
-namespace DotLms.Data.Identity
+namespace DotLms.Web.Identity.Managers
 {
     public class DotLmsUserManager : UserManager<User>
     {
