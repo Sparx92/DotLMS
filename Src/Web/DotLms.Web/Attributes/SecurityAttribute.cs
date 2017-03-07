@@ -10,15 +10,8 @@ namespace DotLms.Web.Attributes
     {
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
-            {
-                base.HandleUnauthorizedRequest(filterContext);
-            }
-            else
-            {
-                filterContext.Result = new RedirectToRouteResult(new
-                RouteValueDictionary(new { controller = "BackofficeAuthorization", action = "Authorize" }));
-            }
+            filterContext.Result = new RedirectToRouteResult(new
+            RouteValueDictionary(new { controller = "BackofficeAuthorization", action = "Authorize" }));
         }
     }
 }

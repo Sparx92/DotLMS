@@ -7,12 +7,19 @@ namespace DotLms.Web
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.LowercaseUrls = true;
+
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            //routes.MapRoute(
+            //    name: "FrontPages",
+            //    url: "{page-name}",
+            //    defaults: new {controller = "", action = ""});
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "DotLmsPages", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

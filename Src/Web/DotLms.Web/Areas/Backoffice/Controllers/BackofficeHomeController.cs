@@ -24,5 +24,17 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         {
             return View();
         }
+
+        [Security(Roles = Common.Roles.Admin)]
+        public ActionResult CreatePage(int? ParentPageId)
+        {
+            return View();
+        }
+
+        [Security(Roles = Common.Roles.Admin)]
+        public ActionResult GetPageTree(int? ParentPageId)
+        {
+            return View();
+        }
     }
 }

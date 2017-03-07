@@ -1,36 +1,41 @@
 using System;
 using System.Web;
+
 using DotLms.Data;
 using DotLms.Data.Contracts;
 using DotLms.Data.Models;
 using DotLms.Data.Repositories;
-using DotLms.Web;
+using DotLms.Services.Providers;
+using DotLms.Services.Providers.Contracts;
 using DotLms.Web.Identity.Managers;
+using DotLms.Web.Infrastructure;
+
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+
 using Ninject;
 using Ninject.Web.Common;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
 
-namespace DotLms.Web
+namespace DotLms.Web.Infrastructure
 {
-    public static class NinjectWebCommon
+    public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start()
+        public static void Start() 
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-
+        
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -38,7 +43,7 @@ namespace DotLms.Web
         {
             bootstrapper.ShutDown();
         }
-
+        
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -68,8 +73,8 @@ namespace DotLms.Web
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IAuthenticationManager>().ToMethod(
-                c => 
-                    HttpContext.Current.GetOwinContext().Authentication).InRequestScope();
+                  c =>
+                      HttpContext.Current.GetOwinContext().Authentication).InRequestScope();
 
             kernel.Bind<IDotLmsDbContext>().To<DotLmsDbContext>().InRequestScope();
             kernel.Bind<DotLmsSignInManager>().ToSelf().InRequestScope();
@@ -78,6 +83,8 @@ namespace DotLms.Web
 
             kernel.Bind<IDotLmsData>().To<DotLmsData>().InRequestScope();
             kernel.Bind(typeof(IGenericRepository<>)).To(typeof(GenericRepository<>)).InRequestScope();
-        }
+
+            kernel.Bind<IDateTimeProvider>().To<DateTimeProvider>();
+        }        
     }
 }
