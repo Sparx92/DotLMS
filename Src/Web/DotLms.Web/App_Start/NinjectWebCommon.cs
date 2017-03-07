@@ -1,7 +1,11 @@
 using System;
 using System.Web;
 using DotLms.Data;
+using DotLms.Data.Models;
 using DotLms.Web;
+using DotLms.Web.Identity.Managers;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
@@ -11,20 +15,20 @@ using Ninject.Web.Common;
 
 namespace DotLms.Web
 {
-    public static class NinjectWebCommon 
+    public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-        
+
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -32,7 +36,7 @@ namespace DotLms.Web
         {
             bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -61,7 +65,14 @@ namespace DotLms.Web
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<IAuthenticationManager>().ToMethod(
+                c => 
+                    HttpContext.Current.GetOwinContext().Authentication).InRequestScope();
+
             kernel.Bind<DotLmsDbContext>().ToSelf();
-        }        
+            kernel.Bind<DotLmsSignInManager>().ToSelf();
+            kernel.Bind<DotLmsUserManager>().ToSelf();
+            kernel.Bind<IUserStore<User>>().To<DotLmsUserStore>();
+        }
     }
 }

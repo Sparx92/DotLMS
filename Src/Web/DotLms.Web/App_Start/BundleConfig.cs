@@ -7,6 +7,7 @@ namespace DotLms.Web
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -18,13 +19,17 @@ namespace DotLms.Web
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/bundles/materilizecss")
+                .Include(
+                "~/Content/Materialize/css/materialize.css"
+                ));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/materilizejs")
+                .Include("~/Scripts/Materialize/js/materialize.js"));
+
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

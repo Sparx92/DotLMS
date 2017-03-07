@@ -183,6 +183,11 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Backoffice\BackofficeAreaRegistration.cs" />
+    <Compile Include="Areas\Backoffice\Controllers\BackofficeAuthorizationController.cs" />
+    <Compile Include="Areas\Backoffice\Controllers\BackofficeHomeController.cs" />
+    <Compile Include="Areas\Backoffice\Models\AuthViewModel.cs" />
+    <Compile Include="Attributes\SecurityAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -190,28 +195,51 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Materialize\css\materialize.css" />
+    <Content Include="Content\Materialize\css\materialize.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Areas\Backoffice\Views\web.config" />
+    <Content Include="Areas\Backoffice\Views\BackofficeHome\Index.cshtml" />
+    <Content Include="Areas\Backoffice\Views\BackofficeAuthorization\Authorize.cshtml" />
+    <Content Include="Areas\Backoffice\Views\Shared\_BackofficeMaster.cshtml" />
+    <Content Include="Areas\Backoffice\Views\Shared\_BackofficeNavigation.cshtml" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Bold.eot" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Bold.ttf" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Bold.woff" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Bold.woff2" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Light.eot" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Light.ttf" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Light.woff" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Light.woff2" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Medium.eot" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Medium.ttf" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Medium.woff" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Medium.woff2" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Regular.eot" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Regular.ttf" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Regular.woff" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Regular.woff2" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Thin.eot" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Thin.ttf" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Thin.woff" />
+    <Content Include="Content\Materialize\fonts\roboto\Roboto-Thin.woff2" />
+    <None Include="Scripts\jquery-2.2.4.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.4.js" />
+    <Content Include="Scripts\jquery-2.2.4.min.js" />
+    <Content Include="Scripts\jquery-2.2.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Materialize\js\materialize.js" />
+    <Content Include="Scripts\Materialize\js\materialize.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -255,14 +283,14 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\DotLms.Common\DotLms.Common.csproj">
+      <Project>{d0ab2b18-cc18-4595-9985-3cecb486a161}</Project>
+      <Name>DotLms.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\DotLms.Data.Models\DotLms.Data.Models.csproj">
       <Project>{EB182C7E-2AED-4A7C-ADE0-A794933939A7}</Project>
       <Name>DotLms.Data.Models</Name>

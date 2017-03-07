@@ -8,10 +8,12 @@ namespace DotLms.Data
     public class DotLmsDbContext : IdentityDbContext<User>
     {
         public DotLmsDbContext()
-            :base("DotLms")
+            : base("DotLms")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<DotLmsDbContext, Configuration>());
         }
+
+        public IDbSet<Page> Pages { get; set; }
 
         public new IDbSet<T> Set<T>() where T : class
         {
