@@ -1,7 +1,9 @@
 using System;
 using System.Web;
 using DotLms.Data;
+using DotLms.Data.Contracts;
 using DotLms.Data.Models;
+using DotLms.Data.Repositories;
 using DotLms.Web;
 using DotLms.Web.Identity.Managers;
 using Microsoft.AspNet.Identity;
@@ -69,10 +71,13 @@ namespace DotLms.Web
                 c => 
                     HttpContext.Current.GetOwinContext().Authentication).InRequestScope();
 
-            kernel.Bind<DotLmsDbContext>().ToSelf();
-            kernel.Bind<DotLmsSignInManager>().ToSelf();
-            kernel.Bind<DotLmsUserManager>().ToSelf();
-            kernel.Bind<IUserStore<User>>().To<DotLmsUserStore>();
+            kernel.Bind<IDotLmsDbContext>().To<DotLmsDbContext>().InRequestScope();
+            kernel.Bind<DotLmsSignInManager>().ToSelf().InRequestScope();
+            kernel.Bind<DotLmsUserManager>().ToSelf().InRequestScope();
+            kernel.Bind<IUserStore<User>>().To<DotLmsUserStore>().InRequestScope();
+
+            kernel.Bind<IDotLmsData>().To<DotLmsData>().InRequestScope();
+            kernel.Bind(typeof(IGenericRepository<>)).To(typeof(GenericRepository<>)).InRequestScope();
         }
     }
 }

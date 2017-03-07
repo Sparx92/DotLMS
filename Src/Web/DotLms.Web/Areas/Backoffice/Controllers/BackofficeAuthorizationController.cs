@@ -87,7 +87,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToLocal("/");
+            return RedirectToLocal(Common.Constants.BackofficeUrl);
         }
 
         private ActionResult RedirectToLocal(string returnUrl)

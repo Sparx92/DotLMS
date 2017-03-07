@@ -1,11 +1,12 @@
 ﻿using System.Data.Entity;
+using DotLms.Data.Contracts;
 using DotLms.Data.Migrations;
 using DotLms.Data.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DotLms.Data
 {
-    public class DotLmsDbContext : IdentityDbContext<User>
+    public class DotLmsDbContext : IdentityDbContext<User>, IDotLmsDbContext
     {
         public DotLmsDbContext()
             : base("DotLms")
