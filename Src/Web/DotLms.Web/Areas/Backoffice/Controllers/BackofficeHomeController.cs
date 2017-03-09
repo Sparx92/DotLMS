@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Web.Security;
-using DotLms.Web.Areas.Backoffice.Models;
+using DotLms.Services.Data;
 using DotLms.Web.Attributes;
-using DotLms.Web.Identity.Managers;
-using Microsoft.AspNet.Identity.Owin;
+using PageViewModel = DotLms.Web.Models.PageViewModel;
 
 namespace DotLms.Web.Areas.Backoffice.Controllers
 {
     public class BackofficeHomeController : Controller
     {
-        public BackofficeHomeController()
+        private PageService pageService;
+
+        public BackofficeHomeController(PageService pageService)
         {
+            this.pageService = pageService;
         }
 
 
@@ -26,8 +23,18 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         }
 
         [Security(Roles = Common.Roles.Admin)]
-        public ActionResult CreatePage(int? ParentPageId)
+        public ActionResult CreatePage()
         {
+            return View();
+        }
+
+        [Security(Roles = Common.Roles.Admin)]
+        [HttpPost]
+        public async Task<ActionResult> CreatePage(PageViewModel model)
+        {
+            string username = HttpContext.User.Identity.Name;
+            this.pageService.CreatePage(model,username);
+
             return View();
         }
 

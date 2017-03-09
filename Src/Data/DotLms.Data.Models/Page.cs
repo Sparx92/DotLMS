@@ -2,22 +2,20 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Bytes2you.Validation;
+using DotLms.Data.Models.Contracts;
 using DotLms.Services.Providers;
+using DotLms.Services.Providers.Contracts;
 
 namespace DotLms.Data.Models
 {
     public class Page
     {
-        private DateTimeProvider dateTimeProvider;
-
-        public Page(DateTimeProvider dateTimeProvider)
+        public Page()
         {
-            Guard.WhenArgument(dateTimeProvider, nameof(dateTimeProvider)).IsNull().Throw();
+            this.ChildPages = new HashSet<Page>();
+            //this.CreatedOn = DateTime.UtcNow;
+            //this.LastEditedOn = DateTime.UtcNow;
 
-            this.dateTimeProvider = dateTimeProvider;
-
-            this.CreatedOn = this.dateTimeProvider.UtcNow();
-            this.LastEditedOn = this.dateTimeProvider.UtcNow();
             this.IsPublished = false;
         }
 
@@ -43,7 +41,7 @@ namespace DotLms.Data.Models
         public string Url { get; set; }
 
         public DateTime? CreatedOn { get; set; }
-        
+
         public DateTime? LastEditedOn { get; set; }
 
         public DateTime? DeletedOn { get; set; }

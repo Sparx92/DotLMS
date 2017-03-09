@@ -240,3 +240,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/Src/Web/DotLms.Web/Scripts/tinymce

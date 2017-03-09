@@ -11,6 +11,8 @@ namespace DotLms.Data.Contracts
     {
         T GetById(object id);
 
+        T GetFirst(Expression<Func<T, bool>> filterExpression);
+
         IQueryable<T> All { get; }
 
         IEnumerable<T> GetAll();

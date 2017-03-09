@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace DotLms.Services.Contracts
+namespace DotLms.Services.Common.Contracts
 {
     public interface IProjectionService
     {

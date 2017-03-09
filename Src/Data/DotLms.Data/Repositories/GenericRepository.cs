@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
+using Bytes2you.Validation;
 using DotLms.Data.Contracts;
 
 namespace DotLms.Data.Repositories
@@ -21,10 +22,17 @@ namespace DotLms.Data.Repositories
             get { return this.DbSet; }
         }
 
-
         public T GetById(object id)
         {
             return this.DbSet.Find(id);
+        }
+
+        public T GetFirst(Expression<Func<T, bool>> filterExpression)
+        {
+            Guard.WhenArgument(filterExpression, nameof(filterExpression)).IsNull().Throw();
+
+            T foundEntity = this.DbSet.FirstOrDefault(filterExpression);
+            return foundEntity;
         }
 
         public IEnumerable<T> GetAll()

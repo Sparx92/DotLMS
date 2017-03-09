@@ -25,13 +25,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLms.Common", "Src\Common
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLms.Web.Identity", "Src\Web\DotLms.Web.Identity\DotLms.Web.Identity.csproj", "{52638DE8-F89E-45E2-B5CF-4808BDC1E6E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLms.Services", "Src\Services\DotLms.Services\DotLms.Services.csproj", "{63287B0F-376A-4A49-90FE-960E7E6C1DB0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLms.Services.Common", "Src\Services\DotLms.Services.Common\DotLms.Services.Common.csproj", "{63287B0F-376A-4A49-90FE-960E7E6C1DB0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLms.Services.Providers", "Src\Services\DotLms.Services.Providers\DotLms.Services.Providers.csproj", "{AB17B912-8E56-47B4-B9BC-523F2C081DDE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLms.Web.Models", "Src\Web\DotLms.Web.Models\DotLms.Web.Models.csproj", "{F51CC995-935A-42E6-BEB6-3E1126ECF0DE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLms.Web.Infrastructure", "Src\Web\DotLms.Web.Infrastructure\DotLms.Web.Infrastructure.csproj", "{DDD49E01-DFEA-4C92-9E29-0F3D8A5B0E92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLms.Services.Data", "Src\Services\DotLms.Services.Data\DotLms.Services.Data.csproj", "{ACF8EF93-B7A4-465E-AA17-B0384CC243E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{DDD49E01-DFEA-4C92-9E29-0F3D8A5B0E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDD49E01-DFEA-4C92-9E29-0F3D8A5B0E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDD49E01-DFEA-4C92-9E29-0F3D8A5B0E92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACF8EF93-B7A4-465E-AA17-B0384CC243E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACF8EF93-B7A4-465E-AA17-B0384CC243E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACF8EF93-B7A4-465E-AA17-B0384CC243E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACF8EF93-B7A4-465E-AA17-B0384CC243E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,5 +99,6 @@ Global
 		{AB17B912-8E56-47B4-B9BC-523F2C081DDE} = {5BA2FA0E-1C47-48E2-9006-16A017B78E06}
 		{F51CC995-935A-42E6-BEB6-3E1126ECF0DE} = {B070FE3C-54F0-4B95-9867-ED8F8D3556E6}
 		{DDD49E01-DFEA-4C92-9E29-0F3D8A5B0E92} = {B070FE3C-54F0-4B95-9867-ED8F8D3556E6}
+		{ACF8EF93-B7A4-465E-AA17-B0384CC243E5} = {5BA2FA0E-1C47-48E2-9006-16A017B78E06}
 	EndGlobalSection
 EndGlobal

@@ -5,11 +5,13 @@ using DotLms.Data;
 using DotLms.Data.Contracts;
 using DotLms.Data.Models;
 using DotLms.Data.Repositories;
+using DotLms.Services.Common;
+using DotLms.Services.Common.Contracts;
 using DotLms.Services.Providers;
 using DotLms.Services.Providers.Contracts;
 using DotLms.Web.Identity.Managers;
 using DotLms.Web.Infrastructure;
-
+using DotLms.Web.Infrastructure.Mappings;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
@@ -26,16 +28,18 @@ namespace DotLms.Web.Infrastructure
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
+        public static IKernel Kernel { get; private set; }
+
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-        
+
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -43,14 +47,16 @@ namespace DotLms.Web.Infrastructure
         {
             bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
+            StandardKernel kernel = new StandardKernel();
+            Kernel = kernel;
+
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
@@ -83,8 +89,11 @@ namespace DotLms.Web.Infrastructure
 
             kernel.Bind<IDotLmsData>().To<DotLmsData>().InRequestScope();
             kernel.Bind(typeof(IGenericRepository<>)).To(typeof(GenericRepository<>)).InRequestScope();
+            kernel.Bind(typeof(IProjectableRepository<>)).To(typeof(ProjectableRepository<>)).InRequestScope();
+            kernel.Bind<IProjectionService>().To<ProjectionService>().InRequestScope();
 
             kernel.Bind<IDateTimeProvider>().To<DateTimeProvider>();
+            kernel.Bind<IMapperProvider>().To<MapperProvider>().InSingletonScope();
         }        
     }
 }

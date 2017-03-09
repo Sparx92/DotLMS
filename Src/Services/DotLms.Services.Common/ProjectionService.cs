@@ -1,14 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-
+using AutoMapper;
 using Bytes2you.Validation;
-
-using DotLms.Services.Contracts;
+using DotLms.Services.Common.Contracts;
 using DotLms.Services.Providers.Contracts;
 
-using AutoMapper;
-
-namespace DotLms.Services
+namespace DotLms.Services.Common
 {
     public class ProjectionService : IProjectionService
     {

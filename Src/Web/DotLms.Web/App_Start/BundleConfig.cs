@@ -28,6 +28,9 @@ namespace DotLms.Web
 
             bundles.Add(new ScriptBundle("~/bundles/materilizejs")
                 .Include("~/Scripts/Materialize/js/materialize.js"));
+            
+            bundles.Add(new ScriptBundle("~/bundles/tinymce")
+                .Include("~/Scripts/tinymce/tinymce.min.js"));
 
             BundleTable.EnableOptimizations = true;
         }

@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -134,6 +138,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappings\MappingsConfig.cs" />
+    <Compile Include="Mappings\Profiles\DataMappingsProfile.cs" />
     <Compile Include="NinjectWeb.cs" />
     <Compile Include="NinjectWebCommon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -159,14 +165,21 @@
       <Project>{ab17b912-8e56-47b4-b9bc-523f2c081dde}</Project>
       <Name>DotLms.Services.Providers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\DotLms.Services\DotLms.Services.csproj">
+    <ProjectReference Include="..\..\Services\DotLms.Services.Common\DotLms.Services.Common.csproj">
       <Project>{63287b0f-376a-4a49-90fe-960e7e6c1db0}</Project>
-      <Name>DotLms.Services</Name>
+      <Name>DotLms.Services.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\DotLms.Web.Identity\DotLms.Web.Identity.csproj">
       <Project>{52638de8-f89e-45e2-b5cf-4808bdc1e6e9}</Project>
       <Name>DotLms.Web.Identity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DotLms.Web.Models\DotLms.Web.Models.csproj">
+      <Project>{F51CC995-935A-42E6-BEB6-3E1126ECF0DE}</Project>
+      <Name>DotLms.Web.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mappings\Contracts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
