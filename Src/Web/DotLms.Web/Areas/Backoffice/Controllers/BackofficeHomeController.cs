@@ -8,11 +8,11 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
 {
     public class BackofficeHomeController : Controller
     {
-        private PageService pageService;
+        private PageCreationService pageCreationService;
 
-        public BackofficeHomeController(PageService pageService)
+        public BackofficeHomeController(PageCreationService pageCreationService)
         {
-            this.pageService = pageService;
+            this.pageCreationService = pageCreationService;
         }
 
 
@@ -33,7 +33,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         public async Task<ActionResult> CreatePage(PageViewModel model)
         {
             string username = HttpContext.User.Identity.Name;
-            this.pageService.CreatePage(model,username);
+            this.pageCreationService.CreatePage(model,username);
 
             return View();
         }

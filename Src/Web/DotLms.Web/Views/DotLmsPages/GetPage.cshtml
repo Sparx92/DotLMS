@@ -1,0 +1,14 @@
+﻿@model DotLms.Web.Models.PageViewModel
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<div>
+    @Model.Name
+
+    <hr />
+
+    <div>
+        @Html.Raw(Model.HtmlContent)
+    </div>
+</div>

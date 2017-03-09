@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Bytes2you.Validation;
 using DotLms.Data.Models.Contracts;
 using DotLms.Services.Providers;
@@ -13,10 +14,6 @@ namespace DotLms.Data.Models
         public Page()
         {
             this.ChildPages = new HashSet<Page>();
-            //this.CreatedOn = DateTime.UtcNow;
-            //this.LastEditedOn = DateTime.UtcNow;
-
-            this.IsPublished = false;
         }
 
         public int Id { get; set; }
@@ -24,11 +21,13 @@ namespace DotLms.Data.Models
         [Required]
         [MinLength(1)]
         [MaxLength(50)]
+        [Index(IsUnique = true)]
         public string Name { get; set; }
 
         [Required]
         [MinLength(1)]
         [MaxLength(50)]
+        [Index(IsUnique = true)]
         public string UglyName { get; set; }
 
         [Required]
@@ -38,6 +37,7 @@ namespace DotLms.Data.Models
         [Required]
         [MinLength(1)]
         [MaxLength(50)]
+        [Index(IsUnique = true)]
         public string Url { get; set; }
 
         public DateTime? CreatedOn { get; set; }

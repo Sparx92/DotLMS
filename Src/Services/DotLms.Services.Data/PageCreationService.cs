@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
-using AutoMapper.Configuration;
+
 using Bytes2you.Validation;
+
 using DotLms.Data.Contracts;
 using DotLms.Data.Models;
-using DotLms.Services.Providers;
 using DotLms.Services.Providers.Contracts;
 using DotLms.Web.Models;
 
 namespace DotLms.Services.Data
 {
-    public class PageService
+    public class PageCreationService
     {
         private readonly IDotLmsData dotLmsData;
         private readonly IProjectableRepository<Page> pageProjectableRepository;
@@ -20,7 +19,7 @@ namespace DotLms.Services.Data
         private readonly IDateTimeProvider dateTimeProvider;
         private readonly IMapperProvider mapperProvider;
 
-        public PageService(IDotLmsData dotLmsData, IProjectableRepository<Page> pageProjectableRepository,
+        public PageCreationService(IDotLmsData dotLmsData, IProjectableRepository<Page> pageProjectableRepository,
             IDateTimeProvider dateTimeProvider, IMapperProvider mapperProvider, IGenericRepository<User> userRepository)
         {
             Guard.WhenArgument(dotLmsData, nameof(dotLmsData)).IsNull().Throw();
@@ -95,7 +94,7 @@ namespace DotLms.Services.Data
             }
 
             var uglyName = mappedPageName
-                .Substring(mappedPageName.IndexOf(" ", StringComparison.Ordinal), 1)
+                .ToLowerInvariant()
                 .Replace(' ', '-');
 
             return uglyName;
