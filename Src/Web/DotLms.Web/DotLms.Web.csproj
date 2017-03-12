@@ -236,6 +236,8 @@
     <Content Include="Content\Materialize\fonts\roboto\Roboto-Thin.woff2" />
     <Content Include="Areas\Backoffice\Views\BackofficeHome\CreatePage.cshtml" />
     <Content Include="Areas\Backoffice\Views\Shared\TinyMceEditor.cshtml" />
+    <Content Include="Areas\Backoffice\Views\BackofficeHome\CreateChildPage.cshtml" />
+    <Content Include="Areas\Backoffice\Views\BackofficeHome\EditPage.cshtml" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <Content Include="Scripts\jquery-2.2.4.min.js" />
