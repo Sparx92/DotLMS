@@ -2,7 +2,7 @@
 
 namespace DotLms.Data.Contracts
 {
-    public interface IDotLmsData : IDisposable
+    public interface IDotLmsEfData
     {
         void Commit();
     }

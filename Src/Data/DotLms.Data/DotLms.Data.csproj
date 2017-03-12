@@ -94,15 +94,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IGenericRepository.cs" />
+    <Compile Include="Contracts\IEntityFrameworkRepository.cs" />
     <Compile Include="Contracts\IProjectableRepository.cs" />
-    <Compile Include="DotLmsData.cs" />
-    <Compile Include="DotLmsDbContext.cs" />
-    <Compile Include="Contracts\IDotLmsData.cs" />
-    <Compile Include="Contracts\IDotLmsDbContext.cs" />
+    <Compile Include="DotLmsEfData.cs" />
+    <Compile Include="DotLmsEfDbContext.cs" />
+    <Compile Include="Contracts\IDotLmsEfData.cs" />
+    <Compile Include="Contracts\IDotLmsEfDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\EntityFrameworkRepository.cs" />
     <Compile Include="Repositories\ProjectableRepository.cs" />
   </ItemGroup>
   <ItemGroup>

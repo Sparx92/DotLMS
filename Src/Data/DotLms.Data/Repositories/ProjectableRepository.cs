@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using Bytes2you.Validation;
@@ -9,11 +8,11 @@ using DotLms.Services.Common.Contracts;
 
 namespace DotLms.Data.Repositories
 {
-    public class ProjectableRepository<T> : GenericRepository<T>, IProjectableRepository<T> where T : class
+    public class ProjectableRepository<T> : EntityFrameworkRepository<T>, IProjectableRepository<T> where T : class
     {
         private readonly IProjectionService projectionService;
 
-        public ProjectableRepository(IDotLmsDbContext context, IProjectionService projectionService)
+        public ProjectableRepository(IDotLmsEfDbContext context, IProjectionService projectionService)
             : base(context)
         {
             Guard.WhenArgument(context, nameof(context)).IsNull().Throw();

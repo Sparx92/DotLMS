@@ -6,7 +6,7 @@ namespace DotLms.Web.Identity.Managers
 {
     public class DotLmsUserStore : UserStore<User>
     {
-        public DotLmsUserStore(DotLmsDbContext dbContext) : base(dbContext)
+        public DotLmsUserStore(DotLmsEfDbContext dotLmsEfDbContext) : base(dotLmsEfDbContext)
         {
             
         }

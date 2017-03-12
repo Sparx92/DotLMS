@@ -9,10 +9,12 @@ using DotLms.Data.Contracts;
 
 namespace DotLms.Data.Repositories
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class EntityFrameworkRepository<T> : IEntityFrameworkRepository<T> where T : class
     {
-        public GenericRepository(IDotLmsDbContext context)
+        public EntityFrameworkRepository(IDotLmsEfDbContext context)
         {
+            Guard.WhenArgument(context, nameof(context)).IsNull().Throw();
+            
             this.Context = context;
             this.DbSet = this.Context.Set<T>();
         }
@@ -74,7 +76,7 @@ namespace DotLms.Data.Repositories
             }
         }
 
-        public IDotLmsDbContext Context { get; set; }
+        public IDotLmsEfDbContext Context { get; set; }
 
         protected IDbSet<T> DbSet { get; set; }
 
@@ -96,7 +98,7 @@ namespace DotLms.Data.Repositories
             entry.State = EntityState.Deleted;
         }
 
-        private DbEntityEntry AttachIfDetached(T entity)
+        protected DbEntityEntry AttachIfDetached(T entity)
         {
             var entry = this.Context.Entry(entity);
             if (entry.State == EntityState.Detached)

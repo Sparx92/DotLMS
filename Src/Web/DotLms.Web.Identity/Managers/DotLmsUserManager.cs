@@ -20,7 +20,7 @@ namespace DotLms.Web.Identity.Managers
             IdentityFactoryOptions<DotLmsUserManager> options,
             IOwinContext context)
         {
-            DotLmsUserManager manager = new DotLmsUserManager(new UserStore<User>(context.Get<DotLmsDbContext>()));
+            DotLmsUserManager manager = new DotLmsUserManager(new UserStore<User>(context.Get<DotLmsEfDbContext>()));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<User>(manager)
             {

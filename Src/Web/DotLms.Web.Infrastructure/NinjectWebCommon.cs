@@ -82,13 +82,13 @@ namespace DotLms.Web.Infrastructure
                   c =>
                       HttpContext.Current.GetOwinContext().Authentication).InRequestScope();
 
-            kernel.Bind<IDotLmsDbContext>().To<DotLmsDbContext>().InRequestScope();
+            kernel.Bind<IDotLmsEfDbContext>().To<DotLmsEfDbContext>().InRequestScope();
             kernel.Bind<DotLmsSignInManager>().ToSelf().InRequestScope();
             kernel.Bind<DotLmsUserManager>().ToSelf().InRequestScope();
             kernel.Bind<IUserStore<User>>().To<DotLmsUserStore>().InRequestScope();
 
-            kernel.Bind<IDotLmsData>().To<DotLmsData>().InRequestScope();
-            kernel.Bind(typeof(IGenericRepository<>)).To(typeof(GenericRepository<>)).InRequestScope();
+            kernel.Bind<IDotLmsEfData>().To<DotLmsEfData>().InRequestScope();
+            kernel.Bind(typeof(IEntityFrameworkRepository<>)).To(typeof(EntityFrameworkRepository<>)).InRequestScope();
             kernel.Bind(typeof(IProjectableRepository<>)).To(typeof(ProjectableRepository<>)).InRequestScope();
             kernel.Bind<IProjectionService>().To<ProjectionService>().InRequestScope();
 

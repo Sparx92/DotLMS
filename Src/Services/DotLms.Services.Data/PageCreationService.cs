@@ -13,22 +13,22 @@ namespace DotLms.Services.Data
 {
     public class PageCreationService
     {
-        private readonly IDotLmsData dotLmsData;
+        private readonly IDotLmsEfData dotLmsEfData;
         private readonly IProjectableRepository<Page> pageProjectableRepository;
-        private readonly IGenericRepository<User> userRepository;
+        private readonly IEntityFrameworkRepository<User> userRepository;
         private readonly IDateTimeProvider dateTimeProvider;
         private readonly IMapperProvider mapperProvider;
 
-        public PageCreationService(IDotLmsData dotLmsData, IProjectableRepository<Page> pageProjectableRepository,
-            IDateTimeProvider dateTimeProvider, IMapperProvider mapperProvider, IGenericRepository<User> userRepository)
+        public PageCreationService(IDotLmsEfData dotLmsEfData, IProjectableRepository<Page> pageProjectableRepository,
+            IDateTimeProvider dateTimeProvider, IMapperProvider mapperProvider, IEntityFrameworkRepository<User> userRepository)
         {
-            Guard.WhenArgument(dotLmsData, nameof(dotLmsData)).IsNull().Throw();
+            Guard.WhenArgument(dotLmsEfData, nameof(dotLmsEfData)).IsNull().Throw();
             Guard.WhenArgument(pageProjectableRepository, nameof(pageProjectableRepository)).IsNull().Throw();
             Guard.WhenArgument(dateTimeProvider, nameof(dateTimeProvider)).IsNull().Throw();
             Guard.WhenArgument(mapperProvider, nameof(mapperProvider)).IsNull().Throw();
             Guard.WhenArgument(userRepository, nameof(userRepository)).IsNull().Throw();
 
-            this.dotLmsData = dotLmsData;
+            this.dotLmsEfData = dotLmsEfData;
             this.pageProjectableRepository = pageProjectableRepository;
             this.dateTimeProvider = dateTimeProvider;
             this.mapperProvider = mapperProvider;
@@ -65,7 +65,7 @@ namespace DotLms.Services.Data
                 mappedPage.Url = this.GenereateUrl(mappedPage.ParentPage, mappedPage.UglyName);
             }
             this.pageProjectableRepository.Add(mappedPage);
-            this.dotLmsData.Commit();
+            this.dotLmsEfData.Commit();
         }
 
         private string GenereateUrl(Page parentPage, string uglyName)

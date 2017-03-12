@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DotLms.Data.Contracts
 {
-    public interface IGenericRepository<T> where T : class
+    public interface IEntityFrameworkRepository<T> where T : class
     {
         T GetById(object id);
 

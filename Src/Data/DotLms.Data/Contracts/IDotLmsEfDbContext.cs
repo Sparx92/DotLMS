@@ -4,7 +4,7 @@ using DotLms.Data.Models;
 
 namespace DotLms.Data.Contracts
 {
-    public interface IDotLmsDbContext
+    public interface IDotLmsEfDbContext
     {
         IDbSet<Page> Pages { get; set; }
 

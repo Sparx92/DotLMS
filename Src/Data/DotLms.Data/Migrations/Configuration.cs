@@ -1,13 +1,15 @@
+using System.Data.Entity.Migrations;
+using System.Linq;
+
 using DotLms.Data.Models;
+
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DotLms.Data.Migrations
 {
-    using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<DotLms.Data.DotLmsDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<DotLmsEfDbContext>
     {
         public Configuration()
         {
@@ -15,31 +17,31 @@ namespace DotLms.Data.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(DotLms.Data.DotLmsDbContext context)
+        protected override void Seed(DotLmsEfDbContext context)
         {
             this.SeedRoles(context);
             this.SeedUsers(context);
         }
 
-        private void SeedRoles(DotLmsDbContext context)
+        private void SeedRoles(DotLmsEfDbContext context)
         {
             RoleStore<IdentityRole> roleStore = new RoleStore<IdentityRole>(context);
             RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(roleStore);
 
-            if (!context.Roles.Any(r => r.Name == DotLms.Common.Roles.Admin))
+            if (!context.Roles.Any(r => r.Name == Common.Roles.Admin))
             {
-                IdentityRole role = new IdentityRole { Name = DotLms.Common.Roles.Admin };
+                IdentityRole role = new IdentityRole { Name = Common.Roles.Admin };
                 roleManager.Create(role);
             }
 
-            if (!context.Roles.Any(r => r.Name == DotLms.Common.Roles.Normal))
+            if (!context.Roles.Any(r => r.Name == Common.Roles.Normal))
             {
-                IdentityRole role = new IdentityRole { Name = DotLms.Common.Roles.Normal };
+                IdentityRole role = new IdentityRole { Name = Common.Roles.Normal };
                 roleManager.Create(role);
             }
         }
 
-        private void SeedUsers(DotLmsDbContext context)
+        private void SeedUsers(DotLmsEfDbContext context)
         {
             UserStore<User> userStore = new UserStore<User>(context);
             UserManager<User> userManager = new UserManager<User>(userStore);
@@ -49,7 +51,10 @@ namespace DotLms.Data.Migrations
                 User adminUser = new User { UserName = "admin@admin.com", Email = "admin@admin.com" };
 
                 IdentityResult isSuccessful = userManager.Create(adminUser, "admin1");
-                userManager.AddToRole(adminUser.Id, DotLms.Common.Roles.Admin);
+                if (isSuccessful.Succeeded)
+                {
+                    userManager.AddToRole(adminUser.Id, Common.Roles.Admin);
+                }
             }
         }
     }

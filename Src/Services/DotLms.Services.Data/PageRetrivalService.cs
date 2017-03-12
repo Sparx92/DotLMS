@@ -10,22 +10,22 @@ namespace DotLms.Services.Data
 {
     public class PageRetrivalService
     {
-        private readonly IDotLmsData dotLmsData;
+        private readonly IDotLmsEfData dotLmsEfData;
         private readonly IProjectableRepository<Page> pageProjectableRepository;
-        private readonly IGenericRepository<User> userRepository;
+        private readonly IEntityFrameworkRepository<User> userRepository;
         private readonly IDateTimeProvider dateTimeProvider;
         private readonly IMapperProvider mapperProvider;
 
-        public PageRetrivalService(IDotLmsData dotLmsData, IProjectableRepository<Page> pageProjectableRepository,
-            IDateTimeProvider dateTimeProvider, IMapperProvider mapperProvider, IGenericRepository<User> userRepository)
+        public PageRetrivalService(IDotLmsEfData dotLmsEfData, IProjectableRepository<Page> pageProjectableRepository,
+            IDateTimeProvider dateTimeProvider, IMapperProvider mapperProvider, IEntityFrameworkRepository<User> userRepository)
         {
-            Guard.WhenArgument(dotLmsData, nameof(dotLmsData)).IsNull().Throw();
+            Guard.WhenArgument(dotLmsEfData, nameof(dotLmsEfData)).IsNull().Throw();
             Guard.WhenArgument(pageProjectableRepository, nameof(pageProjectableRepository)).IsNull().Throw();
             Guard.WhenArgument(dateTimeProvider, nameof(dateTimeProvider)).IsNull().Throw();
             Guard.WhenArgument(mapperProvider, nameof(mapperProvider)).IsNull().Throw();
             Guard.WhenArgument(userRepository, nameof(userRepository)).IsNull().Throw();
 
-            this.dotLmsData = dotLmsData;
+            this.dotLmsEfData = dotLmsEfData;
             this.pageProjectableRepository = pageProjectableRepository;
             this.dateTimeProvider = dateTimeProvider;
             this.mapperProvider = mapperProvider;
