@@ -1,76 +1,41 @@
 ﻿@using Microsoft.AspNet.Identity
-<nav>
-    <div class="nav-wrapper">
-        <a href="@DotLms.Common.Constants.BackofficeUrl" class="brand-logo">DotLMS</a>
-        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="#" data-activates="slide-out" id="sidenav-btn"><i class="material-icons">menu</i></a></li>
-        </ul>
-    </div>
-</nav>
+<div class="header header-sticky">
+    <div class="container">
+        <!-- Logo -->
+        <a class="logo" href="@DotLms.Common.Constants.BackofficeUrl">
+            <img src="assets/img/logo1-default.png" alt="Logo">
+        </a>
+        <!-- End Logo -->
+        <!-- Toggle get grouped for better mobile display -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-bars"></span>
+        </button>
+        <!-- End Toggle -->
+    </div><!--/end container-->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
+        <div class="container">
+            <ul class="nav navbar-left navbar-nav">
+                <!-- Home -->
+                <li>@Html.ActionLink("Create Page", "CreatePage", new { controller = "BackofficeHome" })</li>
 
 
-<ul id="slide-out" class="side-nav">
-    @if (Request.IsAuthenticated)
-    {
-        <li>
-            <div class="userView">
-                <div class="background">
-                    <img src="images/office.jpg">
-                </div>
-                <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
-                <a href="#!name"><span class="white-text name">John Doe</span></a>
-                <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-            </div>
-        </li>
-        <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-        <li>@Html.ActionLink("Create Page", "CreatePage", new { controller = "BackofficeHome" }, new { @class = "waves-green" })</li>
-        <li><a href="#!">Second Link</a></li>
-        <li>
-            <div class="divider"></div>
-        </li>
-        <li><a class="subheader">Subheader</a></li>
-
-        using (Html.BeginForm("LogOff", "BackofficeAuthorization", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-        {
-            @Html.AntiForgeryToken()
-
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-                </li>
-                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
             </ul>
-        }
-    }
-    else
-    {
-        <li>
-            <div class="userView">
-                <div class="background red">
+            @if (Request.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "BackofficeAuthorization", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                    @Html.AntiForgeryToken()
 
-                </div>
-                <img class="circle" src="http://vignette3.wikia.nocookie.net/clubpenguin/images/c/c9/Sad_face.png/revision/latest?cb=20120501180842">
-                <span class="white-text name">Please log in to access the backoffice.</span>
-            </div>
-        </li>
-    }
-</ul>
-
-<script>
-    $(document).ready(function () {
-        $('#sidenav-btn').sideNav({
-            menuWidth: 300, // Default is 300
-            edge: 'right', // Choose the horizontal origin
-            closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-            draggable: true // Choose whether you can drag to open on touch screens
-        });
-        $('.button-collapse').sideNav({
-            menuWidth: 300, // Default is 300
-            edge: 'right', // Choose the horizontal origin
-            closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-            draggable: true // Choose whether you can drag to open on touch screens
-        });
-    })
-
-</script>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                        </li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                    </ul>
+                }
+            }
+        </div><!--/end container-->
+    </div><!--/navbar-collapse-->
+</div>
