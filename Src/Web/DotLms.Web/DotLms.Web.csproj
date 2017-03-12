@@ -203,7 +203,20 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Backoffice\Assets\css\app.css" />
+    <Content Include="Areas\Backoffice\Assets\css\blocks.css" />
+    <Content Include="Areas\Backoffice\Assets\css\custom.css" />
+    <Content Include="Areas\Backoffice\Assets\css\pages\page_log_reg_v2.css" />
+    <Content Include="Areas\Backoffice\Assets\css\theme-colors\default.css" />
+    <Content Include="Areas\Backoffice\Assets\css\theme-skins\dark.css" />
+    <Content Include="Areas\Backoffice\Assets\js\app.js" />
+    <Content Include="Areas\Backoffice\Assets\js\custom.js" />
+    <Content Include="Areas\Backoffice\Assets\js\login-page.js" />
+    <Content Include="Areas\Backoffice\Assets\plugins\animate.css" />
     <Content Include="Areas\Backoffice\Assets\plugins\back-to-top.js" />
+    <Content Include="Areas\Backoffice\Assets\plugins\backstretch\backstretch-ini.js" />
+    <Content Include="Areas\Backoffice\Assets\plugins\backstretch\jquery.backstretch.js" />
+    <Content Include="Areas\Backoffice\Assets\plugins\backstretch\jquery.backstretch.min.js" />
     <Content Include="Areas\Backoffice\Assets\plugins\bootstrap\css\bootstrap-rtl.min.css" />
     <Content Include="Areas\Backoffice\Assets\plugins\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Areas\Backoffice\Assets\plugins\bootstrap\css\bootstrap-theme.min.css" />
@@ -457,7 +470,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Backoffice\Assets\js\" />
     <Folder Include="Content\" />
   </ItemGroup>
   <ItemGroup>
