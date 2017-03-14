@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
-<div class="header header-sticky">
+<div class="header header-sticky margin-bottom-20">
     <div class="container">
         <!-- Logo -->
         <a class="logo" href="@DotLms.Common.Constants.BackofficeUrl">
@@ -20,18 +20,18 @@
             {
                 <ul class="nav navbar-left navbar-nav">
                     <!-- Home -->
-                    <li>@Html.ActionLink("Create Page", "CreatePage", new { controller = "BackofficeHome" })</li>
-
-
+                    <li>@Html.ActionLink("Create Page", "CreatePage", new { controller = "BackOfficeHome" })</li>
+                    <li>@Html.ActionLink("Media", "Index", new { controller = "BackOfficeMedia" })</li>
+                    <li>@Html.ActionLink("Courses", "Index", new { controller = "BackOfficeCourse" })</li>
                 </ul>
 
-                using (Html.BeginForm("LogOff", "BackofficeAuthorization", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                using (Html.BeginForm("LogOff", "BackOfficeAuthorization", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                 {
                     @Html.AntiForgeryToken()
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
+                            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                         </li>
                         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                     </ul>

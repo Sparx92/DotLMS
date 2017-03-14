@@ -187,12 +187,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Backoffice\BackofficeAreaRegistration.cs" />
-    <Compile Include="Areas\Backoffice\Controllers\BackofficeAuthorizationController.cs" />
-    <Compile Include="Areas\Backoffice\Controllers\BackofficeHomeController.cs" />
+    <Compile Include="Areas\Backoffice\Controllers\BackOfficeAuthorizationController.cs" />
+    <Compile Include="Areas\Backoffice\Controllers\BackOfficeCourseController.cs" />
+    <Compile Include="Areas\Backoffice\Controllers\BackOfficeHomeController.cs" />
+    <Compile Include="Areas\Backoffice\Controllers\BackOfficeMediaController.cs" />
     <Compile Include="Areas\Backoffice\Models\AuthViewModel.cs" />
     <Compile Include="Attributes\SecurityAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DotLmsPagesController.cs" />
+    <Compile Include="Controllers\FrontPagesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -212,6 +215,7 @@
     <Content Include="Areas\Backoffice\Assets\js\app.js" />
     <Content Include="Areas\Backoffice\Assets\js\custom.js" />
     <Content Include="Areas\Backoffice\Assets\js\login-page.js" />
+    <Content Include="Areas\Backoffice\Assets\js\tinyMCE-config.js" />
     <Content Include="Areas\Backoffice\Assets\plugins\animate.css" />
     <Content Include="Areas\Backoffice\Assets\plugins\back-to-top.js" />
     <Content Include="Areas\Backoffice\Assets\plugins\backstretch\backstretch-ini.js" />
@@ -228,20 +232,22 @@
     <Content Include="Areas\Backoffice\Assets\plugins\bootstrap\js\npm.js" />
     <Content Include="Areas\Backoffice\Assets\css\headers\header-default.css" />
     <Content Include="Areas\Backoffice\Assets\css\style.css" />
+    <Content Include="Areas\Backoffice\Assets\plugins\skyforms\custom-sky-forms.css" />
+    <Content Include="Areas\Backoffice\Assets\plugins\skyforms\sky-forms.css" />
     <Content Include="Areas\Backoffice\Assets\plugins\smoothScroll.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Backoffice\Views\web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Areas\Backoffice\Views\BackofficeHome\Index.cshtml" />
-    <Content Include="Areas\Backoffice\Views\BackofficeAuthorization\Authorize.cshtml" />
+    <Content Include="Areas\Backoffice\Views\BackOfficeHome\Index.cshtml" />
+    <Content Include="Areas\Backoffice\Views\BackOfficeAuthorization\Authorize.cshtml" />
     <Content Include="Areas\Backoffice\Views\Shared\_BackofficeMaster.cshtml" />
     <Content Include="Areas\Backoffice\Views\Shared\_BackofficeNavigation.cshtml" />
-    <Content Include="Areas\Backoffice\Views\BackofficeHome\CreatePage.cshtml" />
+    <Content Include="Areas\Backoffice\Views\BackOfficeHome\CreatePage.cshtml" />
     <Content Include="Areas\Backoffice\Views\Shared\TinyMceEditor.cshtml" />
-    <Content Include="Areas\Backoffice\Views\BackofficeHome\CreateChildPage.cshtml" />
-    <Content Include="Areas\Backoffice\Views\BackofficeHome\EditPage.cshtml" />
+    <Content Include="Areas\Backoffice\Views\BackOfficeHome\CreateChildPage.cshtml" />
+    <Content Include="Areas\Backoffice\Views\BackOfficeHome\EditPage.cshtml" />
     <Content Include="Areas\Backoffice\Assets\plugins\bootstrap\css\bootstrap-theme.css.map" />
     <Content Include="Areas\Backoffice\Assets\plugins\bootstrap\css\bootstrap-theme.min.css.map" />
     <Content Include="Areas\Backoffice\Assets\plugins\bootstrap\css\bootstrap.css.map" />
@@ -250,6 +256,11 @@
     <Content Include="Areas\Backoffice\Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Areas\Backoffice\Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Areas\Backoffice\Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\Backoffice\Views\BackOfficeMedia\Index.cshtml" />
+    <Content Include="Areas\Backoffice\Views\BackOfficeMedia\Add.cshtml" />
+    <Content Include="Areas\Backoffice\Views\BackOfficeCourse\Index.cshtml" />
+    <Content Include="Areas\Backoffice\Views\BackOfficeCourse\CreateCourse.cshtml" />
+    <Content Include="Areas\Backoffice\Views\BackOfficeCourse\CreateCourseCategory.cshtml" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <Content Include="Scripts\jquery-2.2.4.min.js" />
@@ -433,9 +444,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\DotLmsPages\About.cshtml" />
-    <Content Include="Views\DotLmsPages\Contact.cshtml" />
-    <Content Include="Views\DotLmsPages\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -466,11 +475,12 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
-    <Content Include="Views\DotLmsPages\GetPage.cshtml" />
+    <Content Include="Views\FrontPages\GetPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
+    <Folder Include="Media\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

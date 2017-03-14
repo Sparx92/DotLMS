@@ -17,7 +17,7 @@ namespace DotLms.Web.Areas.Backoffice
             context.MapRoute(
                 "Backoffice_default",
                 "Backoffice/{controller}/{action}/{id}",
-                new {  controller = "BackofficeHome", action = "Index", id = UrlParameter.Optional }
+                new {  controller = "BackOfficeHome", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

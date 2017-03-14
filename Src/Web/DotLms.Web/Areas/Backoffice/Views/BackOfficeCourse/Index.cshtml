@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Courses";
+    Layout = "~/Areas/Backoffice/Views/Shared/_BackofficeMaster.cshtml";
+}
+<div class="container content-sm">
+    <div class="row content-boxes-v2 content-boxes-v2-o margin-bottom-40">
+        <div class="col-sm-6 sm-margin-bottom-40">
+            <h2 class="heading-sm overflow-h">
+                <i class="icon-custom rounded-x icon-md icon-bg-u fa fa-lightbulb-o"></i>
+                <span>@Html.ActionLink("Create new course","CreateCourse") <small> Loads new administration page.</small></span>
+            </h2>
+            <hr class="no-margin margin-bottom-10">
+            <p>Description of the action</p>
+        </div>
+        <div class="col-sm-6 sm-margin-bottom-40">
+            <h2 class="heading-sm overflow-h">
+                <i class="icon-custom rounded-x icon-md icon-bg-blue fa fa-bullhorn"></i>
+                <span>@Html.ActionLink("Create new course category","CreateCourseCategory")<small>Loads new administration page.</small></span>
+            </h2>
+            <hr class="no-margin margin-bottom-10">
+            <p>Description of the action</p>
+        </div>
+    </div>
+
+</div>
+
+<p>TODO All courses administration</p>

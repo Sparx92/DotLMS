@@ -21,7 +21,7 @@ namespace DotLms.Web
                         "~/Scripts/modernizr-*"));
 
 
-            // tinyMce wysiwg editor
+            // tinyMce wysiwg editor .Include("~/Backoffice/Assets/js/tinyMCE-config.js")
             bundles.Add(new ScriptBundle("~/bundles/tinymce")
                 .Include("~/Scripts/tinymce/tinymce.min.js"));
 
@@ -44,6 +44,8 @@ namespace DotLms.Web
                 .Include("~/Areas/Backoffice/Assets/plugins/animate.css")
                 .Include("~/Areas/Backoffice/Assets/css/theme-colors/default.css")
                 .Include("~/Areas/Backoffice/Assets/css/theme-skins/dark.css")
+                .Include("~/Areas/Backoffice/Assets/plugins/skyforms/sky-forms.css")
+                .Include("~/Areas/Backoffice/Assets/plugins/skyforms/custom-sky-forms.css")
                 .Include("~/Areas/Backoffice/Assets/css/app.css")
                 .Include("~/Areas/Backoffice/Assets/css/blocks.css")
                 .Include("~/Areas/Backoffice/Assets/css/custom.css")

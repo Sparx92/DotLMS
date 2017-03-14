@@ -9,12 +9,12 @@ using Microsoft.Owin.Security;
 
 namespace DotLms.Web.Areas.Backoffice.Controllers
 {
-    public class BackofficeAuthorizationController : Controller
+    public class BackOfficeAuthorizationController : Controller
     {
         private DotLmsSignInManager signInManager;
         private DotLmsUserManager userManager;
 
-        public BackofficeAuthorizationController(DotLmsSignInManager dotLmsSignInManager, DotLmsUserManager dotLmsUserManager)
+        public BackOfficeAuthorizationController(DotLmsSignInManager dotLmsSignInManager, DotLmsUserManager dotLmsUserManager)
         {
             this.signInManager = dotLmsSignInManager;
             this.userManager = dotLmsUserManager;
@@ -92,7 +92,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "BackofficeHome");
+            return RedirectToAction("Index", "BackOfficeHome");
         }
 
         private IAuthenticationManager AuthenticationManager

@@ -11,15 +11,16 @@ namespace DotLms.Web
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
             routes.MapRoute(
                 name: "FrontPages",
                 url: "{pageName}",
-                defaults: new {controller = "DotLmsPages", action = "GetPage", pageName = UrlParameter.Optional});
+                defaults: new { controller = "FrontPages", action = "GetPage" });
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "DotLmsPages", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

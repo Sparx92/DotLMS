@@ -5,38 +5,10 @@
 }
 
 @Scripts.Render("~/bundles/tinymce")
-<script>
-    tinymce.baseURL = "@Url.Content("~/Scripts/tinymce/")";
-    (function () {
-        'use strict';
-
-        function init() {
-            tinymce.init({
-                selector: '.tinymceflag',
-                plugins: [
-                    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-                    'searchreplace wordcount visualblocks visualchars code fullscreen',
-                    'insertdatetime media nonbreaking save table contextmenu directionality',
-                    'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
-                ],
-                toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-                toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
-                height: 300
-            });
-
-            let $textArea = $("#tinymce-textarea");
-            $('.mce-container').keypress(() => {
-                let html = tinyMCE.activeEditor.getContent();
-                $textArea.text(html);
-            });
-        }
-
-        init();
-    }());
-</script>
+<script src="~/Areas/Backoffice/Assets/js/tinyMCE-config.js" data-selector=".tinymceflag"></script>
 
 
-@using (Html.BeginForm("CreatePage", "BackofficeHome", FormMethod.Post))
+@using (Html.BeginForm("CreatePage", "BackOfficeHome", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })

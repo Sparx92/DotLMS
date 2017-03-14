@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 using DotLms.Services.Data;
 using DotLms.Web.Attributes;
@@ -8,12 +7,12 @@ using PageViewModel = DotLms.Web.Models.PageViewModel;
 
 namespace DotLms.Web.Areas.Backoffice.Controllers
 {
-    public class BackofficeHomeController : Controller
+    public class BackOfficeHomeController : Controller
     {
-        private PageCreationService pageCreationService;
-        private PageRetrivalService pageRetrivalService;
+        private readonly PageCreationService pageCreationService;
+        private readonly PageRetrivalService pageRetrivalService;
 
-        public BackofficeHomeController(PageCreationService pageCreationService, PageRetrivalService pageRetrivalService)
+        public BackOfficeHomeController(PageCreationService pageCreationService, PageRetrivalService pageRetrivalService)
         {
             this.pageCreationService = pageCreationService;
             this.pageRetrivalService = pageRetrivalService;

@@ -161,6 +161,10 @@
       <Project>{31a9a504-87f8-469b-92d1-7e1de827f38c}</Project>
       <Name>DotLms.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\DotLms.Services.Data\DotLms.Services.Data.csproj">
+      <Project>{ACF8EF93-B7A4-465E-AA17-B0384CC243E5}</Project>
+      <Name>DotLms.Services.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\DotLms.Services.Providers\DotLms.Services.Providers.csproj">
       <Project>{ab17b912-8e56-47b4-b9bc-523f2c081dde}</Project>
       <Name>DotLms.Services.Providers</Name>

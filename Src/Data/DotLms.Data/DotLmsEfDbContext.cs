@@ -17,6 +17,12 @@ namespace DotLms.Data
 
         public IDbSet<Page> Pages { get; set; }
 
+        public IDbSet<MediaItem> MediaItems { get; set; }
+
+        public IDbSet<CourseCategory> CourseCategories { get; set; }
+
+        public IDbSet<Course> Courses { get; set; }
+
        
         public  IDbSet<T> Set<T>() where T : class
         {

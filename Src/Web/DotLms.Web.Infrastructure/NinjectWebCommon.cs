@@ -7,11 +7,11 @@ using DotLms.Data.Models;
 using DotLms.Data.Repositories;
 using DotLms.Services.Common;
 using DotLms.Services.Common.Contracts;
+using DotLms.Services.Data;
 using DotLms.Services.Providers;
 using DotLms.Services.Providers.Contracts;
 using DotLms.Web.Identity.Managers;
 using DotLms.Web.Infrastructure;
-using DotLms.Web.Infrastructure.Mappings;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
@@ -94,6 +94,8 @@ namespace DotLms.Web.Infrastructure
 
             kernel.Bind<IDateTimeProvider>().To<DateTimeProvider>();
             kernel.Bind<IMapperProvider>().To<MapperProvider>().InSingletonScope();
+
+            kernel.Bind<FileService>().ToSelf().InRequestScope();
         }        
     }
 }

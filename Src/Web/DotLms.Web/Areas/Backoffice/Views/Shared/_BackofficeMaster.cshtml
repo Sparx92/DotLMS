@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <!--Import Google Icon Font-->
@@ -16,9 +15,10 @@
 
 
     @Styles.Render("~/bundles/unify/backoffice/css")
+    @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
-    @if (Request.IsAuthenticated)
+    @if (Request.IsAuthenticated && Context.User.IsInRole(DotLms.Common.Roles.Admin))
     {
         @Html.Partial("_BackofficeNavigation")
     }
@@ -27,7 +27,6 @@
         @RenderBody()
     </main>
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/unify/backoffice/js")

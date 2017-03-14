@@ -17,13 +17,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "DotLmsPages", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Application name", "Index", "FrontPages", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "DotLmsPages")</li>
-                    <li>@Html.ActionLink("About", "About", "DotLmsPages")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "DotLmsPages")</li>
+                    <li>@Html.ActionLink("Home", "Index", "FrontPages")</li>
+                    <li>@Html.ActionLink("About", "About", "FrontPages")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "FrontPages")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -8,10 +8,10 @@ namespace DotLms.Data.Contracts
     {
         IDbSet<Page> Pages { get; set; }
 
-        new IDbSet<T> Set<T>() where T : class;
+        IDbSet<T> Set<T>() where T : class;
 
         DbEntityEntry<T> Entry<T>(T entity) where T : class;
 
-        new int SaveChanges();
+        int SaveChanges();
     }
 }

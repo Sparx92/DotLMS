@@ -66,6 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IPage.cs" />
+    <Compile Include="Course.cs" />
+    <Compile Include="CourseCategory.cs" />
+    <Compile Include="MediaItem.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />

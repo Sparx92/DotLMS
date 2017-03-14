@@ -11,11 +11,11 @@ using Microsoft.AspNet.Identity;
 
 namespace DotLms.Web.Controllers
 {
-    public class DotLmsPagesController : Controller
+    public class FrontPagesController : Controller
     {
         private readonly PageRetrivalService pageRetrivalService;
 
-        public DotLmsPagesController(PageRetrivalService pageRetrivalService)
+        public FrontPagesController(PageRetrivalService pageRetrivalService)
         {
             Guard.WhenArgument(pageRetrivalService, nameof(pageRetrivalService)).IsNull().Throw();
 

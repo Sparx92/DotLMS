@@ -1,0 +1,16 @@
+﻿@model MediaItemViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Areas/Backoffice/Views/Shared/_BackofficeMaster.cshtml";
+}
+
+@using (Html.BeginForm("Add", "BackOfficeMedia", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.TextBoxFor(m => m.File, new { type = "file" })
+    @Html.ValidationMessageFor(m => m.File)
+
+    <input type="submit" value="Add" />
+}
