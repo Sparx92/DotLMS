@@ -66,6 +66,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BackOfficeIndexViewModel.cs" />
+    <Compile Include="CourseCategoryViewModel.cs" />
+    <Compile Include="CourseCreationViewModel.cs" />
     <Compile Include="CourseViewModel.cs" />
     <Compile Include="MediaItemViewModel.cs" />
     <Compile Include="PageViewModel.cs" />

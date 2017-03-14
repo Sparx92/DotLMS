@@ -1,4 +1,5 @@
-﻿@model CourseViewModel
+﻿@using System.Web.Mvc.Html
+@model CourseCreationViewModel
 @{
     ViewBag.Title = "title";
     Layout = "~/Areas/Backoffice/Views/Shared/_BackofficeMaster.cshtml";
@@ -18,15 +19,25 @@
             <header>Create new course</header>
             <fieldset>
                 <div class="row">
-                    <section class="col col-6">
+                    <section class="col col-3">
                         @Html.LabelFor(x => x.Name)
                         @Html.TextBoxFor(x => x.Name)
                         @Html.ValidationMessageFor(x => x.Name)
                     </section>
-                    <section class="col col-6">
+                    <section class="col col-3">
                         @Html.LabelFor(x => x.MainImage, new { @class = "input input-file" })
                         @Html.TextBoxFor(x => x.MainImage, new { type = "file" })
                         @Html.ValidationMessageFor(x => x.MainImage)
+                    </section>
+                    <section>
+                        @if (Model.Categories.Any())
+                        {
+                            @Html.DropDownListFor(model => model.Category, new SelectList(Model.Categories), "", new { })
+                        }
+                        else
+                        {
+                            <p class="text-danger">There are no created categories, please @Html.ActionLink("create at lease one", "CreateCourseCategory")</p>
+                        }
                     </section>
                 </div>
                 <div class="row">
@@ -37,8 +48,8 @@
             <fieldset>
                 <div class="row">
                     <section class="col-sm-12">
-                        @Html.LabelFor(x=>x.ShortDescription)
-                        @Html.TextAreaFor(x => x.ShortDescription, new {@class = "short-description-mce"})
+                        @Html.LabelFor(x => x.ShortDescription)
+                        @Html.TextAreaFor(x => x.ShortDescription, new { @class = "short-description-mce" })
                     </section>
                 </div>
             </fieldset>
@@ -46,7 +57,7 @@
                 <div class="row">
                     <section class="col-sm-12">
                         @Html.LabelFor(x => x.FullDescription)
-                        @Html.TextAreaFor(x => x.FullDescription, new {@class = "full-description-mce"})
+                        @Html.TextAreaFor(x => x.FullDescription, new { @class = "full-description-mce" })
                     </section>
                 </div>
             </fieldset>
