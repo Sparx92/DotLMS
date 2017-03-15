@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CourseCategoryService.cs" />
+    <Compile Include="CourseService.cs" />
     <Compile Include="FileService.cs" />
     <Compile Include="PageCreationService.cs" />
     <Compile Include="PageRetrivalService.cs" />

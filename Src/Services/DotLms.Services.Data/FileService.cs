@@ -21,7 +21,7 @@ namespace DotLms.Services.Data
             this.dotLmsEfData = dotLmsEfData;
         }
 
-        public void SaveFile(HttpPostedFileBase fileBase)
+        public MediaItem SaveFile(HttpPostedFileBase fileBase)
         {
             string extension = Path.GetExtension(fileBase.FileName);
             string uniqueFileName = Guid.NewGuid().ToString().Replace("-", "");
@@ -45,6 +45,7 @@ namespace DotLms.Services.Data
             {
                 fileBase.SaveAs(fullPath);
             }
+            return file;
         }
     }
 }

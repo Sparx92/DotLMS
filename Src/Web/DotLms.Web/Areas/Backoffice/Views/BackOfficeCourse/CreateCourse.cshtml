@@ -12,7 +12,7 @@
     <!-- Begin Content -->
     <div class="col-md-12">
         <!-- Checkout-Form -->
-        @using (Html.BeginForm("CreateCourse", "BackOfficeCourse", FormMethod.Post, new { @class = "sky-form" }))
+        @using (Html.BeginForm("CreateCourse", "BackOfficeCourse", FormMethod.Post, new { @class = "sky-form", enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 
@@ -25,9 +25,9 @@
                         @Html.ValidationMessageFor(x => x.Name)
                     </section>
                     <section class="col col-3">
-                        @Html.LabelFor(x => x.MainImage, new { @class = "input input-file" })
-                        @Html.TextBoxFor(x => x.MainImage, new { type = "file" })
-                        @Html.ValidationMessageFor(x => x.MainImage)
+                        @Html.LabelFor(x => x.File, new { @class = "input input-file" })
+                        @Html.TextBoxFor(x => x.File, new { type = "file" })
+                        @Html.ValidationMessageFor(x => x.File)
                     </section>
                     <section>
                         @if (Model.Categories.Any())

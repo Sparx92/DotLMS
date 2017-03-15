@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 using System.Web.Mvc;
 using DotLms.Data.Models;
 
@@ -24,7 +25,7 @@ namespace DotLms.Web.Models
         [DisplayName("Full Description")]
         public string FullDescription { get; set; }
 
-        public MediaItem MainImage { get; set; }
+        public HttpPostedFileBase File { get; set; }
 
         public IEnumerable<PageViewModel> ChildPages { get; set; }
     }
