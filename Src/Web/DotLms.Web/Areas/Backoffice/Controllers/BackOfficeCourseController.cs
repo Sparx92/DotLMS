@@ -38,9 +38,12 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         [HttpPost]
         public ActionResult CreateCourse(CourseCreationViewModel model)
         {
+            model.Categories = this.categoryService.GetAllCategories();
             if (ModelState.IsValid)
             {
-                var debg = model;
+                var category = categoryService.GetCategoryViewModel(model.Category.Name);
+                model.Category = category;
+                //this.
             }
             return View(model);
         }
@@ -48,6 +51,13 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         public ActionResult CreateCourseCategory()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateCourseCategory(CourseCategoryViewModel model)
+        {
+            this.categoryService.CreateNewCategory(model);
+            return View(model);
         }
     }
 }

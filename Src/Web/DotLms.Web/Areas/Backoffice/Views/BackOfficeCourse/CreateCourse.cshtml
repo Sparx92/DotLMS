@@ -32,7 +32,8 @@
                     <section>
                         @if (Model.Categories.Any())
                         {
-                            @Html.DropDownListFor(model => model.Category, new SelectList(Model.Categories), "", new { })
+                            @Html.DropDownListFor(model => model.Category.Name,
+                           new SelectList(Model.Categories, "Name", "Name"), "Please select one.")
                         }
                         else
                         {

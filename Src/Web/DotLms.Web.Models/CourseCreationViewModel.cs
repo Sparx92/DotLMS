@@ -26,6 +26,6 @@ namespace DotLms.Web.Models
 
         public MediaItem MainImage { get; set; }
 
-        public virtual ICollection<PageViewModel> ChildPages { get; set; }
+        public IEnumerable<PageViewModel> ChildPages { get; set; }
     }
 }

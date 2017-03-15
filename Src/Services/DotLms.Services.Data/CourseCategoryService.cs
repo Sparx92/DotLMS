@@ -37,6 +37,11 @@ namespace DotLms.Services.Data
             this.dotLmsEfData.Commit();
         }
 
+        public CourseCategoryViewModel GetCategoryViewModel(string name)
+        {
+            return this.categoryProjectableRepository.GetFirstMapped<CourseCategoryViewModel>(x => x.Name == name);
+        }
+
         public IEnumerable<CourseCategoryViewModel> GetAllCategories()
         {
             return this.categoryProjectableRepository.GetAllMapped<CourseCategoryViewModel>();

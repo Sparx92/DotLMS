@@ -1,4 +1,24 @@
-﻿@{
+﻿@model CourseCategoryViewModel
+@{
     ViewBag.Title = "title";
     Layout = "~/Areas/Backoffice/Views/Shared/_BackofficeMaster.cshtml";
+}
+
+@using (Html.BeginForm("CreateCourseCategory", "BackOfficeCourse", FormMethod.Post, new { @class = "sky-form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <header>Create new course category</header>
+    <fieldset>
+        <div class="row">
+            <section class="col">
+                @Html.LabelFor(x => x.Name)
+                @Html.TextBoxFor(x => x.Name)
+                @Html.ValidationMessageFor(x => x.Name)
+            </section>
+        </div>
+    </fieldset>
+    <footer>
+        <button type="submit" class="btn-u">Create</button>
+    </footer>
 }

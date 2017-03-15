@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Text.RegularExpressions;
 using Bytes2you.Validation;
 
 using DotLms.Data.Contracts;
@@ -52,6 +52,7 @@ namespace DotLms.Services.Data
 
             User author = this.userRepository.GetFirst(x => x.UserName == username);
             var mappedPage = this.mapperProvider.Instance.Map<Page>(model);
+            model.HtmlContent = this.RemoveScriptTags(model.HtmlContent);
 
             if (model.ParentPage == null)
             {
@@ -98,6 +99,11 @@ namespace DotLms.Services.Data
                 .Replace(' ', '-');
 
             return uglyName;
+        }
+
+        private string RemoveScriptTags(string source)
+        {
+            return Regex.Replace(source, "<script.*?</script>", "", RegexOptions.Singleline | RegexOptions.IgnoreCase);
         }
     }
 }
