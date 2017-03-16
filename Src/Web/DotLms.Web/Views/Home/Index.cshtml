@@ -1,10 +1,45 @@
-﻿@{
+﻿@model DotLms.Web.Models.CourseListViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>FUCKING HOME</h1>
-    <p class="lead">ASPipt.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
+<div class="cube-portfolio container margin-bottom-60">
+    <div class="content-xs">
+        <div id="filters-container" class="cbp-l-filters-text content-xs">
+            <div data-filter="*" class="cbp-filter-item-active cbp-filter-item"> All </div> <span>|</span>
+
+            @foreach (var category in Model.CourseCategoryViewModels)
+            {
+                <div data-filter=".@category.Name" class="cbp-filter-item"> @category.Name  </div> <span>|</span>
+            }
+        </div><!--/end Filters Container-->
+    </div>
+    <div id="grid-container" class="cbp-l-grid-agency">
+        @foreach (var course in Model.CourseViewModels)
+        {
+
+            <div class="cbp-item @course.Category.Name">
+                <div class="cbp-caption margin-bottom-20">
+                    <div class="cbp-caption-defaultWrap">
+                        <img src="@course.MainImage.Url" alt="@course.Name">
+                    </div>
+                    <div class="cbp-caption-activeWrap">
+                        <div class="cbp-l-caption-alignCenter">
+                            <div class="cbp-l-caption-body">
+                                <ul class="link-captions no-bottom-space">
+                                    <li><a href="@course.Url"><i class="rounded-x fa fa-link"></i></a></li>
+                                    @*<li><a href="assets/img/main/img3.jpg" class="cbp-lightbox" data-title="Design Object"><i class="rounded-x fa fa-search"></i></a></li>*@
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cbp-title-dark">
+                    <div class="cbp-l-grid-agency-title"><a href="@course.Url">@course.Name</a></div>
+                    <div class="cbp-l-grid-agency-desc">@course.Category.Name</div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

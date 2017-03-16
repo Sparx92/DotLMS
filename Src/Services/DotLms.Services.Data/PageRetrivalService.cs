@@ -6,6 +6,7 @@ using DotLms.Data.Contracts;
 using DotLms.Data.Models;
 using DotLms.Services.Providers.Contracts;
 using DotLms.Web.Models;
+using DotLms.Web.Models.Backoffice;
 
 namespace DotLms.Services.Data
 {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DotLms.Web.Models
+namespace DotLms.Web.Models.Backoffice
 {
     public class BackOfficeIndexViewModel
     {

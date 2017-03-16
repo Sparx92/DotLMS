@@ -6,10 +6,12 @@ namespace DotLms.Web
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = false;
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jquery")
+                .Include("~/Scripts/jquery-{version}.js")
+                .Include("~/Scripts/jquery-migrate-{version}.js")
+                        );
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -46,14 +48,18 @@ namespace DotLms.Web
                 .Include("~/Content/Assets/plugins/skyforms/sky-forms.css")
                 .Include("~/Content/Assets/plugins/skyforms/custom-sky-forms.css")
                 .Include("~/Content/Assets/css/app.css")
+                .Include("~/Content/Assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css")
+                .Include("~/Content/Assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css")
                 .Include("~/Content/Assets/css/blocks.css")
                 .Include("~/Content/Assets/css/custom.css")
                 );
 
             bundles.Add(new ScriptBundle(Common.Constants.UnifyTemplateJsBundle)
-                .Include("~/Content/Assets/plugins/bootstrap/js/bootstrap.min.js")
+                .Include("~/Content/Assets/plugins/bootstrap/js/bootstrap.js")
                 .Include("~/Content/Assets/plugins/back-to-top.js")
                 .Include("~/Content/Assets/plugins/smoothScroll.js")
+                .Include("~/Content/Assets/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.js")
+                .Include("~/Content/Assets/plugins/cube-portfolio/cubeportfolio/js/cube-portfolio-3.js")
                 .Include("~/Content/Assets/js/app.js")
                 .Include("~/Content/Assets/js/custom.js")
                 );
