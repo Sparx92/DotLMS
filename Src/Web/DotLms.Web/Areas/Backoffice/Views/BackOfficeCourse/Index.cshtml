@@ -1,7 +1,9 @@
-﻿@{
+﻿@model IEnumerable<CourseViewModel>
+@{
     ViewBag.Title = "Courses";
     Layout = "~/Areas/Backoffice/Views/Shared/_BackofficeMaster.cshtml";
 }
+
 <div class="container content-sm">
     <div class="row content-boxes-v2 content-boxes-v2-o margin-bottom-40">
         <div class="col-sm-6 sm-margin-bottom-40">
@@ -24,4 +26,32 @@
 
 </div>
 
-<p>TODO All courses administration</p>
+<div class="container content-sm">
+    <div class="row">
+        @foreach (var course in Model)
+        {
+            <div class="col-sm-6">
+                <div class="funny-boxes funny-boxes-left-dark">
+                    <div class="row">
+                        <div class="col-md-4 funny-boxes-img">
+                            <img class="img-responsive" src="@course.MainImage.Url" alt="@course.MainImage.Name">
+                            <ul class="list-unstyled">
+                                <li><i class="fa-fw fa fa-briefcase"></i> Dell, Google</li>
+                                <li><i class="fa-fw fa fa-map-marker"></i> New York, US</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-8">
+                            <h2>
+                                <a href="@course.Url">@course.Name</a>
+                            </h2>
+                            <div>
+                                @Html.Raw(course.ShortDescription)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>

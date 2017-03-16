@@ -8,6 +8,12 @@ namespace DotLms.Data.Contracts
     {
         IDbSet<Page> Pages { get; set; }
 
+        IDbSet<MediaItem> MediaItems { get; set; }
+
+        IDbSet<CourseCategory> CourseCategories { get; set; }
+
+        IDbSet<Course> Courses { get; set; }
+
         IDbSet<T> Set<T>() where T : class;
 
         DbEntityEntry<T> Entry<T>(T entity) where T : class;

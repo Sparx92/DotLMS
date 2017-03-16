@@ -13,6 +13,16 @@ namespace DotLms.Data.Models
         [StringLength(30)]
         public string Name { get; set; }
 
+        [Required]
+        [Index(IsUnique = true)]
+        [StringLength(30)]
+        public string UglyName { get; set; }
+
+        [Required]
+        [Index(IsUnique = true)]
+        [StringLength(30)]
+        public string Url { get; set; }
+
         public CourseCategory Category { get; set; }
 
         public string ShortDescription { get; set; }

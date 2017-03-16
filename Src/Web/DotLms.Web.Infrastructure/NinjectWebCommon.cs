@@ -87,6 +87,8 @@ namespace DotLms.Web.Infrastructure
             kernel.Bind<DotLmsUserManager>().ToSelf().InRequestScope();
             kernel.Bind<IUserStore<User>>().To<DotLmsUserStore>().InRequestScope();
 
+            kernel.Bind<CourseEfRepository>().ToSelf().InRequestScope();
+
             kernel.Bind<IDotLmsEfData>().To<DotLmsEfData>().InRequestScope();
             kernel.Bind(typeof(IEntityFrameworkRepository<>)).To(typeof(EntityFrameworkRepository<>)).InRequestScope();
             kernel.Bind(typeof(IProjectableRepository<>)).To(typeof(ProjectableRepository<>)).InRequestScope();

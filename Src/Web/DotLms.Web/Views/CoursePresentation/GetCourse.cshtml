@@ -1,0 +1,25 @@
+﻿@model DotLms.Web.Models.CourseViewModel
+@{
+   // ViewBag.Title = Model.Name;
+}
+
+<div>
+   @Model.Name
+
+    <hr />
+    @if (Model.MainImage != null)
+    {
+        <img src="@Model.MainImage.Url" />
+    }
+    @if (Model.Category != null)
+    {
+        <p>@Model.Category.Name </p>
+    }
+    <div>
+        @Html.Raw(Model.ShortDescription)
+    </div>
+
+    <div>
+        @Html.Raw(Model.FullDescription)
+    </div>
+</div>

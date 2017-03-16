@@ -12,6 +12,10 @@ namespace DotLms.Web.Models
 
         public string Name { get; set; }
 
+        public string UglyName { get; set; }
+
+        public string Url { get; set; }
+
         public CourseCategory Category { get; set; }
 
         [AllowHtml]

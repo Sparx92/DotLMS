@@ -31,7 +31,8 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         // GET: Backoffice/BackOfficeCourse
         public ActionResult Index()
         {
-            return View();
+            IEnumerable<CourseViewModel> model = courseService.GetAllCourseViewModels();
+            return View(model);
         }
 
         public ActionResult CreateCourse()

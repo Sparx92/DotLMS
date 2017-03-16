@@ -11,20 +11,25 @@ using Microsoft.AspNet.Identity;
 
 namespace DotLms.Web.Controllers
 {
-    public class FrontPagesController : Controller
+    public class CoursePresentationController : Controller
     {
         private readonly PageRetrivalService pageRetrivalService;
+        private CourseService courseService;
 
-        public FrontPagesController(PageRetrivalService pageRetrivalService)
+        public CoursePresentationController(
+            PageRetrivalService pageRetrivalService,
+            CourseService courseService)
         {
             Guard.WhenArgument(pageRetrivalService, nameof(pageRetrivalService)).IsNull().Throw();
+            Guard.WhenArgument(courseService, nameof(courseService)).IsNull().Throw();
 
             this.pageRetrivalService = pageRetrivalService;
+            this.courseService = courseService;
         }
 
-        public ActionResult GetPage(string pageName)
+        public ActionResult GetCourse(string courseName)
         {
-            PageViewModel model = this.pageRetrivalService.GetPage(pageName);
+            CourseViewModel model = this.courseService.GetCourseViewModel(courseName);
 
             if (model == null)
             {

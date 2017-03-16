@@ -14,8 +14,8 @@ namespace DotLms.Web
 
             routes.MapRoute(
                 name: "FrontPages",
-                url: "{pageName}",
-                defaults: new { controller = "FrontPages", action = "GetPage" });
+                url: "{courseName}",
+                defaults: new { controller = "CoursePresentation", action = "GetCourse" });
 
             routes.MapRoute(
                 name: "Default",
