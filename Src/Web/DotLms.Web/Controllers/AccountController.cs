@@ -162,7 +162,7 @@ namespace DotLms.Web.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "CoursePresentation");
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
@@ -355,7 +355,7 @@ namespace DotLms.Web.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Manage");
+                return RedirectToAction("Account", "Manage");
             }
 
             if (ModelState.IsValid)
@@ -391,7 +391,7 @@ namespace DotLms.Web.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "CoursePresentation");
+            return RedirectToAction("Index", "Home");
         }
 
         //
@@ -448,7 +448,7 @@ namespace DotLms.Web.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "CoursePresentation");
+            return RedirectToAction("Index", "Home");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

@@ -29,6 +29,11 @@ namespace DotLms.Web.Controllers
 
         public ActionResult GetCourse(string courseName)
         {
+            if (string.IsNullOrWhiteSpace(courseName))
+            {
+                this.HttpContext.RedirectLocal("/");
+            }
+
             CourseViewModel model = this.courseService.GetCourseViewModel(courseName);
 
             if (model == null)

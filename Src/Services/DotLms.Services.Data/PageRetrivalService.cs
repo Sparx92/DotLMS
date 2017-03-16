@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Bytes2you.Validation;
 
 using DotLms.Data.Contracts;
@@ -35,23 +36,26 @@ namespace DotLms.Services.Data
         public PageViewModel GetPage(string pageName)
         {
             var pageNameToLower = pageName.ToLowerInvariant();
-            Page page = this.pageProjectableRepository.GetFirst(x => x.UglyName == pageNameToLower);
+            Page page = this.pageProjectableRepository
+                .All
+                .FirstOrDefault(x => x.UglyName == pageNameToLower);
+
             PageViewModel mapped = mapperProvider.Instance.Map<PageViewModel>(page);
             return mapped;
         }
 
         public PageViewModel GetPage(int? pageId)
         {
-            Page page = this.pageProjectableRepository.GetById(pageId);
+            Page page = this.pageProjectableRepository.All.FirstOrDefault(x => x.Id == pageId);
             PageViewModel mapped = mapperProvider.Instance.Map<PageViewModel>(page);
             return mapped;
         }
 
         public BackOfficeIndexViewModel GetAllPages()
         {
-            var pages = this.pageProjectableRepository.GetAll();
+            var pages = this.pageProjectableRepository.All.ToList();
             var model = new BackOfficeIndexViewModel();
-            model.Models= this.mapperProvider.Instance.Map<IEnumerable<PageViewModel>>(pages);
+            model.Models = this.mapperProvider.Instance.Map<IEnumerable<PageViewModel>>(pages);
             return model;
         }
     }

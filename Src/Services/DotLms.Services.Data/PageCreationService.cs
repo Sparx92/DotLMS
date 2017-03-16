@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Bytes2you.Validation;
@@ -50,7 +51,7 @@ namespace DotLms.Services.Data
             Guard.WhenArgument(model, nameof(model)).IsNull().Throw();
             Guard.WhenArgument(username, nameof(username)).IsNull().Throw();
 
-            User author = this.userRepository.GetFirst(x => x.UserName == username);
+            User author = this.userRepository.All.FirstOrDefault(x => x.UserName == username);
             var mappedPage = this.mapperProvider.Instance.Map<Page>(model);
             model.HtmlContent = this.RemoveScriptTags(model.HtmlContent);
 

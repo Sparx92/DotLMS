@@ -9,19 +9,7 @@ namespace DotLms.Data.Contracts
 {
     public interface IEntityFrameworkRepository<T> where T : class
     {
-        T GetById(object id);
-
-        T GetFirst(Expression<Func<T, bool>> filterExpression);
-
         IQueryable<T> All { get; }
-
-        IEnumerable<T> GetAll();
-
-        IEnumerable<T> GetAll(Expression<Func<T, bool>> filterExpression);
-
-        IEnumerable<T> GetAll<T1>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression);
-
-        IEnumerable<T2> GetAll<T1, T2>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression, Expression<Func<T, T2>> selectExpression);
 
         void Add(T entity);
 
