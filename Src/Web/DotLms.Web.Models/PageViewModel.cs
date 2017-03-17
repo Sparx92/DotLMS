@@ -30,6 +30,10 @@ namespace DotLms.Web.Models
 
         public bool IsPublished { get; set; }
 
+        public int ParentCourseId { get; set; }
+
+        public CourseViewModel ParentCourse { get; set; }
+
         public PageViewModel ParentPage { get; set; }
 
         public ICollection<PageViewModel> ChildPages { get; set; }

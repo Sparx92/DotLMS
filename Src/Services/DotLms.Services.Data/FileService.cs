@@ -40,7 +40,7 @@ namespace DotLms.Services.Data
             };
 
             this.mediaItemEfRepository.Add(file);
-            int writtenObjects = this.dotLmsEfData.Commit();
+            int writtenObjects = this.dotLmsEfData.SaveChanges();
             if (writtenObjects > 0)
             {
                 fileBase.SaveAs(fullPath);

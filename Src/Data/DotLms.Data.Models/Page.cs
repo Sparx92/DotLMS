@@ -11,11 +11,6 @@ namespace DotLms.Data.Models
 {
     public class Page
     {
-        public Page()
-        {
-            this.ChildPages = new HashSet<Page>();
-        }
-
         public int Id { get; set; }
 
         [Required]
@@ -52,8 +47,8 @@ namespace DotLms.Data.Models
 
         public bool IsPublished { get; set; }
 
-        public Page ParentPage { get; set; }
+        public int ParentCourseId { get; set; }
 
-        public virtual ICollection<Page> ChildPages { get; set; }
+        public virtual Course ParentCourse { get; set; }
     }
 }

@@ -13,6 +13,8 @@ namespace DotLms.Web.Models
 
         public string Name { get; set; }
 
+        public int CategoryId { get; set; }
+
         public CourseCategoryViewModel Category { get; set; }
 
         public IEnumerable<CourseCategoryViewModel> Categories { get; set; }

@@ -19,7 +19,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         public BackOfficeCourseController(CourseCategoryService categoryService,
             CourseService courseService, FileService fileService)
         {
-            Guard.WhenArgument(categoryService,nameof(categoryService)).IsNull().Throw();
+            Guard.WhenArgument(categoryService, nameof(categoryService)).IsNull().Throw();
             Guard.WhenArgument(courseService, nameof(courseService)).IsNull().Throw();
             Guard.WhenArgument(fileService, nameof(fileService)).IsNull().Throw();
 
@@ -28,7 +28,6 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
             this.fileService = fileService;
         }
 
-        // GET: Backoffice/BackOfficeCourse
         public ActionResult Index()
         {
             IEnumerable<CourseViewModel> model = courseService.GetAllCourseViewModels();
@@ -39,7 +38,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         {
             var model = new CourseCreationViewModel
             {
-                Categories= this.categoryService.GetAllCategories(),
+                Categories = this.categoryService.GetAllCategories(),
             };
             return View(model);
         }
@@ -56,7 +55,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
 
                 model.Category = category;
 
-                this.courseService.CreateCourse(model,mediaItem);
+                this.courseService.CreateCourse(model, mediaItem);
             }
             return View(model);
         }

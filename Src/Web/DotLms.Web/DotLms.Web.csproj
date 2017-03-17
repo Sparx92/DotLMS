@@ -191,17 +191,18 @@
     <Compile Include="Areas\Backoffice\Controllers\BackOfficeCourseController.cs" />
     <Compile Include="Areas\Backoffice\Controllers\BackOfficeHomeController.cs" />
     <Compile Include="Areas\Backoffice\Controllers\BackOfficeMediaController.cs" />
+    <Compile Include="Areas\Backoffice\Controllers\BackOfficePagesController.cs" />
     <Compile Include="Areas\Backoffice\Models\AuthViewModel.cs" />
+    <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Attributes\SecurityAttribute.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Areas\User\Controllers\AccountController.cs" />
     <Compile Include="Controllers\CoursePresentationController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Areas\User\Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Areas\User\Models\AccountViewModels.cs" />
+    <Compile Include="Areas\User\Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -251,10 +252,7 @@
     <Content Include="Areas\Backoffice\Views\BackOfficeAuthorization\Authorize.cshtml" />
     <Content Include="Areas\Backoffice\Views\Shared\_BackofficeMaster.cshtml" />
     <Content Include="Areas\Backoffice\Views\Shared\_BackofficeNavigation.cshtml" />
-    <Content Include="Areas\Backoffice\Views\BackOfficeHome\CreatePage.cshtml" />
     <Content Include="Areas\Backoffice\Views\Shared\TinyMceEditor.cshtml" />
-    <Content Include="Areas\Backoffice\Views\BackOfficeHome\CreateChildPage.cshtml" />
-    <Content Include="Areas\Backoffice\Views\BackOfficeHome\EditPage.cshtml" />
     <Content Include="Content\Assets\plugins\bootstrap\css\bootstrap-theme.css.map" />
     <Content Include="Content\Assets\plugins\bootstrap\css\bootstrap-theme.min.css.map" />
     <Content Include="Content\Assets\plugins\bootstrap\css\bootstrap.css.map" />
@@ -265,9 +263,14 @@
     <Content Include="Content\Assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Areas\Backoffice\Views\BackOfficeMedia\Index.cshtml" />
     <Content Include="Areas\Backoffice\Views\BackOfficeMedia\Add.cshtml" />
-    <Content Include="Areas\Backoffice\Views\BackOfficeCourse\Index.cshtml" />
     <Content Include="Areas\Backoffice\Views\BackOfficeCourse\CreateCourse.cshtml" />
     <Content Include="Areas\Backoffice\Views\BackOfficeCourse\CreateCourseCategory.cshtml" />
+    <Content Include="Areas\Backoffice\Views\BackOfficeCourse\Index.cshtml" />
+    <Content Include="Areas\Backoffice\Views\BackOfficePages\Index.cshtml" />
+    <Content Include="Areas\Backoffice\Views\BackOfficePages\EditPage.cshtml" />
+    <Content Include="Areas\Backoffice\Views\BackOfficePages\CreatePage.cshtml" />
+    <Content Include="Areas\Backoffice\Views\BackOfficePages\CreateChildPage.cshtml" />
+    <Content Include="Areas\User\Views\web.config" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -456,25 +459,25 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Account.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\CoursePresentation\Index.cshtml" />
+    <Content Include="Areas\User\Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Areas\User\Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Areas\User\Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Areas\User\Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Areas\User\Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Areas\User\Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Areas\User\Views\Account\Login.cshtml" />
+    <Content Include="Areas\User\Views\Account\Register.cshtml" />
+    <Content Include="Areas\User\Views\Account\ResetPassword.cshtml" />
+    <Content Include="Areas\User\Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Areas\User\Views\Account\SendCode.cshtml" />
+    <Content Include="Areas\User\Views\Account\VerifyCode.cshtml" />
+    <Content Include="Areas\User\Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Areas\User\Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Areas\User\Views\Manage\Account.cshtml" />
+    <Content Include="Areas\User\Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Areas\User\Views\Manage\SetPassword.cshtml" />
+    <Content Include="Areas\User\Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
@@ -489,10 +492,13 @@
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\CoursePresentation\GetCourse.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
+    <Content Include="Views\CoursePresentation\GetPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\User\Views\Shared\" />
     <Folder Include="Media\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

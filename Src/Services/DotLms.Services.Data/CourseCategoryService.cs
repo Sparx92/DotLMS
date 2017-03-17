@@ -34,7 +34,7 @@ namespace DotLms.Services.Data
             CourseCategory category = this.mapperProvider.Instance.Map<CourseCategory>(model);
 
             this.categoryRepository.Add(category);
-            this.dotLmsEfData.Commit();
+            this.dotLmsEfData.SaveChanges();
         }
 
         public CourseCategoryViewModel GetCategoryViewModel(string name)

@@ -1,0 +1,34 @@
+﻿@model PageViewModel
+@{
+    ViewBag.Title = "Create Page";
+    Layout = "~/Areas/Backoffice/Views/Shared/_BackofficeMaster.cshtml";
+}
+
+@Scripts.Render("~/bundles/tinymce")
+<script src="~/Content/Assets/js/tinyMCE-config.js" data-selector=".tinymceflag"></script>
+
+
+@using (Html.BeginForm("CreatePage", "BackOfficePages", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    
+    @Html.TextBoxFor(x=>x.ParentCourseId, new {type = "hidden"})
+
+    @Html.LabelFor(x => x.Name)
+    @Html.TextBoxFor(x => x.Name)
+
+    @Html.LabelFor(x => x.HtmlContent)
+    @Html.TextAreaFor(x=>x.HtmlContent, new {@class ="tinymceflag"})
+
+
+
+    <input type="submit" value="Submit" onclick="tinymce.triggerSave()"/>
+
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+}

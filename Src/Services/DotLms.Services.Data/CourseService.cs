@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using AutoMapper.QueryableExtensions;
 using Bytes2you.Validation;
 using DotLms.Data.Contracts;
 using DotLms.Data.Models;
@@ -15,10 +11,10 @@ namespace DotLms.Services.Data
 {
     public class CourseService
     {
-        private IDotLmsEfData dotLmsEfData;
-        private CourseEfRepository courseEfRepository;
+        private readonly IDotLmsEfData dotLmsEfData;
+        private readonly CourseEfRepository courseEfRepository;
         private IEntityFrameworkRepository<CourseCategory> courseCategoryEfRepository;
-        private IMapperProvider mapperProvider;
+        private readonly IMapperProvider mapperProvider;
         private IProjectableRepository<Course> projectableCourseRepository;
 
         public CourseService(CourseEfRepository courseEfRepository,
@@ -49,9 +45,11 @@ namespace DotLms.Services.Data
             course.MainImage = image;
             course.UglyName = this.GeneratUglyName(course.Name);
             course.Url = this.GenereateUrl(course.UglyName);
+            course.MainImageId = image.Id;
+            course.CategoryId = courseCategory.Id;
 
             this.courseEfRepository.Add(course);
-            this.dotLmsEfData.Commit();
+            this.dotLmsEfData.SaveChanges();
         }
 
         public CourseViewModel GetCourseViewModel(string name)
@@ -66,8 +64,11 @@ namespace DotLms.Services.Data
         {
             IEnumerable<Course> courses = this.courseEfRepository.GetAllCourses();
 
-            var m = this.mapperProvider.Instance.Map<IEnumerable<CourseViewModel>>(courses);
-            return m;
+            IEnumerable<CourseViewModel> courseViewModels = this.mapperProvider
+                .Instance
+                .Map<IEnumerable<CourseViewModel>>(courses);
+
+            return courseViewModels;
         }
 
 

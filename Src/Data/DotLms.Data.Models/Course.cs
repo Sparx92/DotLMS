@@ -23,13 +23,17 @@ namespace DotLms.Data.Models
         [StringLength(30)]
         public string Url { get; set; }
 
-        public CourseCategory Category { get; set; }
+        public int CategoryId { get; set; }
+
+        public virtual CourseCategory Category { get; set; }
 
         public string ShortDescription { get; set; }
 
         public string FullDescription { get; set; }
 
-        public MediaItem MainImage { get; set; }
+        public int MainImageId { get; set; }
+
+        public virtual MediaItem MainImage { get; set; }
 
         public virtual ICollection<Page> ChildPages { get; set; }
     }

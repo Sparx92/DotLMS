@@ -14,7 +14,7 @@ namespace DotLms.Data
             this.dotLmsEfDbContext = dotLmsEfDbContext;
         }
 
-        public int Commit()
+        public int SaveChanges()
         {
             return this.dotLmsEfDbContext.SaveChanges();
         }

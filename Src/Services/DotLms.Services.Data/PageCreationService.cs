@@ -52,7 +52,7 @@ namespace DotLms.Services.Data
             Guard.WhenArgument(username, nameof(username)).IsNull().Throw();
 
             User author = this.userRepository.All.FirstOrDefault(x => x.UserName == username);
-            var mappedPage = this.mapperProvider.Instance.Map<Page>(model);
+            Page mappedPage = this.mapperProvider.Instance.Map<Page>(model);
             model.HtmlContent = this.RemoveScriptTags(model.HtmlContent);
 
             if (model.ParentPage == null)
@@ -64,10 +64,10 @@ namespace DotLms.Services.Data
                 //TODO change to false in the future
                 mappedPage.IsPublished = true;
                 mappedPage.UglyName = this.GeneratUglyName(mappedPage.Name);
-                mappedPage.Url = this.GenereateUrl(mappedPage.ParentPage, mappedPage.UglyName);
+                mappedPage.Url = $"/{mappedPage.UglyName}";
             }
             this.pageProjectableRepository.Add(mappedPage);
-            this.dotLmsEfData.Commit();
+            this.dotLmsEfData.SaveChanges();
         }
 
         private string GenereateUrl(Page parentPage, string uglyName)

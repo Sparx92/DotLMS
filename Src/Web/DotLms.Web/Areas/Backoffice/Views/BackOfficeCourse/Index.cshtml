@@ -9,7 +9,7 @@
         <div class="col-sm-6 sm-margin-bottom-40">
             <h2 class="heading-sm overflow-h">
                 <i class="icon-custom rounded-x icon-md icon-bg-u fa fa-lightbulb-o"></i>
-                <span>@Html.ActionLink("Create new course","CreateCourse") <small> Loads new administration page.</small></span>
+                <span>@Html.ActionLink("Create new course", "CreateCourse") <small> Loads new administration page.</small></span>
             </h2>
             <hr class="no-margin margin-bottom-10">
             <p>Description of the action</p>
@@ -17,7 +17,7 @@
         <div class="col-sm-6 sm-margin-bottom-40">
             <h2 class="heading-sm overflow-h">
                 <i class="icon-custom rounded-x icon-md icon-bg-blue fa fa-bullhorn"></i>
-                <span>@Html.ActionLink("Create new course category","CreateCourseCategory")<small>Loads new administration page.</small></span>
+                <span>@Html.ActionLink("Create new course category", "CreateCourseCategory")<small>Loads new administration page.</small></span>
             </h2>
             <hr class="no-margin margin-bottom-10">
             <p>Description of the action</p>
@@ -36,7 +36,11 @@
                         <div class="col-md-4 funny-boxes-img">
                             <img class="img-responsive" src="@course.MainImage.Url" alt="@course.MainImage.Name">
                             <ul class="list-unstyled">
-                                <li><i class="fa-fw fa fa-briefcase"></i> Dell, Google</li>
+                                <li>
+                                    <i class="fa-fw fa fa-briefcase"></i>
+                                    @Html.ActionLink("Add child page", "CreatePage",
+                                    new { controller ="BackOfficePages", courseId = course.Id })
+                                </li>
                                 <li><i class="fa-fw fa fa-map-marker"></i> New York, US</li>
                             </ul>
                         </div>

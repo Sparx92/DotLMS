@@ -1,15 +1,5 @@
-﻿@model DotLms.Web.Models.Backoffice.BackOfficeIndexViewModel
-@{
+﻿@{
     Layout = "../Shared/_BackofficeMaster.cshtml";
 
 }
-@foreach (PageViewModel page in Model.Models)
-{
-    <div>
-        <span>Page name: </span>@page.Name
-        <span><a href="@page.Url">Preview page</a> </span>
-        @Html.ActionLink("Edit this page", "EditPage", new { pageId = page.Id })
-
-    </div>
-
-}
+opsi
