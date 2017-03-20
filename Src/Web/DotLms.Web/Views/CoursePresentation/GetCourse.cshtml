@@ -1,25 +1,49 @@
 ﻿@model DotLms.Web.Models.CourseViewModel
 @{
-   // ViewBag.Title = Model.Name;
+    ViewBag.Title = Model.Name;
 }
 
-<div>
-   @Model.Name
+@if (Context.User.IsInRole(DotLms.Common.Roles.Admin))
+{
+    <div class="alert alert-info fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4>Administrative options</h4>
+        <p></p>
+        <p>
 
-    <hr />
-    @if (Model.MainImage != null)
-    {
-        <img src="@Model.MainImage.Url" />
-    }
-    @if (Model.Category != null)
-    {
-        <p>@Model.Category.Name </p>
-    }
-    <div>
-        @Html.Raw(Model.ShortDescription)
+            @Html.ActionLink($"Edit this course", "ManageCourse",
+               new { Area = "Backoffice", controller = "BackOfficeCourse", courseName = Model.UglyName },
+               new { @class = "btn-u btn-u-sea" })
+        </p>
     </div>
-
-    <div>
-        @Html.Raw(Model.FullDescription)
+}
+<div>
+    <div class="row">
+        <div class="col-sm-9 row">
+            <div class="col-sm-6">
+                @if (Model.MainImage != null)
+                {
+                    <img class="img-responsive" src="@Model.MainImage.Url" />
+                }
+            </div>
+            <div class="col-sm-6">
+                <h3>
+                    @Model.Name
+                </h3>
+            </div>
+            <div class="col-sm-12">
+                @Html.Raw(Model.FullDescription)
+            </div>
+            @if (Model.ChildPages.Any())
+            {
+                foreach (var page in Model.ChildPages)
+                {
+                    <div class="col-md-6">
+                        <a href="@page.Url">@page.Name</a>
+                    </div>
+                }
+            }
+        </div>
+        <div class="col-sm-3"></div>
     </div>
 </div>

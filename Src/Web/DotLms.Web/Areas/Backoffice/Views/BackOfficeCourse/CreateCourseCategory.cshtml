@@ -3,6 +3,23 @@
     ViewBag.Title = "title";
     Layout = "~/Areas/Backoffice/Views/Shared/_BackofficeMaster.cshtml";
 }
+@if (ViewBag.CourseCreationMessage != null)
+{
+    if (ViewBag.CourseCreationMessageType == "success")
+    {
+        <div class="alert alert-success fade in alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <strong>Success</strong> @ViewBag.CourseCreationMessage
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning fade in alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <strong>Warning</strong> @ViewBag.CourseCreationMessage
+        </div>
+    }
+}
 
 @using (Html.BeginForm("CreateCourseCategory", "BackOfficeCourse", FormMethod.Post, new { @class = "sky-form" }))
 {

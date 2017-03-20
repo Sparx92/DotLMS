@@ -271,6 +271,8 @@
     <Content Include="Areas\Backoffice\Views\BackOfficePages\CreatePage.cshtml" />
     <Content Include="Areas\Backoffice\Views\BackOfficePages\CreateChildPage.cshtml" />
     <Content Include="Areas\User\Views\web.config" />
+    <Content Include="Areas\User\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Backoffice\Views\BackOfficeCourse\ManageCourse.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />

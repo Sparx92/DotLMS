@@ -1,13 +1,31 @@
 ﻿@model DotLms.Web.Models.PageViewModel
 @{
-   // ViewBag.Title = Model.Name;
+// ViewBag.Title = Model.Name;
 }
 
 <div>
-   @Model.Name
+
+    @if (Context.User.IsInRole(DotLms.Common.Roles.Admin))
+    {
+        <div class="alert alert-info fade in">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4>Administrative options</h4>
+            <p></p>
+            <p>
+                @Html.ActionLink($"Edit this page", "EditPage",
+               new { Area = "Backoffice", controller = "BackOfficePages", pageId = Model.Id },
+               new {@class = "btn-u btn-u-sea" })
+
+                @Html.ActionLink($"Edit this course", "ManageCourse",
+               new { Area = "Backoffice", controller = "BackOfficeCourse", courseName = Model.ParentCourse.UglyName },
+               new { @class = "btn-u btn-u-sea" })
+            </p>
+        </div>
+    }
+    @Model.Name
 
     <hr />
-    
+
     <div>
         @Html.Raw(Model.HtmlContent)
     </div>

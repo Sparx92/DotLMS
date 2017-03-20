@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -36,7 +37,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
 
         public ActionResult CreateCourse()
         {
-            var model = new CourseCreationViewModel
+            CourseCreationViewModel model = new CourseCreationViewModel
             {
                 Categories = this.categoryService.GetAllCategories(),
             };
@@ -51,11 +52,14 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
             {
                 MediaItem mediaItem = this.fileService.SaveFile(model.File);
 
-                var category = categoryService.GetCategoryViewModel(model.Category.Name);
+                CourseCategoryViewModel category = categoryService.GetCategoryViewModel(model.Category.Name);
 
                 model.Category = category;
 
-                this.courseService.CreateCourse(model, mediaItem);
+                Course createdCourse = this.courseService.CreateCourse(model, mediaItem);
+
+                return RedirectToAction("GetCourse", "CoursePresentation",
+                    new { Area = "", courseName = createdCourse.UglyName });
             }
             return View(model);
         }
@@ -68,7 +72,29 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         [HttpPost]
         public ActionResult CreateCourseCategory(CourseCategoryViewModel model)
         {
-            this.categoryService.CreateNewCategory(model);
+            if (ModelState.IsValid)
+            {
+                ViewBag.CourseCreationMessage = $"Successfuly created category: \"{model.Name}\".";
+                ViewBag.CourseCreationMessageType = "success";
+                try
+                {
+                    this.categoryService.CreateNewCategory(model);
+                }
+                catch (Exception exception)
+                {
+                    ViewBag.CourseCreationMessageType = "error";
+                    ViewBag.CourseCreationMessage = $"Category: \"{model.Name}\", already exists, please try another one.";
+                }
+            }
+            return View(model);
+        }
+
+        public ActionResult ManageCourse(string courseName)
+        {
+            CourseCreationViewModel model = this.courseService.GetCourseCreationViewModel(courseName);
+
+            model.Categories = this.categoryService.GetAllCategories();
+
             return View(model);
         }
     }

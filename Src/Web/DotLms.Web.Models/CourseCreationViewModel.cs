@@ -13,6 +13,8 @@ namespace DotLms.Web.Models
 
         public string Name { get; set; }
 
+        public string UglyName { get; set; }
+
         public int CategoryId { get; set; }
 
         public CourseCategoryViewModel Category { get; set; }

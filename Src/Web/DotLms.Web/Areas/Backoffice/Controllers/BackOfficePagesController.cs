@@ -42,7 +42,6 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
             return View(model);
         }
 
-
         [Security(Roles = Common.Roles.Admin)]
         [HttpPost]
         public ActionResult CreatePage(PageViewModel model)

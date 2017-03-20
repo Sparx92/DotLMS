@@ -1,0 +1,139 @@
+﻿@using System.Web.Mvc.Html
+@model CourseCreationViewModel
+@{
+    ViewBag.Title = "Manage Course";
+    Layout = "~/Areas/Backoffice/Views/Shared/_BackofficeMaster.cshtml";
+}
+@Scripts.Render("~/bundles/tinymce")
+<script src="~/Content/Assets/js/tinyMCE-config.js" data-selector=".short-description-mce"></script>
+<script src="~/Content/Assets/js/tinyMCE-config.js" data-selector=".full-description-mce"></script>
+
+<div class="row">
+    <div class="tab-v1">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#editCourse" data-toggle="tab">Edit Course</a></li>
+            <li><a href="#editPages" data-toggle="tab">Edit Pages</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="editCourse">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Checkout-Form -->
+                        @using (Html.BeginForm("CreateCourse", "BackOfficeCourse", FormMethod.Post, new { @class = "sky-form", enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <header>Create new course</header>
+                            <fieldset>
+                                <div class="row">
+                                    <section class="col col-3">
+                                        @Html.LabelFor(x => x.Name)
+                                        @Html.TextBoxFor(x => x.Name)
+                                        @Html.ValidationMessageFor(x => x.Name)
+                                    </section>
+                                    <section class="col col-3">
+                                        @Html.LabelFor(x => x.File, new { @class = "input input-file" })
+                                        @Html.TextBoxFor(x => x.File, new { type = "file" })
+                                        @Html.ValidationMessageFor(x => x.File)
+                                    </section>
+                                    <section>
+                                        @if (Model.Categories.Any())
+                                        {
+                                            @Html.DropDownListFor(model => model.Category.Name,
+                           new SelectList(Model.Categories, "Name", "Name"), "Please select one.")
+                                        }
+                                        else
+                                        {
+                                            <p class="text-danger">There are no created categories, please @Html.ActionLink("create at lease one", "CreateCourseCategory")</p>
+                                        }
+                                    </section>
+                                </div>
+                                <div class="row">
+                                    <section class="col col-6"></section>
+                                    <section class="col col-6"></section>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <div class="row">
+                                    <section class="col-sm-12">
+                                        @Html.LabelFor(x => x.ShortDescription)
+                                        @Html.TextAreaFor(x => x.ShortDescription, new { @class = "short-description-mce" })
+                                    </section>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <div class="row">
+                                    <section class="col-sm-12">
+                                        @Html.LabelFor(x => x.FullDescription)
+                                        @Html.TextAreaFor(x => x.FullDescription, new { @class = "full-description-mce" })
+                                    </section>
+                                </div>
+                            </fieldset>
+                            <footer>
+                                <button type="submit" class="btn-u">Continue</button>
+                            </footer>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade in" id="editPages">
+                <div class="row">
+                    <div class="container content-sm">
+                        <div class="row">
+                            <div class="col-sm-12 sm-margin-bottom-40">
+                                <h2 class="heading-sm overflow-h">
+                                    <i class="icon-custom rounded-x icon-md icon-bg-u fa fa-lightbulb-o"></i>
+                                    <span>
+                                        @Html.ActionLink($"Add child page for course: {Model.Name} ", "CreatePage",
+                                              new { controller = "BackOfficePages", courseId = Model.Id }) <small>
+                                        </small>
+                                    </span>
+                                </h2>
+                                <hr class="no-margin margin-bottom-10">
+                            </div>
+                            @if (Model.ChildPages.Any())
+                            {
+                                foreach (PageViewModel page in Model.ChildPages)
+                                {
+                                    <div class="col-md-12">
+                                        <div class="bg-light">
+                                            <!-- You can delete "bg-light" class. It is just to make background color -->
+                                            <h4>@page.Name</h4>
+                                            <p>
+                                                <ul>
+                                                    <li>
+                                                        @Html.ActionLink($"Edit page - {page.Name}", "EditPage",
+                                                       new
+                                                       {
+                                                           controller = "BackOfficePages",
+                                                           pageId = page.Id
+                                                       })
+                                                    </li>
+                                                    <li>
+                                                        @Html.ActionLink($"View Page - {page.Name}", "GetPage",
+                                                       new
+                                                       {
+                                                           area = "",
+                                                           controller = "CoursePresentation",
+                                                           courseName = Model.UglyName,
+                                                           childPageName = page.UglyName
+                                                       }, new { target = "_blank" })
+                                                    </li>
+                                                </ul>
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- End Tab v1 -->
+<div class="margin-bottom-30"></div>

@@ -19,10 +19,8 @@
             @if (Request.IsAuthenticated)
             {
                 <ul class="nav navbar-left navbar-nav">
-                    <!-- Home -->
-                    <li>@Html.ActionLink("Create Page", "CreatePage", new { controller = "BackOfficeHome" })</li>
-                    <li>@Html.ActionLink("Media", "Index", new { controller = "BackOfficeMedia" })</li>
                     <li>@Html.ActionLink("Courses", "Index", new { controller = "BackOfficeCourse" })</li>
+                    <li>@Html.ActionLink("Media", "Index", new { controller = "BackOfficeMedia" })</li>
                 </ul>
 
                 using (Html.BeginForm("LogOff", "BackOfficeAuthorization", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))

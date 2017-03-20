@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<CourseViewModel>
 @{
-    ViewBag.Title = "Courses";
+    ViewBag.Title = "Courses Management";
     Layout = "~/Areas/Backoffice/Views/Shared/_BackofficeMaster.cshtml";
 }
 
 <div class="container content-sm">
-    <div class="row content-boxes-v2 content-boxes-v2-o margin-bottom-40">
+    <div class="row content-boxes-v2 content-boxes-v2-o">
         <div class="col-sm-6 sm-margin-bottom-40">
             <h2 class="heading-sm overflow-h">
                 <i class="icon-custom rounded-x icon-md icon-bg-u fa fa-lightbulb-o"></i>
@@ -14,7 +14,7 @@
             <hr class="no-margin margin-bottom-10">
             <p>Description of the action</p>
         </div>
-        <div class="col-sm-6 sm-margin-bottom-40">
+        <div class="col-sm-6 sm-margin-bottom-10">
             <h2 class="heading-sm overflow-h">
                 <i class="icon-custom rounded-x icon-md icon-bg-blue fa fa-bullhorn"></i>
                 <span>@Html.ActionLink("Create new course category", "CreateCourseCategory")<small>Loads new administration page.</small></span>
@@ -37,25 +37,93 @@
                             <img class="img-responsive" src="@course.MainImage.Url" alt="@course.MainImage.Name">
                             <ul class="list-unstyled">
                                 <li>
-                                    <i class="fa-fw fa fa-briefcase"></i>
-                                    @Html.ActionLink("Add child page", "CreatePage",
-                                    new { controller ="BackOfficePages", courseId = course.Id })
+                                    @Html.ActionLink($"Preview ", "GetCourse",
+                                        new { area="", controller="CoursePresentation", courseName = course.UglyName },
+                                        new { @class = "btn-u btn-u-xs btn-block btn-u-default", target = "_blank" })
                                 </li>
-                                <li><i class="fa-fw fa fa-map-marker"></i> New York, US</li>
+                                <li>
+                                    @Html.ActionLink($"Manage ", "ManageCourse",
+                                        new { courseName = course.UglyName },
+                                        new { @class = "btn-u btn-u-xs btn-block btn-u-default", target = "_blank" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Add child page", "CreatePage",
+                                        new { controller = "BackOfficePages", courseId = course.Id },
+                                        new { @class = "btn-u btn-u-xs btn-block btn-u-default", target = "_blank" })
+                                </li>
+                                @*<li><i class="fa-fw fa fa-map-marker"></i> @course.</li>*@
                             </ul>
                         </div>
                         <div class="col-md-8">
                             <h2>
-                                <a href="@course.Url">@course.Name</a>
+                                @course.Name
                             </h2>
+                            <h2></h2>
                             <div>
                                 @Html.Raw(course.ShortDescription)
                             </div>
                         </div>
                     </div>
+                    @* Pannels *@
+                    @if (course.ChildPages.Any())
+                    {
+                        <div class="panel-group acc-v1" id="accordion-@course.UglyName">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-@course.UglyName" href="#collapse-@course.UglyName" aria-expanded="false">
+                                            Child Pages
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse-@course.UglyName" class="panel-collapse collapse" aria-expanded="false">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <ul>
+                                                @foreach (var page in course.ChildPages)
+                                                {
+                                                    <li class="margin-bottom-5">
+                                                        @page.Name &nbsp;
+                                                        @Html.ActionLink($"Edit", "EditPage",
+                                                            new
+                                                            {
+                                                                Area = "Backoffice",
+                                                                controller = "BackOfficePages",
+                                                                pageId = page.Id
+                                                            }, new { target = "_blank", @class = "btn-u btn-u-xs btn-u-blue" })
+                                                        @Html.ActionLink($"View", "GetPage",
+                                                            new
+                                                            {
+                                                                Area = "",
+                                                                controller = "CoursePresentation",
+                                                                courseName = course.UglyName,
+                                                                childPageName = page.UglyName
+                                                            }, new { target = "_blank", @class = "btn-u btn-u-xs btn-u" })
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info fade in">
+                            This course has no child pages.
+                            Would you like to
+                            @Html.ActionLink("create a new one?", "CreatePage",
+                           new
+                           {
+                               Area = "Backoffice",
+                               controller = "BackOfficePages",
+                               courseId = course.Id
+                           })
+                        </div>
+                    }
                 </div>
             </div>
-
         }
     </div>
 </div>

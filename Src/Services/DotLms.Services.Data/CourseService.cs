@@ -36,7 +36,7 @@ namespace DotLms.Services.Data
             this.projectableCourseRepository = projectableCourseRepository;
         }
 
-        public void CreateCourse(CourseCreationViewModel model, MediaItem image)
+        public Course CreateCourse(CourseCreationViewModel model, MediaItem image)
         {
             Course course = this.mapperProvider.Instance.Map<Course>(model);
             CourseCategory courseCategory = this.mapperProvider.Instance.Map<CourseCategory>(model);
@@ -50,6 +50,7 @@ namespace DotLms.Services.Data
 
             this.courseEfRepository.Add(course);
             this.dotLmsEfData.SaveChanges();
+            return course;
         }
 
         public CourseViewModel GetCourseViewModel(string name)
@@ -58,6 +59,14 @@ namespace DotLms.Services.Data
 
             CourseViewModel mappedCourseViewModel = this.mapperProvider.Instance.Map<CourseViewModel>(foundCourse);
             return mappedCourseViewModel;
+        }
+
+        public CourseCreationViewModel GetCourseCreationViewModel(string name)
+        {
+            Course foundCourse = this.courseEfRepository.GetCourse(name);
+
+            CourseCreationViewModel mappedCourseCreationViewModel = this.mapperProvider.Instance.Map<CourseCreationViewModel>(foundCourse);
+            return mappedCourseCreationViewModel;
         }
 
         public IEnumerable<CourseViewModel> GetAllCourseViewModels()
@@ -75,7 +84,7 @@ namespace DotLms.Services.Data
         private string GenereateUrl(string uglyName)
         {
             Guard.WhenArgument(uglyName, nameof(uglyName)).IsNullOrEmpty().Throw();
-            
+
             string url = $"/{uglyName}";
             return url;
         }
