@@ -15,6 +15,10 @@
                 @Html.ActionLink($"Edit this course", "ManageCourse",
                 new { Area = "Backoffice", controller = "BackOfficeCourse", courseName = Model.UglyName },
                 new { @class = "btn-u btn-u-sea" })
+                
+                @Html.ActionLink($"Add new child page", "CreatePage",
+                new { Area = "Backoffice", controller = "BackOfficePages", courseId = Model.Id },
+                new { @class = "btn-u btn-u-sea" })
             </p>
         </div>
     </div>
@@ -38,24 +42,33 @@
     <div class="row">
         <div class="col-sm-9 row">
             <div class="col-sm-6">
-                <h3>
-                    @Model.Name
-                </h3>
+                <div class="headline"><h2>@Model.Name</h2></div>
             </div>
             <div class="col-sm-12">
                 @Html.Raw(Model.FullDescription)
             </div>
-            @if (Model.ChildPages.Any())
-            {
-                foreach (PageViewModel page in Model.ChildPages)
-                {
-                    <div class="col-md-6">
-                        <a href="@page.Url">@page.Name</a>
-                    </div>
-                }
-            }
         </div>
         <div class="col-sm-3">
+            <div class="headline"><h2>Child Pages</h2></div>
+            @if (Model.ChildPages.Any())
+            {
+                <ol>
+                    @foreach (PageViewModel page in Model.ChildPages)
+                    {
+                        <li>
+                            @Html.ActionLink($"{page.Name}", "GetPage",
+                           new { courseName = Model.UglyName, childPageName = page.UglyName })
+                    </li>
+                    }
+                </ol>
+            }
+            else
+            {
+                <div class="alert alert-info fade in">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    This course has no child pages.
+                </div>
+            }
         </div>
     </div>
 </div>

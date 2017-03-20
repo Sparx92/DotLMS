@@ -4,24 +4,30 @@ using System.Web;
 using Bytes2you.Validation;
 using DotLms.Data.Contracts;
 using DotLms.Data.Models;
+using DotLms.Services.Providers.Contracts;
+using DotLms.Web.Models;
 
 namespace DotLms.Services.Data
 {
     public class FileService
     {
-        private IDotLmsEfData dotLmsEfData;
-        private IEntityFrameworkRepository<MediaItem> mediaItemEfRepository;
+        private readonly IDotLmsEfData dotLmsEfData;
+        private readonly IEntityFrameworkRepository<MediaItem> mediaItemEfRepository;
+        private readonly IMapperProvider mapperProvider;
 
-        public FileService(IEntityFrameworkRepository<MediaItem> mediaItemEfRepository, IDotLmsEfData dotLmsEfData)
+        public FileService(IEntityFrameworkRepository<MediaItem> mediaItemEfRepository,
+            IDotLmsEfData dotLmsEfData, IMapperProvider mapperProvider)
         {
             Guard.WhenArgument(mediaItemEfRepository, nameof(mediaItemEfRepository)).IsNull().Throw();
             Guard.WhenArgument(dotLmsEfData, nameof(dotLmsEfData)).IsNull().Throw();
+            Guard.WhenArgument(mapperProvider, nameof(mapperProvider)).IsNull().Throw();
 
             this.mediaItemEfRepository = mediaItemEfRepository;
             this.dotLmsEfData = dotLmsEfData;
+            this.mapperProvider = mapperProvider;
         }
 
-        public MediaItem SaveFile(HttpPostedFileBase fileBase)
+        public MediaItemViewModel SaveFile(HttpPostedFileBase fileBase)
         {
             string extension = Path.GetExtension(fileBase.FileName);
             string uniqueFileName = Guid.NewGuid().ToString().Replace("-", "");
@@ -45,7 +51,7 @@ namespace DotLms.Services.Data
             {
                 fileBase.SaveAs(fullPath);
             }
-            return file;
+            return this.mapperProvider.Instance.Map<MediaItemViewModel>(file);
         }
     }
 }

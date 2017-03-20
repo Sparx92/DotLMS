@@ -51,6 +51,7 @@ namespace DotLms.Web
                 .Include("~/Content/Assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css")
                 .Include("~/Content/Assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css")
                 .Include("~/Content/Assets/css/blocks.css")
+                .Include("~/Content/Assets/css/pages/page_log_reg_v4.css")
                 .Include("~/Content/Assets/css/custom.css")
                 );
 

@@ -211,6 +211,7 @@
     <Content Include="Content\Assets\css\blocks.css" />
     <Content Include="Content\Assets\css\custom.css" />
     <Content Include="Content\Assets\css\pages\page_log_reg_v2.css" />
+    <Content Include="Content\Assets\css\pages\page_log_reg_v4.css" />
     <Content Include="Content\Assets\css\theme-colors\default.css" />
     <Content Include="Content\Assets\css\theme-skins\dark.css" />
     <Content Include="Content\Assets\js\app.js" />

@@ -68,6 +68,9 @@ namespace DotLms.Web.Infrastructure.Mappings.Profiles
 
             this.CreateMap<MediaItem, HttpPostedFileBase>()
                 .ForMember(dest => dest.FileName, opt => opt.MapFrom(src => src.FullName));
+
+            this.CreateMap<MediaItem, MediaItemViewModel>();
+            this.CreateMap<MediaItemViewModel, MediaItem>();
         }
     }
 }

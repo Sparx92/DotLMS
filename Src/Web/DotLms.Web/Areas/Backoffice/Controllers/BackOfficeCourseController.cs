@@ -50,13 +50,13 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
             model.Categories = this.categoryService.GetAllCategories();
             if (ModelState.IsValid)
             {
-                MediaItem mediaItem = this.fileService.SaveFile(model.File);
+                MediaItemViewModel mediaItem = this.fileService.SaveFile(model.File);
 
                 CourseCategoryViewModel category = categoryService.GetCategoryViewModel(model.Category.Name);
 
                 model.Category = category;
 
-                Course createdCourse = this.courseService.CreateCourse(model, mediaItem);
+                CourseViewModel createdCourse = this.courseService.CreateCourse(model, mediaItem);
 
                 return RedirectToAction("GetCourse", "CoursePresentation",
                     new { Area = "", courseName = createdCourse.UglyName });
@@ -110,7 +110,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
 
                 if (model.File != null)
                 {
-                    MediaItem mediaItem = this.fileService.SaveFile(model.File);
+                    MediaItemViewModel mediaItem = this.fileService.SaveFile(model.File);
                     Course courseWithImage = this.courseService.UpdateCourse(model, mediaItem);
 
                     return RedirectToAction("GetCourse", "CoursePresentation",

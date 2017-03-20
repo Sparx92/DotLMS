@@ -36,13 +36,12 @@ namespace DotLms.Services.Data
             this.projectableCourseRepository = projectableCourseRepository;
         }
 
-        public Course CreateCourse(CourseCreationViewModel model, MediaItem image)
+        public CourseViewModel CreateCourse(CourseCreationViewModel model, MediaItemViewModel image)
         {
             Course course = this.mapperProvider.Instance.Map<Course>(model);
             CourseCategory courseCategory = this.mapperProvider.Instance.Map<CourseCategory>(model);
 
             course.Category = courseCategory;
-            course.MainImage = image;
             course.UglyName = this.GeneratUglyName(course.Name);
             course.Url = this.GenereateUrl(course.UglyName);
             course.MainImageId = image.Id;
@@ -50,7 +49,7 @@ namespace DotLms.Services.Data
 
             this.courseEfRepository.Add(course);
             this.dotLmsEfData.SaveChanges();
-            return course;
+            return this.mapperProvider.Instance.Map<CourseViewModel>(course);
         }
 
         public CourseViewModel GetCourseViewModel(string name)
@@ -98,7 +97,7 @@ namespace DotLms.Services.Data
             return courseToUpdate;
         }
 
-        public Course UpdateCourse(CourseCreationViewModel model, MediaItem image)
+        public Course UpdateCourse(CourseCreationViewModel model, MediaItemViewModel image)
         {
             Course courseToUpdate = this.courseEfRepository.GetCourse(model.Name);
             Course mappedCourse = this.mapperProvider.Instance.Map<Course>(model);
@@ -107,7 +106,6 @@ namespace DotLms.Services.Data
             courseToUpdate.Name = mappedCourse.Name;
             courseToUpdate.ShortDescription = mappedCourse.ShortDescription;
             courseToUpdate.FullDescription = mappedCourse.FullDescription;
-            courseToUpdate.MainImage = image;
             courseToUpdate.MainImageId = image.Id;
             courseToUpdate.UglyName = this.GeneratUglyName(mappedCourse.Name);
             courseToUpdate.Url = this.GenereateUrl(courseToUpdate.UglyName);
