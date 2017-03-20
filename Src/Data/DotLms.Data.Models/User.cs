@@ -11,7 +11,7 @@ namespace DotLms.Data.Models
         {
             // Note the authenticationType must match the one 
             // defined in CookieAuthenticationOptions.AuthenticationType
-            var userIdentity =
+            ClaimsIdentity userIdentity =
                 await manager.CreateIdentityAsync(this,
                     DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here

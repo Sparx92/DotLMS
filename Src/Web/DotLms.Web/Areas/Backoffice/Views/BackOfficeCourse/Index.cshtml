@@ -11,24 +11,17 @@
                 <i class="icon-custom rounded-x icon-md icon-bg-u fa fa-lightbulb-o"></i>
                 <span>@Html.ActionLink("Create new course", "CreateCourse") <small> Loads new administration page.</small></span>
             </h2>
-            <hr class="no-margin margin-bottom-10">
-            <p>Description of the action</p>
         </div>
         <div class="col-sm-6 sm-margin-bottom-10">
             <h2 class="heading-sm overflow-h">
                 <i class="icon-custom rounded-x icon-md icon-bg-blue fa fa-bullhorn"></i>
                 <span>@Html.ActionLink("Create new course category", "CreateCourseCategory")<small>Loads new administration page.</small></span>
             </h2>
-            <hr class="no-margin margin-bottom-10">
-            <p>Description of the action</p>
         </div>
     </div>
-
-</div>
-
-<div class="container content-sm">
+    <hr class="devider devider-db">
     <div class="row">
-        @foreach (var course in Model)
+        @foreach (CourseViewModel course in Model)
         {
             <div class="col-sm-6">
                 <div class="funny-boxes funny-boxes-left-dark">
@@ -38,7 +31,7 @@
                             <ul class="list-unstyled">
                                 <li>
                                     @Html.ActionLink($"Preview ", "GetCourse",
-                                        new { area="", controller="CoursePresentation", courseName = course.UglyName },
+                                        new { area = "", controller = "CoursePresentation", courseName = course.UglyName },
                                         new { @class = "btn-u btn-u-xs btn-block btn-u-default", target = "_blank" })
                                 </li>
                                 <li>
@@ -80,7 +73,7 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <ul>
-                                                @foreach (var page in course.ChildPages)
+                                                @foreach (PageViewModel page in course.ChildPages)
                                                 {
                                                     <li class="margin-bottom-5">
                                                         @page.Name &nbsp;

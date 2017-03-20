@@ -80,6 +80,43 @@ namespace DotLms.Services.Data
             return courseViewModels;
         }
 
+        public Course UpdateCourse(CourseCreationViewModel model)
+        {
+            Course courseToUpdate = this.courseEfRepository.GetCourse(model.Name);
+            Course mappedCourse = this.mapperProvider.Instance.Map<Course>(model);
+            CourseCategory courseCategory = this.mapperProvider.Instance.Map<CourseCategory>(model);
+
+            courseToUpdate.Name = mappedCourse.Name;
+            courseToUpdate.ShortDescription = mappedCourse.ShortDescription;
+            courseToUpdate.FullDescription = mappedCourse.FullDescription;
+            courseToUpdate.UglyName = this.GeneratUglyName(mappedCourse.Name);
+            courseToUpdate.Url = this.GenereateUrl(courseToUpdate.UglyName);
+            courseToUpdate.CategoryId = courseCategory.Id;
+            
+            this.courseEfRepository.Update(courseToUpdate);
+            this.dotLmsEfData.SaveChanges();
+            return courseToUpdate;
+        }
+
+        public Course UpdateCourse(CourseCreationViewModel model, MediaItem image)
+        {
+            Course courseToUpdate = this.courseEfRepository.GetCourse(model.Name);
+            Course mappedCourse = this.mapperProvider.Instance.Map<Course>(model);
+            CourseCategory courseCategory = this.mapperProvider.Instance.Map<CourseCategory>(model);
+
+            courseToUpdate.Name = mappedCourse.Name;
+            courseToUpdate.ShortDescription = mappedCourse.ShortDescription;
+            courseToUpdate.FullDescription = mappedCourse.FullDescription;
+            courseToUpdate.MainImage = image;
+            courseToUpdate.MainImageId = image.Id;
+            courseToUpdate.UglyName = this.GeneratUglyName(mappedCourse.Name);
+            courseToUpdate.Url = this.GenereateUrl(courseToUpdate.UglyName);
+            courseToUpdate.CategoryId = courseCategory.Id;
+
+            this.courseEfRepository.Update(courseToUpdate);
+            this.dotLmsEfData.SaveChanges();
+            return courseToUpdate;
+        }
 
         private string GenereateUrl(string uglyName)
         {
@@ -96,7 +133,7 @@ namespace DotLms.Services.Data
                 return originalName.ToLowerInvariant();
             }
 
-            var uglyName = originalName
+            string uglyName = originalName
                 .ToLowerInvariant()
                 .Replace(' ', '-');
 

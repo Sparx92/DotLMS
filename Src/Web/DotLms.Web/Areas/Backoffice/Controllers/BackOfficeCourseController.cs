@@ -97,5 +97,33 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        public ActionResult ManageCourse(CourseCreationViewModel model)
+        {
+            model.Categories = this.categoryService.GetAllCategories();
+            if (ModelState.IsValid)
+            {
+                CourseCategoryViewModel category = categoryService.GetCategoryViewModel(model.Category.Name);
+
+                model.Category = category;
+
+                if (model.File != null)
+                {
+                    MediaItem mediaItem = this.fileService.SaveFile(model.File);
+                    Course courseWithImage = this.courseService.UpdateCourse(model, mediaItem);
+
+                    return RedirectToAction("GetCourse", "CoursePresentation",
+                        new { Area = "", courseName = courseWithImage.UglyName });
+                }
+
+
+                Course courseWithoutImage = this.courseService.UpdateCourse(model);
+                return RedirectToAction("GetCourse", "CoursePresentation",
+                        new { Area = "", courseName = courseWithoutImage.UglyName });
+
+            }
+            return View(model);
+        }
     }
 }

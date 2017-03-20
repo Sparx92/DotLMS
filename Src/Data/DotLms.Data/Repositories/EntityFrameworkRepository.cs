@@ -27,25 +27,25 @@ namespace DotLms.Data.Repositories
 
         public void Add(T entity)
         {
-            var entry = AttachIfDetached(entity);
+            DbEntityEntry entry = AttachIfDetached(entity);
             entry.State = EntityState.Added;
         }
 
         public void Update(T entity)
         {
-            var entry = AttachIfDetached(entity);
+            DbEntityEntry entry = AttachIfDetached(entity);
             entry.State = EntityState.Modified;
         }
 
         public void Delete(T entity)
         {
-            var entry = AttachIfDetached(entity);
+            DbEntityEntry entry = AttachIfDetached(entity);
             entry.State = EntityState.Deleted;
         }
 
         protected DbEntityEntry AttachIfDetached(T entity)
         {
-            var entry = this.Context.Entry(entity);
+            DbEntityEntry<T> entry = this.Context.Entry(entity);
             if (entry.State == EntityState.Detached)
             {
                 this.DbSet.Attach(entity);

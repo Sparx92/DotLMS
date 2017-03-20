@@ -31,14 +31,14 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         [Security(Roles = Common.Roles.Admin)]
         public ActionResult CreatePage(int courseId)
         {
-            var model = new PageViewModel { ParentCourseId = courseId };
+            PageViewModel model = new PageViewModel { ParentCourseId = courseId };
             return View(model);
         }
 
         [Security(Roles = Common.Roles.Admin)]
         public ActionResult EditPage(int? pageId)
         {
-            var model = this.pageRetrivalService.GetPage(pageId);
+            PageViewModel model = this.pageRetrivalService.GetPage(pageId);
             return View(model);
         }
 

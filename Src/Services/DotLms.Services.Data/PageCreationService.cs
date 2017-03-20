@@ -95,7 +95,7 @@ namespace DotLms.Services.Data
                 return mappedPageName;
             }
 
-            var uglyName = mappedPageName
+            string uglyName = mappedPageName
                 .ToLowerInvariant()
                 .Replace(' ', '-');
 

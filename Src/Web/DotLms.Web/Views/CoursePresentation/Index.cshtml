@@ -1,15 +1,15 @@
-﻿@model DotLms.Web.Models.CourseListViewModel
+﻿@using DotLms.Web.Models
+@model CourseListViewModel
 @{
     ViewBag.Title = "Home Page";
 }
 
-
-<div class="cube-portfolio container margin-bottom-60">
+<div class="container-fluid"><div class="cube-portfolio container margin-bottom-60">
     <div class="content-xs">
         <div id="filters-container" class="cbp-l-filters-text content-xs">
             <div data-filter="*" class="cbp-filter-item-active cbp-filter-item"> All </div> <span>|</span>
 
-            @foreach (var category in Model.CourseCategoryViewModels)
+            @foreach (CourseCategoryViewModel category in Model.CourseCategoryViewModels)
             {
                 <div data-filter=".@category.Name" class="cbp-filter-item"> @category.Name  </div> <span>|</span>
             }
@@ -17,7 +17,7 @@
     </div>
 </div>
 <div id="grid-container" class="cbp-l-grid-agency">
-    @foreach (var course in Model.CourseViewModels)
+    @foreach (CourseViewModel course in Model.CourseViewModels)
     {
 
         <div class="cbp-item @course.Category.Name">
@@ -43,3 +43,5 @@
         </div>
     }
 </div>
+</div>
+

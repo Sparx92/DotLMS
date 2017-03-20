@@ -1,31 +1,42 @@
-﻿@model DotLms.Web.Models.CourseViewModel
+﻿@using DotLms.Web.Models
+@model DotLms.Web.Models.CourseViewModel
 @{
     ViewBag.Title = Model.Name;
 }
-
 @if (Context.User.IsInRole(DotLms.Common.Roles.Admin))
 {
-    <div class="alert alert-info fade in">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4>Administrative options</h4>
-        <p></p>
-        <p>
+    <div class="container-fluid">
+        <div class="alert alert-info fade in">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4>Administrative options</h4>
+            <p></p>
+            <p>
 
-            @Html.ActionLink($"Edit this course", "ManageCourse",
-               new { Area = "Backoffice", controller = "BackOfficeCourse", courseName = Model.UglyName },
-               new { @class = "btn-u btn-u-sea" })
-        </p>
+                @Html.ActionLink($"Edit this course", "ManageCourse",
+                new { Area = "Backoffice", controller = "BackOfficeCourse", courseName = Model.UglyName },
+                new { @class = "btn-u btn-u-sea" })
+            </p>
+        </div>
     </div>
 }
-<div>
+
+@if (Model.MainImage != null)
+{
+    <div class="bg-image-v1 parallaxBg" style="background: url(@Model.MainImage.Url) repeat fixed">
+        <div class="container">
+            <div class="headline-center headline-light">
+                <h2>Unify is a clean and fully responsive incredible template</h2>
+                <p>
+                    Integer odio ligula, tincidunt id volutpat et, imperdiet eget mi. Quisque laoreet porttitor turpis sed <a href="#">fermentum</a>. Nullam sodales blandit nisi, tristique tempor nunc hendrerit at. Sed posuere mollis orci
+                </p><br>
+                <button type="button" class="btn-u btn-brd btn-brd-hover btn-u-light">Download Now</button>
+            </div><!--/end Headline Center-->
+        </div>
+    </div>
+}
+<div class="container">
     <div class="row">
         <div class="col-sm-9 row">
-            <div class="col-sm-6">
-                @if (Model.MainImage != null)
-                {
-                    <img class="img-responsive" src="@Model.MainImage.Url" />
-                }
-            </div>
             <div class="col-sm-6">
                 <h3>
                     @Model.Name
@@ -36,7 +47,7 @@
             </div>
             @if (Model.ChildPages.Any())
             {
-                foreach (var page in Model.ChildPages)
+                foreach (PageViewModel page in Model.ChildPages)
                 {
                     <div class="col-md-6">
                         <a href="@page.Url">@page.Name</a>
@@ -44,6 +55,7 @@
                 }
             }
         </div>
-        <div class="col-sm-3"></div>
+        <div class="col-sm-3">
+        </div>
     </div>
 </div>

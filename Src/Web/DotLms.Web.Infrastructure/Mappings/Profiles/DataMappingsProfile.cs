@@ -64,8 +64,7 @@ namespace DotLms.Web.Infrastructure.Mappings.Profiles
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category))
                 .ForMember(dest => dest.ShortDescription, opt => opt.MapFrom(src => src.ShortDescription))
                 .ForMember(dest => dest.FullDescription, opt => opt.MapFrom(src => src.FullDescription))
-                .ForMember(dest => dest.ChildPages, opt => opt.MapFrom(src => src.ChildPages))
-                .ForMember(dest => dest.File, opt => opt.ResolveUsing(src => src.MainImage));
+                .ForMember(dest => dest.ChildPages, opt => opt.MapFrom(src => src.ChildPages));
 
             this.CreateMap<MediaItem, HttpPostedFileBase>()
                 .ForMember(dest => dest.FileName, opt => opt.MapFrom(src => src.FullName));

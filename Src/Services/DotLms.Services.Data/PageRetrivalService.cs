@@ -36,7 +36,7 @@ namespace DotLms.Services.Data
 
         public PageViewModel GetPage(string pageName)
         {
-            var pageNameToLower = pageName.ToLowerInvariant();
+            string pageNameToLower = pageName.ToLowerInvariant();
             Page page = this.pageProjectableRepository
                 .All
                 .FirstOrDefault(x => x.UglyName == pageNameToLower);
@@ -54,8 +54,8 @@ namespace DotLms.Services.Data
 
         public BackOfficeIndexViewModel GetAllPages()
         {
-            var pages = this.pageProjectableRepository.All.ToList();
-            var model = new BackOfficeIndexViewModel();
+            List<Page> pages = this.pageProjectableRepository.All.ToList();
+            BackOfficeIndexViewModel model = new BackOfficeIndexViewModel();
             model.Models = this.mapperProvider.Instance.Map<IEnumerable<PageViewModel>>(pages);
             return model;
         }
