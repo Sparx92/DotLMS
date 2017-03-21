@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Bytes2you.Validation;
-using DotLms.Data.Models.Contracts;
-using DotLms.Services.Providers;
-using DotLms.Services.Providers.Contracts;
 
 namespace DotLms.Data.Models
 {

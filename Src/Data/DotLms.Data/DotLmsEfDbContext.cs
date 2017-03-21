@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using DotLms.Data.Contracts;
 using DotLms.Data.Migrations;
 using DotLms.Data.Models;

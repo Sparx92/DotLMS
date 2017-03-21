@@ -74,7 +74,9 @@
     <Compile Include="EntityFrameworkRepositoryUnitTests\DeleteTests.cs" />
     <Compile Include="EntityFrameworkRepositoryUnitTests\UpdateTests.cs" />
     <Compile Include="EntityFrameworkRepositoryUnitTests\DataMappingTests.cs" />
-    <Compile Include="ProjectableRepositoryUnitTests\ProjectableRepositoryTests.cs" />
+    <Compile Include="ProjectableRepositoryUnitTests\GetFirstMappedTests.cs" />
+    <Compile Include="ProjectableRepositoryUnitTests\GetAllMappedTests.cs" />
+    <Compile Include="ProjectableRepositoryUnitTests\ConstructorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,7 +5,6 @@ using System.Linq;
 using Bytes2you.Validation;
 using DotLms.Data.Contracts;
 using DotLms.Data.Models;
-using DotLms.Data.Repositories;
 using DotLms.Services.Providers.Contracts;
 using DotLms.Web.Models;
 

@@ -10,10 +10,10 @@ using DotLms.Web.Models;
 using Moq;
 using NUnit.Framework;
 
-namespace DotLms.Data.Tests
+namespace DotLms.Data.Tests.ProjectableRepositoryUnitTests
 {
     [TestFixture]
-    public class ProjectableRepositoryTests
+    public class ConstructorTests
     {
         private Mock<IDbSet<Course>> mockDbSet;
         private Mock<IDotLmsEfDbContext> mockNewsDbContext;
@@ -58,52 +58,5 @@ namespace DotLms.Data.Tests
             Assert.Throws<ArgumentNullException>(() =>
                new ProjectableRepository<Course>(null, this.mockProjectionService.Object));
         }
-
-        [Test]
-        public void GetFirstMapped_ShouldCallProjectionServiceProjectToFirstOrDefaultOnce()
-        {
-            IProjectableRepository<Course> repository = new ProjectableRepository<Course>(
-                this.mockNewsDbContext.Object, this.mockProjectionService.Object);
-
-            IQueryable<Course> query = repository.All.Where(x => x.Id == 1);
-
-            this.mockProjectionService.Setup(
-                x => x.ProjectToFirstOrDefault<Course, CourseViewModel>(query));
-
-
-            repository.GetFirstMapped<CourseViewModel>(x => x.Id == 1);
-
-            this.mockProjectionService.Verify(
-                x => x.ProjectToFirstOrDefault<Course, CourseViewModel>(query), Times.Once);
-        }
-
-        [Test]
-        public void GetAllMapped_WithNoParameters_ShouldCallProjectionServiceProjectToListOnce()
-        {
-            IProjectableRepository<Course> repository = new ProjectableRepository<Course>(
-               this.mockNewsDbContext.Object, this.mockProjectionService.Object);
-
-            IQueryable<Course> query = repository.All;
-
-            repository.GetAllMapped<CourseViewModel>();
-
-            this.mockProjectionService.Verify(
-                x => x.ProjectToList<Course, CourseViewModel>(query), Times.Once);
-        }
-
-        [Test]
-        public void GetAllMapped_WithParameters_ShouldCallProjectionServiceProjectToListOnceWithCorrectQuery()
-        {
-            IProjectableRepository<Course> repository = new ProjectableRepository<Course>(
-               this.mockNewsDbContext.Object, this.mockProjectionService.Object);
-
-            IQueryable<Course> query = repository.All.Where(x => x.Id == 1);
-
-            repository.GetAllMapped<CourseViewModel>(x => x.Id == 1);
-
-            this.mockProjectionService.Verify(
-                x => x.ProjectToList<Course, CourseViewModel>(query), Times.Once);
-        }
-
     }
 }

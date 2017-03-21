@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Bytes2you.Validation;
 using DotLms.Services.Common.Contracts;
 using DotLms.Services.Providers.Contracts;

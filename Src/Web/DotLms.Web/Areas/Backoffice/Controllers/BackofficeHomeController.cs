@@ -1,10 +1,5 @@
-﻿using System.Threading.Tasks;
-using System.Web.Mvc;
-using DotLms.Services.Data;
+﻿using System.Web.Mvc;
 using DotLms.Web.Attributes;
-using DotLms.Web.Models;
-using DotLms.Web.Models.Backoffice;
-using PageViewModel = DotLms.Web.Models.PageViewModel;
 
 namespace DotLms.Web.Areas.Backoffice.Controllers
 {

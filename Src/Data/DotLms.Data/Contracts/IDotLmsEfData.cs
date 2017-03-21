@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DotLms.Data.Contracts
+﻿namespace DotLms.Data.Contracts
 {
     public interface IDotLmsEfData
     {
