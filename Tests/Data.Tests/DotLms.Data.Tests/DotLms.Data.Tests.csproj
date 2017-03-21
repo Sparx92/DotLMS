@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityFrameworkRepositoryTests.cs" />
+    <Compile Include="ProjectableRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +85,10 @@
       <Project>{31A9A504-87F8-469B-92D1-7E1DE827F38C}</Project>
       <Name>DotLms.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Src\Services\DotLms.Services.Common\DotLms.Services.Common.csproj">
+      <Project>{63287B0F-376A-4A49-90FE-960E7E6C1DB0}</Project>
+      <Name>DotLms.Services.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Src\Services\DotLms.Services.Providers\DotLms.Services.Providers.csproj">
       <Project>{AB17B912-8E56-47B4-B9BC-523F2C081DDE}</Project>
       <Name>DotLms.Services.Providers</Name>
@@ -91,6 +96,10 @@
     <ProjectReference Include="..\..\..\Src\Web\DotLms.Web.Infrastructure\DotLms.Web.Infrastructure.csproj">
       <Project>{DDD49E01-DFEA-4C92-9E29-0F3D8A5B0E92}</Project>
       <Name>DotLms.Web.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Src\Web\DotLms.Web.Models\DotLms.Web.Models.csproj">
+      <Project>{F51CC995-935A-42E6-BEB6-3E1126ECF0DE}</Project>
+      <Name>DotLms.Web.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
