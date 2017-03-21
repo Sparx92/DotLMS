@@ -3,6 +3,7 @@ using System.Web;
 using System.Web.Mvc;
 using DotLms.Web.Areas.Backoffice.Models;
 using DotLms.Web.Identity.Managers;
+using hbehr.recaptcha;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -55,7 +56,11 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Authorize(AuthViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
+            string userResponse = HttpContext.Request.Params["g-recaptcha-response"];
+            bool validCaptcha = ReCaptcha.ValidateCaptcha(userResponse);
+            model.BotChallange = validCaptcha;
+            
+            if (!ModelState.IsValid && !validCaptcha)
             {
                 return View(model);
             }
@@ -63,6 +68,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             SignInStatus result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+
             switch (result)
             {
                 case SignInStatus.Success:

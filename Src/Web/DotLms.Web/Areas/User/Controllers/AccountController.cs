@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DotLms.Web.Areas.User.Models;
 using DotLms.Web.Identity.Managers;
+using hbehr.recaptcha;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -67,7 +68,11 @@ namespace DotLms.Web.Areas.User.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
+            string userResponse = HttpContext.Request.Params["g-recaptcha-response"];
+            bool validCaptcha = ReCaptcha.ValidateCaptcha(userResponse);
+            model.BotChallange = validCaptcha;
+
+            if (!ModelState.IsValid && !validCaptcha)
             {
                 return View(model);
             }
@@ -148,7 +153,11 @@ namespace DotLms.Web.Areas.User.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            string userResponse = HttpContext.Request.Params["g-recaptcha-response"];
+            bool validCaptcha = ReCaptcha.ValidateCaptcha(userResponse);
+            model.BotChallange = validCaptcha;
+
+            if (ModelState.IsValid && validCaptcha)
             {
                 Data.Models.User user = new Data.Models.User { UserName = model.Email, Email = model.Email };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);

@@ -17,5 +17,9 @@ namespace DotLms.Web.Areas.Backoffice.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        [Display(Name = "Challange")]
+        [Range(typeof(bool), "true", "true", ErrorMessage = "Must complete the challange.")]
+        public bool BotChallange { get; set; }
     }
 }

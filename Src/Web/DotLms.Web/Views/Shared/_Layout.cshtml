@@ -17,10 +17,9 @@
 </head>
 <body>
     @Html.Partial("_Navigation")
-    <div class="wrapper">
+    <main>
         @RenderBody()
-    </div>
-    @Scripts.Render("~/bundles/jquery")
+    </main>
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render(Constants.UnifyTemplateJsBundle)

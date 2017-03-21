@@ -51,7 +51,6 @@ namespace DotLms.Web
                 .Include("~/Content/Assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css")
                 .Include("~/Content/Assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css")
                 .Include("~/Content/Assets/css/blocks.css")
-                .Include("~/Content/Assets/css/pages/page_log_reg_v4.css")
                 .Include("~/Content/Assets/css/custom.css")
                 );
 
@@ -61,6 +60,7 @@ namespace DotLms.Web
                 .Include("~/Content/Assets/plugins/smoothScroll.js")
                 .Include("~/Content/Assets/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.js")
                 .Include("~/Content/Assets/plugins/cube-portfolio/cubeportfolio/js/cube-portfolio-3.js")
+                .Include("~/Content/Assets/plugins/backstretch/jquery.backstretch.min.js")
                 .Include("~/Content/Assets/js/app.js")
                 .Include("~/Content/Assets/js/custom.js")
                 );

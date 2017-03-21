@@ -1,11 +1,12 @@
-﻿@model DotLms.Web.Areas.Backoffice.Models.AuthViewModel
+﻿@using hbehr.recaptcha
+@model DotLms.Web.Areas.Backoffice.Models.AuthViewModel
 @{
     Layout = "~/Areas/Backoffice/Views/Shared/_BackofficeMaster.cshtml";
 }
 @Styles.Render(Constants.UnifyTemplateLoginCssBundle)
 @Scripts.Render(Constants.UnifyTemplateLoginJsBundle)
 <div class="container">
-    @using (Html.BeginForm("Authorize", "BackOfficeAuthorization", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    @using (Html.BeginForm("Authorize", "BackOfficeAuthorization", new { Area = "Backoffice", ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {    <div class="reg-block">
         @Html.AntiForgeryToken()
         <div class="reg-block-header">
@@ -25,6 +26,8 @@
             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
         </div>
+        @ReCaptcha.GetCaptcha(ReCaptchaLanguage.EnglishUk)
+        @Html.ValidationMessageFor(m => m.BotChallange)
         <hr>
         <div class="checkbox">
             @Html.LabelFor(m => m.RememberMe)

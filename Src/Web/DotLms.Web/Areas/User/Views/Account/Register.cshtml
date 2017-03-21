@@ -1,40 +1,49 @@
-﻿@model DotLms.Web.Areas.User.Models.RegisterViewModel
+﻿@using DotLms.Common
+@using hbehr.recaptcha
+@model DotLms.Web.Areas.User.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Scripts.Render("~/bundles/jquery")
+@Styles.Render(Constants.UnifyTemplateLoginCssBundle)
+@Scripts.Render(Constants.UnifyTemplateLoginJsBundle)
+<div class="container">
+    @using (Html.BeginForm("Register", "Account", new { Area = "", ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {    <div class="reg-block">
+        @Html.AntiForgeryToken()
+        <div class="reg-block-header">
+            <h2>Register</h2>
+            <p>
+            </p>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="input-group margin-bottom-20">
+            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder="E-mail" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="input-group margin-bottom-20">
+            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+        </div>
+        <div class="input-group margin-bottom-20">
+            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" , placeholder ="Confirm password" })
+            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+        </div>
+        @ReCaptcha.GetCaptcha(ReCaptchaLanguage.EnglishUk)
+        @Html.ValidationMessageFor(m => m.BotChallange)
 
-<h2>@ViewBag.Title.</h2>
-
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <button type="submit" class="btn-u btn-block">Register</button>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+    }
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
