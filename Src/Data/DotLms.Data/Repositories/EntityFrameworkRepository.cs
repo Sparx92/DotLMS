@@ -23,22 +23,28 @@ namespace DotLms.Data.Repositories
 
         public IDotLmsEfDbContext Context { get; set; }
 
-        protected IDbSet<T> DbSet { get; set; }
+        public IDbSet<T> DbSet { get; set; }
 
         public void Add(T entity)
         {
+            Guard.WhenArgument(entity, nameof(entity)).IsNull().Throw();
+
             DbEntityEntry entry = AttachIfDetached(entity);
             entry.State = EntityState.Added;
         }
 
         public void Update(T entity)
         {
+            Guard.WhenArgument(entity, nameof(entity)).IsNull().Throw();
+
             DbEntityEntry entry = AttachIfDetached(entity);
             entry.State = EntityState.Modified;
         }
 
         public void Delete(T entity)
         {
+            Guard.WhenArgument(entity, nameof(entity)).IsNull().Throw();
+
             DbEntityEntry entry = AttachIfDetached(entity);
             entry.State = EntityState.Deleted;
         }
