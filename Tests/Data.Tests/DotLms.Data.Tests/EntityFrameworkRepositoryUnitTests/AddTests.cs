@@ -11,6 +11,7 @@ using NUnit.Framework;
 namespace DotLms.Data.Tests.EntityFrameworkRepositoryUnitTests
 {
     [TestFixture]
+    [Category(Common.Constants.UnitTestCategory)]
     public class AddTests
     {
         private Mock<IDotLmsEfDbContext> context;

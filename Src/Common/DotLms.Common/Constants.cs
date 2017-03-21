@@ -11,5 +11,8 @@
 
         public const string UnifyTemplateCssBundle = "~/bundles/unify/css";
         public const string UnifyTemplateJsBundle = "~/bundles/unify/js";
+
+        public const string IntegrationTestCategory = "IntegrationTests";
+        public const string UnitTestCategory = "UnitTests";
     }
 }

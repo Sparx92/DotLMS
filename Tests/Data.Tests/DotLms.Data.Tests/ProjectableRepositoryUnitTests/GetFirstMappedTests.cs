@@ -12,6 +12,7 @@ using NUnit.Framework;
 namespace DotLms.Data.Tests.ProjectableRepositoryUnitTests
 {
     [TestFixture]
+    [Category(Common.Constants.UnitTestCategory)]
     public class GetFirstMappedTests
     {
         private Mock<IDbSet<Course>> mockDbSet;
