@@ -68,8 +68,13 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityFrameworkRepositoryTests.cs" />
-    <Compile Include="ProjectableRepositoryTests.cs" />
+    <Compile Include="EntityFrameworkRepositoryUnitTests\ConstructorTests.cs" />
+    <Compile Include="EntityFrameworkRepositoryUnitTests\AddTests.cs" />
+    <Compile Include="EntityFrameworkRepositoryUnitTests\AllTests.cs" />
+    <Compile Include="EntityFrameworkRepositoryUnitTests\DeleteTests.cs" />
+    <Compile Include="EntityFrameworkRepositoryUnitTests\UpdateTests.cs" />
+    <Compile Include="EntityFrameworkRepositoryUnitTests\DataMappingTests.cs" />
+    <Compile Include="ProjectableRepositoryUnitTests\ProjectableRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
