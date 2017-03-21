@@ -102,7 +102,6 @@
     <Compile Include="Contracts\IDotLmsEfDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\CourseEfRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkRepository.cs" />
     <Compile Include="Repositories\ProjectableRepository.cs" />
   </ItemGroup>

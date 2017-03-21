@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using Bytes2you.Validation;
 using DotLms.Data.Contracts;
 using DotLms.Data.Models;
@@ -12,12 +14,12 @@ namespace DotLms.Services.Data
     public class CourseService
     {
         private readonly IDotLmsEfData dotLmsEfData;
-        private readonly CourseEfRepository courseEfRepository;
+        private readonly IEntityFrameworkRepository<Course> courseEfRepository;
         private IEntityFrameworkRepository<CourseCategory> courseCategoryEfRepository;
         private readonly IMapperProvider mapperProvider;
         private IProjectableRepository<Course> projectableCourseRepository;
 
-        public CourseService(CourseEfRepository courseEfRepository,
+        public CourseService(IEntityFrameworkRepository<Course> courseEfRepository,
             IEntityFrameworkRepository<CourseCategory> courseCategoryEfRepository,
             IDotLmsEfData dotLmsEfData,
             IMapperProvider mapperProvider,
@@ -54,7 +56,12 @@ namespace DotLms.Services.Data
 
         public CourseViewModel GetCourseViewModel(string name)
         {
-            Course foundCourse = this.courseEfRepository.GetCourse(name);
+            Course foundCourse = this.courseEfRepository
+                .All
+                .Where(x => x.UglyName == name)
+                .Include(x => x.Category)
+                .Include(x => x.MainImage)
+                .FirstOrDefault();
 
             CourseViewModel mappedCourseViewModel = this.mapperProvider.Instance.Map<CourseViewModel>(foundCourse);
             return mappedCourseViewModel;
@@ -62,7 +69,12 @@ namespace DotLms.Services.Data
 
         public CourseCreationViewModel GetCourseCreationViewModel(string name)
         {
-            Course foundCourse = this.courseEfRepository.GetCourse(name);
+            Course foundCourse = this.courseEfRepository
+                .All
+                .Where(x => x.UglyName == name)
+                .Include(x => x.Category)
+                .Include(x => x.MainImage)
+                .FirstOrDefault();
 
             CourseCreationViewModel mappedCourseCreationViewModel = this.mapperProvider.Instance.Map<CourseCreationViewModel>(foundCourse);
             return mappedCourseCreationViewModel;
@@ -70,7 +82,11 @@ namespace DotLms.Services.Data
 
         public IEnumerable<CourseViewModel> GetAllCourseViewModels()
         {
-            IEnumerable<Course> courses = this.courseEfRepository.GetAllCourses();
+            IEnumerable<Course> courses = this.courseEfRepository
+                .All
+                .Include(x => x.Category)
+                .Include(x => x.MainImage)
+                .ToList(); ;
 
             IEnumerable<CourseViewModel> courseViewModels = this.mapperProvider
                 .Instance
@@ -81,7 +97,13 @@ namespace DotLms.Services.Data
 
         public Course UpdateCourse(CourseCreationViewModel model)
         {
-            Course courseToUpdate = this.courseEfRepository.GetCourse(model.Name);
+            Course courseToUpdate = this.courseEfRepository
+                .All
+                .Where(x => x.UglyName == model.Name)
+                .Include(x => x.Category)
+                .Include(x => x.MainImage)
+                .FirstOrDefault();
+
             Course mappedCourse = this.mapperProvider.Instance.Map<Course>(model);
             CourseCategory courseCategory = this.mapperProvider.Instance.Map<CourseCategory>(model);
 
@@ -91,7 +113,7 @@ namespace DotLms.Services.Data
             courseToUpdate.UglyName = this.GeneratUglyName(mappedCourse.Name);
             courseToUpdate.Url = this.GenereateUrl(courseToUpdate.UglyName);
             courseToUpdate.CategoryId = courseCategory.Id;
-            
+
             this.courseEfRepository.Update(courseToUpdate);
             this.dotLmsEfData.SaveChanges();
             return courseToUpdate;
@@ -99,7 +121,13 @@ namespace DotLms.Services.Data
 
         public Course UpdateCourse(CourseCreationViewModel model, MediaItemViewModel image)
         {
-            Course courseToUpdate = this.courseEfRepository.GetCourse(model.Name);
+            Course courseToUpdate = this.courseEfRepository
+                .All
+                .Where(x => x.UglyName == model.Name)
+                .Include(x => x.Category)
+                .Include(x => x.MainImage)
+                .FirstOrDefault();
+
             Course mappedCourse = this.mapperProvider.Instance.Map<Course>(model);
             CourseCategory courseCategory = this.mapperProvider.Instance.Map<CourseCategory>(model);
 
