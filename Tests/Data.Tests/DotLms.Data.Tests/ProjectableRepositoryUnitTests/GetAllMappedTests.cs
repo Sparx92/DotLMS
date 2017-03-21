@@ -47,13 +47,16 @@ namespace DotLms.Data.Tests.ProjectableRepositoryUnitTests
         [Test]
         public void GetAllMapped_WithNoParameters_ShouldCallProjectionServiceProjectToListOnce()
         {
+            // Arrange
             IProjectableRepository<Course> repository = new ProjectableRepository<Course>(
                this.mockNewsDbContext.Object, this.mockProjectionService.Object);
 
             IQueryable<Course> query = repository.All;
 
+            // Act
             repository.GetAllMapped<CourseViewModel>();
 
+            // Assert
             this.mockProjectionService.Verify(
                 x => x.ProjectToList<Course, CourseViewModel>(query), Times.Once);
         }
@@ -61,13 +64,16 @@ namespace DotLms.Data.Tests.ProjectableRepositoryUnitTests
         [Test]
         public void GetAllMapped_WithParameters_ShouldCallProjectionServiceProjectToListOnceWithCorrectQuery()
         {
+            // Arrange
             IProjectableRepository<Course> repository = new ProjectableRepository<Course>(
                this.mockNewsDbContext.Object, this.mockProjectionService.Object);
 
             IQueryable<Course> query = repository.All.Where(x => x.Id == 1);
 
+            // Act
             repository.GetAllMapped<CourseViewModel>(x => x.Id == 1);
 
+            // Assert
             this.mockProjectionService.Verify(
                 x => x.ProjectToList<Course, CourseViewModel>(query), Times.Once);
         }

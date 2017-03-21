@@ -48,6 +48,7 @@ namespace DotLms.Data.Tests.ProjectableRepositoryUnitTests
         [Test]
         public void Constructor_ShouldThrowArgumentNullException_WhenProjectionServiceIsNull()
         {
+            // Arrange & Act & Assert
             Assert.Throws<ArgumentNullException>(() =>
                new ProjectableRepository<Course>(this.mockNewsDbContext.Object, null));
         }
@@ -55,6 +56,7 @@ namespace DotLms.Data.Tests.ProjectableRepositoryUnitTests
         [Test]
         public void Constructor_ShouldThrowArgumentNullException_WhenDbContextIsNull()
         {
+            // Arrange & Act & Assert
             Assert.Throws<ArgumentNullException>(() =>
                new ProjectableRepository<Course>(null, this.mockProjectionService.Object));
         }

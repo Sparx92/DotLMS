@@ -47,6 +47,8 @@ namespace DotLms.Data.Tests.ProjectableRepositoryUnitTests
         [Test]
         public void GetFirstMapped_ShouldCallProjectionServiceProjectToFirstOrDefaultOnce()
         {
+
+            // Arange
             IProjectableRepository<Course> repository = new ProjectableRepository<Course>(
                 this.mockNewsDbContext.Object, this.mockProjectionService.Object);
 
@@ -58,6 +60,7 @@ namespace DotLms.Data.Tests.ProjectableRepositoryUnitTests
 
             repository.GetFirstMapped<CourseViewModel>(x => x.Id == 1);
 
+            // Act & Assert
             this.mockProjectionService.Verify(
                 x => x.ProjectToFirstOrDefault<Course, CourseViewModel>(query), Times.Once);
         }
