@@ -24,6 +24,7 @@ using Ninject.Syntax;
 using Ninject.Extensions.Interception.Infrastructure.Language;
 using System.Runtime.Caching;
 using DotLms.Services.Data.Contracts;
+using DotLms.Web.Controllers;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(DotLms.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(DotLms.Web.App_Start.NinjectWebCommon), "Stop")]
@@ -88,16 +89,18 @@ namespace DotLms.Web.App_Start
                 c =>
                     HttpContext.Current.GetOwinContext().Authentication).InRequestScope();
 
-            kernel.Bind<IDotLmsEfDbContext>().To<DotLmsEfDbContext>().InRequestScope();
+            // Identity
             kernel.Bind<DotLmsSignInManager>().ToSelf().InRequestScope();
             kernel.Bind<DotLmsUserManager>().ToSelf().InRequestScope();
             kernel.Bind<IUserStore<User>>().To<DotLmsUserStore>().InRequestScope();
 
+            // Data
+            kernel.Bind<IDotLmsEfDbContext>().To<DotLmsEfDbContext>().InRequestScope();
             kernel.Bind<IDotLmsEfData>().To<DotLmsEfData>().InRequestScope();
             kernel.Bind(typeof(IEntityFrameworkRepository<>)).To(typeof(EntityFrameworkRepository<>)).InRequestScope();
             kernel.Bind(typeof(IProjectableRepository<>)).To(typeof(ProjectableRepository<>)).InRequestScope();
-            kernel.Bind<IProjectionService>().To<ProjectionService>().InRequestScope();
 
+            // Proiders
             kernel.Bind<IDateTimeProvider>().To<DateTimeProvider>();
             kernel.Bind<IMapperProvider>().To<MapperProvider>().InSingletonScope();
 
@@ -107,6 +110,21 @@ namespace DotLms.Web.App_Start
                 .InSingletonScope()
                 .WithConstructorArgument(typeof(string), "MyAwesomeCache")
                 .WithConstructorArgument(typeof(NameValueCollection), new NameValueCollection());
+
+            //Services      
+            kernel.Bind<IProjectionService>().To<ProjectionService>().InRequestScope();
+
+            kernel.Bind<ICourseCategoryService>().To<CourseCategoryService>()
+                .WhenInjectedExactlyInto<CoursePresentationController>()
+                .InRequestScope()
+                .Intercept()
+                .With<AllCourseCategoriesCacheingInterceptor>();
+
+            kernel.Bind<ICourseService>().To<CourseService>()
+                .WhenInjectedExactlyInto<CoursePresentationController>()
+                .InRequestScope()
+                .Intercept()
+                .With<AllCoursesCacheingInterceptor>();
 
             kernel.Bind<ICourseCategoryService>().To<CourseCategoryService>().InRequestScope();
             kernel.Bind<ICourseService>().To<CourseService>().InRequestScope();
