@@ -3,8 +3,8 @@
 @{
     Layout = "~/Areas/Backoffice/Views/Shared/_BackofficeMaster.cshtml";
 }
-@Styles.Render(Constants.UnifyTemplateLoginCssBundle)
-@Scripts.Render(Constants.UnifyTemplateLoginJsBundle)
+@Styles.Render(BundleConstants.UnifyTemplateLoginCssBundle)
+@Scripts.Render(BundleConstants.UnifyTemplateLoginJsBundle)
 <div class="container">
     @using (Html.BeginForm("Authorize", "BackOfficeAuthorization", new { Area = "Backoffice", ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {    <div class="reg-block">

@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace DotLms.Data.Tests.DotLmsEfDataUnitTests
 {
     [TestFixture]
-    [Category(Common.Constants.UnitTestCategory)]
+    [Category(Common.TestConstants.UnitTestCategory)]
     public class SaveChangesTests
     {
         private Mock<IDotLmsEfDbContext> dotLmsEfDbContext;

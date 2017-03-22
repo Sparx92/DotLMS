@@ -8,7 +8,7 @@ namespace DotLms.Data.Tests.DotLmsEfDataUnitTests
     
 
     [TestFixture]
-    [Category(Common.Constants.UnitTestCategory)]
+    [Category(Common.TestConstants.UnitTestCategory)]
     public class ConstructorTests
     {
         private Mock<IDotLmsEfDbContext> dotLmsEfDbContext;

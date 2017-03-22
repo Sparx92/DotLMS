@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace DotLms.Data.Tests.EntityFrameworkRepositoryUnitTests
 {
     [TestFixture]
-    [Category(Common.Constants.UnitTestCategory)]
+    [Category(Common.TestConstants.UnitTestCategory)]
     public class DeleteTests
     {
         private Mock<IDotLmsEfDbContext> context;

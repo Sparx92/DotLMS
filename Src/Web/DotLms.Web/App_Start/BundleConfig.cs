@@ -29,16 +29,16 @@ namespace DotLms.Web
 
             // Unify template
 
-            bundles.Add(new StyleBundle(Common.Constants.UnifyTemplateLoginCssBundle)
+            bundles.Add(new StyleBundle(Common.BundleConstants.UnifyTemplateLoginCssBundle)
                 .Include("~/Content/Assets/css/pages/page_log_reg_v2.css")
                 );
 
-            bundles.Add(new ScriptBundle(Common.Constants.UnifyTemplateLoginJsBundle)
+            bundles.Add(new ScriptBundle(Common.BundleConstants.UnifyTemplateLoginJsBundle)
                 .Include("~/Content/Assets/plugins/backstretch/jquery.backstretch.min.js")
                 .Include("~/Content/Assets/js/login-page.js")
                 );
 
-            bundles.Add(new StyleBundle(Common.Constants.UnifyTemplateCssBundle)
+            bundles.Add(new StyleBundle(Common.BundleConstants.UnifyTemplateCssBundle)
                 .Include("~/Content/Assets/plugins/bootstrap/css/bootstrap.min.css")
                 .Include("~/Content/Assets/css/style.css")
                 .Include("~/Content/Assets/css/headers/header-default.css")
@@ -54,7 +54,7 @@ namespace DotLms.Web
                 .Include("~/Content/Assets/css/custom.css")
                 );
 
-            bundles.Add(new ScriptBundle(Common.Constants.UnifyTemplateJsBundle)
+            bundles.Add(new ScriptBundle(Common.BundleConstants.UnifyTemplateJsBundle)
                 .Include("~/Content/Assets/plugins/bootstrap/js/bootstrap.js")
                 .Include("~/Content/Assets/plugins/back-to-top.js")
                 .Include("~/Content/Assets/plugins/smoothScroll.js")

@@ -7,8 +7,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Scripts.Render("~/bundles/jquery")
-@Styles.Render(Constants.UnifyTemplateLoginCssBundle)
-@Scripts.Render(Constants.UnifyTemplateLoginJsBundle)
+@Styles.Render(BundleConstants.UnifyTemplateLoginCssBundle)
+@Scripts.Render(BundleConstants.UnifyTemplateLoginJsBundle)
 <div class="container">
     @using (Html.BeginForm("Login", "Account", new { Area = "", ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {    <div class="reg-block">
