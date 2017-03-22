@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Specialized;
 using System.Web;
 
 using DotLms.Data;
@@ -11,20 +12,25 @@ using DotLms.Services.Data;
 using DotLms.Services.Providers;
 using DotLms.Services.Providers.Contracts;
 using DotLms.Web.Identity.Managers;
-using DotLms.Web.Infrastructure;
+using DotLms.Web.Interception;
+
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
 using Ninject;
 using Ninject.Web.Common;
+using Ninject.Syntax;
+using Ninject.Extensions.Interception.Infrastructure.Language;
+using System.Runtime.Caching;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(DotLms.Web.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(DotLms.Web.App_Start.NinjectWebCommon), "Stop")]
 
-namespace DotLms.Web.Infrastructure
+namespace DotLms.Web.App_Start
 {
-    public static class NinjectWebCommon 
+
+    public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
@@ -54,9 +60,8 @@ namespace DotLms.Web.Infrastructure
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            StandardKernel kernel = new StandardKernel();
+            var kernel = new StandardKernel();
             Kernel = kernel;
-
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
@@ -95,7 +100,20 @@ namespace DotLms.Web.Infrastructure
             kernel.Bind<IDateTimeProvider>().To<DateTimeProvider>();
             kernel.Bind<IMapperProvider>().To<MapperProvider>().InSingletonScope();
 
+            kernel.Bind<IMemoryCacheProvider>().To<MemoryCacheProvider>().InSingletonScope();
+            kernel.Bind<MemoryCache>()
+                .ToSelf()
+                .InSingletonScope()
+                .WithConstructorArgument(typeof(string), "MyAwesomeCache")
+                .WithConstructorArgument(typeof(NameValueCollection), new NameValueCollection());
+
+            //kernel.Bind<CourseCategoryService>()
+            //    .ToSelf()
+            //    .Intercept()
+            //    .With<CacheInterceptor>();
+
             kernel.Bind<FileService>().ToSelf().InRequestScope();
-        }        
+        }
     }
+
 }

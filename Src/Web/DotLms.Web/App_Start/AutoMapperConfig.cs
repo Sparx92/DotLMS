@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DotLms.Services.Providers.Contracts;
+using DotLms.Web.App_Start;
 using DotLms.Web.Infrastructure;
 using DotLms.Web.Infrastructure.Mappings;
 using Ninject;

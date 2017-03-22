@@ -11,7 +11,7 @@ namespace DotLms.Web.Interception
     {
         public void Intercept(IInvocation invocation)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
