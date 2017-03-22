@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using Bytes2you.Validation;
 using DotLms.Data.Models;
 using DotLms.Services.Data;
+using DotLms.Services.Data.Contracts;
 using DotLms.Services.Providers.Contracts;
 using DotLms.Web.Models;
 using Microsoft.Ajax.Utilities;
@@ -13,13 +14,13 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
 {
     public class BackOfficeCourseController : Controller
     {
-        private readonly CourseCategoryService categoryService;
-        private readonly CourseService courseService;
-        private readonly FileService fileService;
-        private IMemoryCacheProvider memoryCacheProvider;
+        private readonly ICourseCategoryService categoryService;
+        private readonly ICourseService courseService;
+        private readonly IFileService fileService;
+        private readonly IMemoryCacheProvider memoryCacheProvider;
 
-        public BackOfficeCourseController(CourseCategoryService categoryService,
-            CourseService courseService, FileService fileService, IMemoryCacheProvider memoryCacheProvider)
+        public BackOfficeCourseController(ICourseCategoryService categoryService,
+            ICourseService courseService, IFileService fileService, IMemoryCacheProvider memoryCacheProvider)
         {
             Guard.WhenArgument(categoryService, nameof(categoryService)).IsNull().Throw();
             Guard.WhenArgument(courseService, nameof(courseService)).IsNull().Throw();

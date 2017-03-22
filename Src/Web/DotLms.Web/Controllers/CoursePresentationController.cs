@@ -2,20 +2,21 @@
 using System.Web.WebPages;
 using Bytes2you.Validation;
 using DotLms.Services.Data;
+using DotLms.Services.Data.Contracts;
 using DotLms.Web.Models;
 
 namespace DotLms.Web.Controllers
 {
     public class CoursePresentationController : Controller
     {
-        private readonly PageRetrivalService pageRetrivalService;
-        private readonly CourseService courseService;
-        private readonly CourseCategoryService categoryService;
+        private readonly IPageRetrivalService pageRetrivalService;
+        private readonly ICourseService courseService;
+        private readonly ICourseCategoryService categoryService;
 
         public CoursePresentationController(
-            PageRetrivalService pageRetrivalService,
-            CourseService courseService,
-            CourseCategoryService categoryService)
+            IPageRetrivalService pageRetrivalService,
+            ICourseService courseService,
+            ICourseCategoryService categoryService)
         {
             Guard.WhenArgument(pageRetrivalService, nameof(pageRetrivalService)).IsNull().Throw();
             Guard.WhenArgument(courseService, nameof(courseService)).IsNull().Throw();

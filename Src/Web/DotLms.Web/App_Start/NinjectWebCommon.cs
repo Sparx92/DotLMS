@@ -23,6 +23,7 @@ using Ninject.Web.Common;
 using Ninject.Syntax;
 using Ninject.Extensions.Interception.Infrastructure.Language;
 using System.Runtime.Caching;
+using DotLms.Services.Data.Contracts;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(DotLms.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(DotLms.Web.App_Start.NinjectWebCommon), "Stop")]
@@ -84,8 +85,8 @@ namespace DotLms.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IAuthenticationManager>().ToMethod(
-                  c =>
-                      HttpContext.Current.GetOwinContext().Authentication).InRequestScope();
+                c =>
+                    HttpContext.Current.GetOwinContext().Authentication).InRequestScope();
 
             kernel.Bind<IDotLmsEfDbContext>().To<DotLmsEfDbContext>().InRequestScope();
             kernel.Bind<DotLmsSignInManager>().ToSelf().InRequestScope();
@@ -107,13 +108,11 @@ namespace DotLms.Web.App_Start
                 .WithConstructorArgument(typeof(string), "MyAwesomeCache")
                 .WithConstructorArgument(typeof(NameValueCollection), new NameValueCollection());
 
-            //kernel.Bind<CourseCategoryService>()
-            //    .ToSelf()
-            //    .Intercept()
-            //    .With<CacheInterceptor>();
-
-            kernel.Bind<FileService>().ToSelf().InRequestScope();
+            kernel.Bind<ICourseCategoryService>().To<CourseCategoryService>().InRequestScope();
+            kernel.Bind<ICourseService>().To<CourseService>().InRequestScope();
+            kernel.Bind<IFileService>().To<FileService>().InRequestScope();
+            kernel.Bind<IPageCreationService>().To<PageCreationService>().InRequestScope();
+            kernel.Bind<IPageRetrivalService>().To<PageRetrivalService>().InRequestScope();
         }
     }
-
 }

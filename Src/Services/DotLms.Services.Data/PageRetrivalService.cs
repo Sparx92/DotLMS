@@ -4,13 +4,14 @@ using Bytes2you.Validation;
 
 using DotLms.Data.Contracts;
 using DotLms.Data.Models;
+using DotLms.Services.Data.Contracts;
 using DotLms.Services.Providers.Contracts;
 using DotLms.Web.Models;
 using DotLms.Web.Models.Backoffice;
 
 namespace DotLms.Services.Data
 {
-    public class PageRetrivalService
+    public class PageRetrivalService : IPageRetrivalService
     {
         private readonly IDotLmsEfData dotLmsEfData;
         private readonly IProjectableRepository<Page> pageProjectableRepository;
@@ -18,8 +19,11 @@ namespace DotLms.Services.Data
         private readonly IDateTimeProvider dateTimeProvider;
         private readonly IMapperProvider mapperProvider;
 
-        public PageRetrivalService(IDotLmsEfData dotLmsEfData, IProjectableRepository<Page> pageProjectableRepository,
-            IDateTimeProvider dateTimeProvider, IMapperProvider mapperProvider, IEntityFrameworkRepository<User> userRepository)
+        public PageRetrivalService(IDotLmsEfData dotLmsEfData, 
+            IProjectableRepository<Page> pageProjectableRepository,
+            IDateTimeProvider dateTimeProvider,
+            IMapperProvider mapperProvider,
+            IEntityFrameworkRepository<User> userRepository)
         {
             Guard.WhenArgument(dotLmsEfData, nameof(dotLmsEfData)).IsNull().Throw();
             Guard.WhenArgument(pageProjectableRepository, nameof(pageProjectableRepository)).IsNull().Throw();
@@ -60,5 +64,4 @@ namespace DotLms.Services.Data
             return model;
         }
     }
-
 }

@@ -2,12 +2,13 @@
 using Bytes2you.Validation;
 using DotLms.Data.Contracts;
 using DotLms.Data.Models;
+using DotLms.Services.Data.Contracts;
 using DotLms.Services.Providers.Contracts;
 using DotLms.Web.Models;
 
 namespace DotLms.Services.Data
 {
-    public class CourseCategoryService
+    public class CourseCategoryService : ICourseCategoryService
     {
         private readonly IEntityFrameworkRepository<CourseCategory> categoryRepository;
         private readonly IProjectableRepository<CourseCategory> categoryProjectableRepository;

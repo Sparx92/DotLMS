@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using DotLms.Services.Data;
+using DotLms.Services.Data.Contracts;
 using DotLms.Web.Attributes;
 using DotLms.Web.Models;
 using DotLms.Web.Models.Backoffice;
@@ -8,8 +9,8 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
 {
     public class BackOfficePagesController : Controller
     {
-        private readonly PageCreationService pageCreationService;
-        private readonly PageRetrivalService pageRetrivalService;
+        private readonly IPageCreationService pageCreationService;
+        private readonly IPageRetrivalService pageRetrivalService;
 
         public BackOfficePagesController(PageCreationService pageCreationService, PageRetrivalService pageRetrivalService)
         {

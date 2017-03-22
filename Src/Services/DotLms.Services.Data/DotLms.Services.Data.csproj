@@ -63,6 +63,11 @@
     <Compile Include="CourseCategoryService.cs" />
     <Compile Include="CourseService.cs" />
     <Compile Include="FileService.cs" />
+    <Compile Include="Contracts\ICourseCategoryService.cs" />
+    <Compile Include="Contracts\ICourseService.cs" />
+    <Compile Include="Contracts\IFileService.cs" />
+    <Compile Include="Contracts\IPageRetrivalService.cs" />
+    <Compile Include="Contracts\IPageCreationService.cs" />
     <Compile Include="PageCreationService.cs" />
     <Compile Include="PageRetrivalService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

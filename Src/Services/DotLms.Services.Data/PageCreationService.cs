@@ -7,12 +7,13 @@ using Bytes2you.Validation;
 
 using DotLms.Data.Contracts;
 using DotLms.Data.Models;
+using DotLms.Services.Data.Contracts;
 using DotLms.Services.Providers.Contracts;
 using DotLms.Web.Models;
 
 namespace DotLms.Services.Data
 {
-    public class PageCreationService
+    public class PageCreationService : IPageCreationService
     {
         private readonly IDotLmsEfData dotLmsEfData;
         private readonly IProjectableRepository<Page> pageProjectableRepository;
