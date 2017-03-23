@@ -32,6 +32,7 @@ namespace DotLms.Services.Data
 
         public void CreateNewCategory(CourseCategoryViewModel model)
         {
+            Guard.WhenArgument(model,nameof(model)).IsNull().Throw();
             CourseCategory category = this.mapperProvider.Instance.Map<CourseCategory>(model);
 
             this.categoryRepository.Add(category);

@@ -28,7 +28,8 @@ namespace DotLms.Services.Data.Tests.CourseCategoryServiceUnitTests
 
         [Test]
         public void Constructor_ShouldThrowArgumentNullException_WhenAllParametersAreNull()
-        {
+        { 
+            // Arrange, Act & Assert
             Assert.Throws<ArgumentNullException>(() =>
                 new CourseCategoryService(null, null, null, null));
         }
@@ -36,6 +37,7 @@ namespace DotLms.Services.Data.Tests.CourseCategoryServiceUnitTests
         [Test]
         public void Constructor_ShouldThrowArgumentNullException_WhenCategoryRepositoryIsNull()
         {
+            // Arrange, Act & Assert
             Assert.Throws<ArgumentNullException>(() =>
                 new CourseCategoryService(
                     null,
@@ -48,6 +50,7 @@ namespace DotLms.Services.Data.Tests.CourseCategoryServiceUnitTests
         [Test]
         public void Constructor_ShouldThrowArgumentNullException_WhenDotLmsEfDataIsNull()
         {
+            // Arrange, Act & Assert
             Assert.Throws<ArgumentNullException>(() =>
                 new CourseCategoryService(
                     this.mockedCategoryRepository.Object,
@@ -59,6 +62,7 @@ namespace DotLms.Services.Data.Tests.CourseCategoryServiceUnitTests
         [Test]
         public void Constructor_ShouldThrowArgumentNullException_WhenMapperProviderIsNull()
         {
+            // Arrange, Act & Assert
             Assert.Throws<ArgumentNullException>(() =>
                 new CourseCategoryService(
                     this.mockedCategoryRepository.Object,
@@ -71,6 +75,7 @@ namespace DotLms.Services.Data.Tests.CourseCategoryServiceUnitTests
         [Test]
         public void Constructor_ShouldThrowArgumentNullException_WhenCategoryProjectableRepositoryIsNull()
         {
+            // Arrange, Act & Assert
             Assert.Throws<ArgumentNullException>(() =>
                 new CourseCategoryService(
                     this.mockedCategoryRepository.Object,
@@ -82,6 +87,7 @@ namespace DotLms.Services.Data.Tests.CourseCategoryServiceUnitTests
         [Test]
         public void Constructor_ShouldNotThrow_WhenAllParametersAreNotNull()
         {
+            // Arrange, Act & Assert
             Assert.DoesNotThrow(() =>
                 new CourseCategoryService(
                     this.mockedCategoryRepository.Object,
