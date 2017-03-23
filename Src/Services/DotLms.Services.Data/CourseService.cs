@@ -32,6 +32,9 @@ namespace DotLms.Services.Data
 
         public CourseViewModel CreateCourse(CourseCreationViewModel model, MediaItemViewModel image)
         {
+            Guard.WhenArgument(model,nameof(model)).IsNull().Throw();
+            Guard.WhenArgument(image,nameof(image)).IsNull().Throw();
+
             Course course = this.mapperProvider.Instance.Map<Course>(model);
             CourseCategory courseCategory = this.mapperProvider.Instance.Map<CourseCategory>(model);
 

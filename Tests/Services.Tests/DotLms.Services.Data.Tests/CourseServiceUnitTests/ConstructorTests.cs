@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Linq.Expressions;
 using AutoMapper;
 using DotLms.Common;
 using DotLms.Data.Contracts;
 using DotLms.Data.Models;
 using DotLms.Services.Providers.Contracts;
-using DotLms.Web.Models;
 using Moq;
 using NUnit.Framework;
 

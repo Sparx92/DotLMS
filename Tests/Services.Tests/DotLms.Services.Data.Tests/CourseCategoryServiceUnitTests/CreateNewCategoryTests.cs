@@ -1,5 +1,6 @@
 ﻿using System;
 using AutoMapper;
+using DotLms.Common;
 using DotLms.Data.Contracts;
 using DotLms.Data.Models;
 using DotLms.Services.Providers.Contracts;
@@ -9,6 +10,8 @@ using NUnit.Framework;
 
 namespace DotLms.Services.Data.Tests.CourseCategoryServiceUnitTests
 {
+    [TestFixture]
+    [Category(TestConstants.UnitTestCategory)]
     public class CreateNewCategoryTests
     {
         private Mock<IEntityFrameworkRepository<CourseCategory>> mockedCategoryRepository;
