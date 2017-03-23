@@ -41,6 +41,8 @@ namespace DotLms.Services.Data
 
         public CourseCategoryViewModel GetCategoryViewModel(string name)
         {
+            Guard.WhenArgument(name,nameof(name)).IsNullOrEmpty().Throw();
+
             return this.categoryProjectableRepository.GetFirstMapped<CourseCategoryViewModel>(x => x.Name == name);
         }
 

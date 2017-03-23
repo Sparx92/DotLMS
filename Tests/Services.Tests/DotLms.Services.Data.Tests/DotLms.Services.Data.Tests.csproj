@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="CourseCategoryServiceUnitTests\ConstructorTests.cs" />
     <Compile Include="CourseCategoryServiceUnitTests\CreateNewCategoryTests.cs" />
+    <Compile Include="CourseCategoryServiceUnitTests\GetCategoryViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
