@@ -113,13 +113,13 @@ namespace DotLms.Web.App_Start
 
             //Services      
             kernel.Bind<IProjectionService>().To<ProjectionService>().InRequestScope();
-
+            
             kernel.Bind<ICourseCategoryService>().To<CourseCategoryService>()
                 .WhenInjectedExactlyInto<CoursePresentationController>()
                 .InRequestScope()
                 .Intercept()
                 .With<AllCourseCategoriesCacheingInterceptor>();
-
+            
             kernel.Bind<ICourseService>().To<CourseService>()
                 .WhenInjectedExactlyInto<CoursePresentationController>()
                 .InRequestScope()
