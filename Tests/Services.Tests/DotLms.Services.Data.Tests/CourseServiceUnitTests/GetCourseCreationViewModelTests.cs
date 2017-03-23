@@ -18,8 +18,7 @@ namespace DotLms.Services.Data.Tests.CourseServiceUnitTests
         private Mock<IDotLmsEfData> mockedDotLmsEfData;
         private Mock<IMapperProvider> mockedMapperProvider;
         private Mock<IMapper> mockedMapper;
-
-
+        
         [SetUp]
         public void Init()
         {
@@ -83,6 +82,19 @@ namespace DotLms.Services.Data.Tests.CourseServiceUnitTests
         }
 
         [Test]
+        public void GetCourseCreationViewModel_ShouldCallMapperProviderInstanceOnce()
+        {
+            // Arrange
+            CourseService service = this.GetCourseService();
+
+            // Act
+            service.GetCourseCreationViewModel("test");
+
+            // Assert
+            this.mockedMapperProvider.Verify(x => x.Instance, Times.Once);
+        }
+
+        [Test]
         public void GetCourseCreationViewModel_ShouldReturnTypeCourseCreationViewModel()
         {
             // Arrange 
@@ -91,11 +103,10 @@ namespace DotLms.Services.Data.Tests.CourseServiceUnitTests
             // Act 
             CourseCreationViewModel result = service.GetCourseCreationViewModel("test");
 
+            // Assert
             Assert.AreEqual(result.GetType(), typeof(CourseCreationViewModel));
         }
-
-
-
+        
         private CourseService GetCourseService()
         {
             return new CourseService(

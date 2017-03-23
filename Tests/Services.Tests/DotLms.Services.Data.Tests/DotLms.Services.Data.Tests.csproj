@@ -58,6 +58,7 @@
     <Compile Include="CourseCategoryServiceUnitTests\GetCategoryViewModelTests.cs" />
     <Compile Include="CourseServiceUnitTests\ConstructorTests.cs" />
     <Compile Include="CourseServiceUnitTests\CreateCourseTests.cs" />
+    <Compile Include="CourseServiceUnitTests\GetAllCourseViewModelsTests.cs" />
     <Compile Include="CourseServiceUnitTests\GetCourseCreationViewModelTests.cs" />
     <Compile Include="CourseServiceUnitTests\GetCourseViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

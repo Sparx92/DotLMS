@@ -83,6 +83,19 @@ namespace DotLms.Services.Data.Tests.CourseServiceUnitTests
         }
 
         [Test]
+        public void GetCourseViewModel_ShouldCallMapperProviderInstanceOnce()
+        {
+            // Arrange
+            CourseService service = this.GetCourseService();
+
+            // Act
+            service.GetCourseViewModel("test");
+
+            // Assert
+            this.mockedMapperProvider.Verify(x => x.Instance, Times.Once);
+        }
+
+        [Test]
         public void GetCourseViewModel_ShouldReturnTypeCourseViewModel()
         {
             // Arrange 
@@ -91,6 +104,7 @@ namespace DotLms.Services.Data.Tests.CourseServiceUnitTests
             // Act 
             CourseViewModel result = service.GetCourseViewModel("test");
 
+            // Assert
             Assert.AreEqual(result.GetType(), typeof(CourseViewModel));
         }
 
