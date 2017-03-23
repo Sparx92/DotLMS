@@ -66,6 +66,8 @@ namespace DotLms.Services.Data
 
         public CourseCreationViewModel GetCourseCreationViewModel(string name)
         {
+            Guard.WhenArgument(name, nameof(name)).IsNullOrEmpty().Throw();
+
             Course foundCourse = this.courseEfRepository
                 .All
                 .Where(x => x.UglyName == name)
