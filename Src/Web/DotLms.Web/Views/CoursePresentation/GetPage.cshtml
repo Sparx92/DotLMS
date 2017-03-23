@@ -15,7 +15,7 @@
                 @Html.ActionLink($"Edit this page", "EditPage",
                new { Area = "Backoffice", controller = "BackOfficePages", pageId = Model.Id },
                new {@class = "btn-u btn-u-sea" })
-
+            
                 @Html.ActionLink($"Edit this course", "ManageCourse",
                new { Area = "Backoffice", controller = "BackOfficeCourse", courseName = Model.ParentCourse.UglyName },
                new { @class = "btn-u btn-u-sea" })

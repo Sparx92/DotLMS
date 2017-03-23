@@ -15,27 +15,19 @@ namespace DotLms.Services.Data
     {
         private readonly IDotLmsEfData dotLmsEfData;
         private readonly IEntityFrameworkRepository<Course> courseEfRepository;
-        private IEntityFrameworkRepository<CourseCategory> courseCategoryEfRepository;
         private readonly IMapperProvider mapperProvider;
-        private IProjectableRepository<Course> projectableCourseRepository;
 
         public CourseService(IEntityFrameworkRepository<Course> courseEfRepository,
-            IEntityFrameworkRepository<CourseCategory> courseCategoryEfRepository,
             IDotLmsEfData dotLmsEfData,
-            IMapperProvider mapperProvider,
-            IProjectableRepository<Course> projectableCourseRepository)
+            IMapperProvider mapperProvider)
         {
             Guard.WhenArgument(courseEfRepository, nameof(courseEfRepository)).IsNull().Throw();
-            Guard.WhenArgument(courseCategoryEfRepository, nameof(courseCategoryEfRepository)).IsNull().Throw();
             Guard.WhenArgument(dotLmsEfData, nameof(dotLmsEfData)).IsNull().Throw();
             Guard.WhenArgument(mapperProvider, nameof(mapperProvider)).IsNull().Throw();
-            Guard.WhenArgument(projectableCourseRepository, nameof(projectableCourseRepository)).IsNull().Throw();
 
             this.courseEfRepository = courseEfRepository;
-            this.courseCategoryEfRepository = courseCategoryEfRepository;
             this.dotLmsEfData = dotLmsEfData;
             this.mapperProvider = mapperProvider;
-            this.projectableCourseRepository = projectableCourseRepository;
         }
 
         public CourseViewModel CreateCourse(CourseCreationViewModel model, MediaItemViewModel image)
