@@ -32,8 +32,8 @@ namespace DotLms.Services.Data
 
         public CourseViewModel CreateCourse(CourseCreationViewModel model, MediaItemViewModel image)
         {
-            Guard.WhenArgument(model,nameof(model)).IsNull().Throw();
-            Guard.WhenArgument(image,nameof(image)).IsNull().Throw();
+            Guard.WhenArgument(model, nameof(model)).IsNull().Throw();
+            Guard.WhenArgument(image, nameof(image)).IsNull().Throw();
 
             Course course = this.mapperProvider.Instance.Map<Course>(model);
             CourseCategory courseCategory = this.mapperProvider.Instance.Map<CourseCategory>(model);
@@ -51,7 +51,7 @@ namespace DotLms.Services.Data
 
         public CourseViewModel GetCourseViewModel(string name)
         {
-            Guard.WhenArgument(name,nameof(name)).IsNullOrEmpty().Throw();
+            Guard.WhenArgument(name, nameof(name)).IsNullOrEmpty().Throw();
 
             Course foundCourse = this.courseEfRepository
                 .All
@@ -96,33 +96,16 @@ namespace DotLms.Services.Data
 
         public Course UpdateCourse(CourseCreationViewModel model)
         {
-            Course courseToUpdate = this.courseEfRepository
-                .All
-                .Where(x => x.UglyName == model.Name)
-                .Include(x => x.Category)
-                .Include(x => x.MainImage)
-                .FirstOrDefault();
-
-            Course mappedCourse = this.mapperProvider.Instance.Map<Course>(model);
-            CourseCategory courseCategory = this.mapperProvider.Instance.Map<CourseCategory>(model);
-
-            courseToUpdate.Name = mappedCourse.Name;
-            courseToUpdate.ShortDescription = mappedCourse.ShortDescription;
-            courseToUpdate.FullDescription = mappedCourse.FullDescription;
-            courseToUpdate.UglyName = this.GeneratUglyName(mappedCourse.Name);
-            courseToUpdate.Url = this.GenereateUrl(courseToUpdate.UglyName);
-            courseToUpdate.CategoryId = courseCategory.Id;
-
-            this.courseEfRepository.Update(courseToUpdate);
-            this.dotLmsEfData.SaveChanges();
-            return courseToUpdate;
+            return this.UpdateCourse(model, null);
         }
 
         public Course UpdateCourse(CourseCreationViewModel model, MediaItemViewModel image)
         {
-            Course courseToUpdate = this.courseEfRepository
+            Guard.WhenArgument(model, nameof(model)).IsNull().Throw();
+
+          Course courseToUpdate = this.courseEfRepository
                 .All
-                .Where(x => x.UglyName == model.Name)
+                .Where(x => x.Name == model.Name)
                 .Include(x => x.Category)
                 .Include(x => x.MainImage)
                 .FirstOrDefault();
@@ -130,13 +113,18 @@ namespace DotLms.Services.Data
             Course mappedCourse = this.mapperProvider.Instance.Map<Course>(model);
             CourseCategory courseCategory = this.mapperProvider.Instance.Map<CourseCategory>(model);
 
-            courseToUpdate.Name = mappedCourse.Name;
+           courseToUpdate.Name = mappedCourse.Name;
             courseToUpdate.ShortDescription = mappedCourse.ShortDescription;
             courseToUpdate.FullDescription = mappedCourse.FullDescription;
-            courseToUpdate.MainImageId = image.Id;
             courseToUpdate.UglyName = this.GeneratUglyName(mappedCourse.Name);
             courseToUpdate.Url = this.GenereateUrl(courseToUpdate.UglyName);
             courseToUpdate.CategoryId = courseCategory.Id;
+
+            if (image != null)
+            {
+                courseToUpdate.MainImageId = image.Id;
+            }
+
 
             this.courseEfRepository.Update(courseToUpdate);
             this.dotLmsEfData.SaveChanges();
