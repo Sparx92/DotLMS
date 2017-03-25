@@ -57,10 +57,25 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CourseCategory\Id.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Src\Common\DotLms.Common\DotLms.Common.csproj">
+      <Project>{d0ab2b18-cc18-4595-9985-3cecb486a161}</Project>
+      <Name>DotLms.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Src\Data\DotLms.Data.Models\DotLms.Data.Models.csproj">
+      <Project>{eb182c7e-2aed-4a7c-ade0-a794933939a7}</Project>
+      <Name>DotLms.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Src\Data\DotLms.Data\DotLms.Data.csproj">
+      <Project>{31a9a504-87f8-469b-92d1-7e1de827f38c}</Project>
+      <Name>DotLms.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
