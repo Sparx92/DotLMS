@@ -285,6 +285,7 @@
     <Content Include="Areas\User\Views\web.config" />
     <Content Include="Areas\User\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Backoffice\Views\BackOfficeCourse\ManageCourse.cshtml" />
+    <None Include="Properties\PublishProfiles\Magic.pubxml" />
     <None Include="Scripts\jquery-3.0.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
