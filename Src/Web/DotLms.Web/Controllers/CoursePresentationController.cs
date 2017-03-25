@@ -3,7 +3,9 @@ using System.Web.WebPages;
 using Bytes2you.Validation;
 using DotLms.Services.Data;
 using DotLms.Services.Data.Contracts;
+using DotLms.Services.Providers.Contracts;
 using DotLms.Web.Models;
+using Newtonsoft.Json;
 
 namespace DotLms.Web.Controllers
 {
@@ -12,19 +14,23 @@ namespace DotLms.Web.Controllers
         private readonly IPageRetrivalService pageRetrivalService;
         private readonly ICourseService courseService;
         private readonly ICourseCategoryService categoryService;
+        private IJsonConvertProvider<CourseListViewModel> jsonConvertProvider;
 
         public CoursePresentationController(
             IPageRetrivalService pageRetrivalService,
             ICourseService courseService,
-            ICourseCategoryService categoryService)
+            ICourseCategoryService categoryService,
+            IJsonConvertProvider<CourseListViewModel> jsonConvertProvider )
         {
             Guard.WhenArgument(pageRetrivalService, nameof(pageRetrivalService)).IsNull().Throw();
             Guard.WhenArgument(courseService, nameof(courseService)).IsNull().Throw();
             Guard.WhenArgument(categoryService, nameof(categoryService)).IsNull().Throw();
+            Guard.WhenArgument(jsonConvertProvider, nameof(jsonConvertProvider)).IsNull().Throw();
 
             this.pageRetrivalService = pageRetrivalService;
             this.courseService = courseService;
             this.categoryService = categoryService;
+            this.jsonConvertProvider = jsonConvertProvider;
         }
 
         [AllowAnonymous]
@@ -33,7 +39,7 @@ namespace DotLms.Web.Controllers
             CourseListViewModel model = new CourseListViewModel();
             model.CourseCategoryViewModels = this.categoryService.GetAllCategories();
             model.CourseViewModels = this.courseService.GetAllCourseViewModels();
-
+            
             return View(model);
         }
 

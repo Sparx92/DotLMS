@@ -25,6 +25,8 @@ using Ninject.Extensions.Interception.Infrastructure.Language;
 using System.Runtime.Caching;
 using DotLms.Services.Data.Contracts;
 using DotLms.Web.Controllers;
+using DotLms.Services.Http.Contracts;
+using DotLms.Services.Http;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(DotLms.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(DotLms.Web.App_Start.NinjectWebCommon), "Stop")]
@@ -62,12 +64,16 @@ namespace DotLms.Web.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
+
             var kernel = new StandardKernel();
             Kernel = kernel;
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+
+                kernel.Bind<HttpContext>().ToMethod(ctx => HttpContext.Current).InTransientScope();
+                kernel.Bind<HttpContextBase>().ToMethod(ctx => new HttpContextWrapper(HttpContext.Current)).InTransientScope();
 
                 RegisterServices(kernel);
                 return kernel;
@@ -101,14 +107,17 @@ namespace DotLms.Web.App_Start
             kernel.Bind(typeof(IProjectableRepository<>)).To(typeof(ProjectableRepository<>)).InRequestScope();
 
             // Proiders
+            kernel.Bind(typeof(IJsonConvertProvider<>)).To(typeof(JsonConvertProvider<>)).InSingletonScope();
             kernel.Bind<IDateTimeProvider>().To<DateTimeProvider>();
             kernel.Bind<IMapperProvider>().To<MapperProvider>().InSingletonScope();
+
+            kernel.Bind<IHttpContextProvider>().To<HttpContextProvider>().InRequestScope();
 
             kernel.Bind<IMemoryCacheProvider>().To<MemoryCacheProvider>().InSingletonScope();
             kernel.Bind<MemoryCache>()
                 .ToSelf()
                 .InSingletonScope()
-                .WithConstructorArgument(typeof(string), "MyAwesomeCache")
+                .WithConstructorArgument(typeof(string), nameof(MemoryCacheProvider))
                 .WithConstructorArgument(typeof(NameValueCollection), new NameValueCollection());
 
             //Services      
