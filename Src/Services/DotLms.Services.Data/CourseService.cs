@@ -103,17 +103,17 @@ namespace DotLms.Services.Data
         {
             Guard.WhenArgument(model, nameof(model)).IsNull().Throw();
 
-          Course courseToUpdate = this.courseEfRepository
-                .All
-                .Where(x => x.Name == model.Name)
-                .Include(x => x.Category)
-                .Include(x => x.MainImage)
-                .FirstOrDefault();
+            Course courseToUpdate = this.courseEfRepository
+                  .All
+                  .Where(x => x.Name == model.Name)
+                  .Include(x => x.Category)
+                  .Include(x => x.MainImage)
+                  .FirstOrDefault();
 
             Course mappedCourse = this.mapperProvider.Instance.Map<Course>(model);
             CourseCategory courseCategory = this.mapperProvider.Instance.Map<CourseCategory>(model);
 
-           courseToUpdate.Name = mappedCourse.Name;
+            courseToUpdate.Name = mappedCourse.Name;
             courseToUpdate.ShortDescription = mappedCourse.ShortDescription;
             courseToUpdate.FullDescription = mappedCourse.FullDescription;
             courseToUpdate.UglyName = this.GeneratUglyName(mappedCourse.Name);
@@ -129,6 +129,24 @@ namespace DotLms.Services.Data
             this.courseEfRepository.Update(courseToUpdate);
             this.dotLmsEfData.SaveChanges();
             return courseToUpdate;
+        }
+
+
+        public IEnumerable<CourseViewModel> GetCourseViewModelsByName(string query)
+        {
+            if (string.IsNullOrEmpty(query))
+            {
+                return this.GetAllCourseViewModels();
+            }
+
+            var foundCourses = this.courseEfRepository
+                .All
+                .Where(x => x.Name.Contains(query))
+                .Include(x => x.Category)
+                .Include(x => x.MainImage)
+                .ToList();
+
+            return this.mapperProvider.Instance.Map<IEnumerable<CourseViewModel>>(foundCourses);
         }
 
         private string GenereateUrl(string uglyName)

@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using System.Web.WebPages;
 using Bytes2you.Validation;
 using DotLms.Services.Data;
@@ -20,7 +21,7 @@ namespace DotLms.Web.Controllers
             IPageRetrivalService pageRetrivalService,
             ICourseService courseService,
             ICourseCategoryService categoryService,
-            IJsonConvertProvider<CourseListViewModel> jsonConvertProvider )
+            IJsonConvertProvider<CourseListViewModel> jsonConvertProvider)
         {
             Guard.WhenArgument(pageRetrivalService, nameof(pageRetrivalService)).IsNull().Throw();
             Guard.WhenArgument(courseService, nameof(courseService)).IsNull().Throw();
@@ -39,8 +40,18 @@ namespace DotLms.Web.Controllers
             CourseListViewModel model = new CourseListViewModel();
             model.CourseCategoryViewModels = this.categoryService.GetAllCategories();
             model.CourseViewModels = this.courseService.GetAllCourseViewModels();
-            
+
             return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(string query)
+        {
+            IEnumerable<CourseViewModel> courseViewModels = this.courseService.GetCourseViewModelsByName(query);
+
+            return PartialView("_CourseGrid", courseViewModels);
         }
 
         public ActionResult GetCourse(string courseName)
@@ -54,7 +65,7 @@ namespace DotLms.Web.Controllers
 
             if (model == null)
             {
-                
+
             }
 
             return View(model);

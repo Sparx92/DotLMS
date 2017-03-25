@@ -4,44 +4,26 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="container-fluid"><div class="cube-portfolio container margin-bottom-60">
-    <div class="content-xs">
-        <div id="filters-container" class="cbp-l-filters-text content-xs">
-            <div data-filter="*" class="cbp-filter-item-active cbp-filter-item"> All </div> <span>|</span>
 
-            @foreach (CourseCategoryViewModel category in Model.CourseCategoryViewModels)
-            {
-                <div data-filter=".@category.Name" class="cbp-filter-item"> @category.Name  </div> <span>|</span>
-            }
-        </div><!--/end Filters Container-->
-    </div>
-</div>
-<div id="grid-container" class="cbp-l-grid-agency">
-    @foreach (CourseViewModel course in Model.CourseViewModels)
-    {
-
-        <div class="cbp-item @course.Category.Name">
-            <div class="cbp-caption margin-bottom-20">
-                <div class="cbp-caption-defaultWrap">
-                    <img src="@course.MainImage.Url" alt="@course.Name">
+@using (Ajax.BeginForm("Index", new { area = "", controller = "CoursePresentation" },
+                            new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "updatePannel" }, new { @class = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="search-block-v2">
+        <div class="container">
+            <div class="col-md-6 col-md-offset-3">
+                <h2>Search by course name</h2>
+                <div class="input-group">
+                    <input type="text" name="query" class="form-control" placeholder="Search courses.." />
+                    <span class="input-group-btn">
+                        <button class="btn-u" type="submit"><i class="fa fa-search"></i></button>
+                    </span>
                 </div>
-                <div class="cbp-caption-activeWrap">
-                    <div class="cbp-l-caption-alignCenter">
-                        <div class="cbp-l-caption-body">
-                            <ul class="link-captions no-bottom-space">
-                                <li><a href="@course.Url"><i class="rounded-x fa fa-link"></i></a></li>
-                                @*<li><a href="assets/img/main/img3.jpg" class="cbp-lightbox" data-title="Design Object"><i class="rounded-x fa fa-search"></i></a></li>*@
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="cbp-title-dark">
-                <div class="cbp-l-grid-agency-title"><a href="@course.Url">@course.Name</a></div>
-                <div class="cbp-l-grid-agency-desc">@course.Category.Name</div>
             </div>
         </div>
-    }
-</div>
-</div>
+    </div>
+}
 
+<div id="updatePannel">
+    @Html.Partial("_CourseGrid", Model.CourseViewModels)
+</div>

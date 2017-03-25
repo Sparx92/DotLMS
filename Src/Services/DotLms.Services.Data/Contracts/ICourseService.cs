@@ -12,5 +12,6 @@ namespace DotLms.Services.Data.Contracts
         IEnumerable<CourseViewModel> GetAllCourseViewModels();
         Course UpdateCourse(CourseCreationViewModel model);
         Course UpdateCourse(CourseCreationViewModel model, MediaItemViewModel image);
+        IEnumerable<CourseViewModel> GetCourseViewModelsByName(string query);
     }
 }

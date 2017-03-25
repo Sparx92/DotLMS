@@ -1,0 +1,28 @@
+﻿@using DotLms.Web.Models
+@model IEnumerable<CourseViewModel>
+
+
+<div class="container content-md">
+    <div class="row">
+        @foreach (CourseViewModel course in Model)
+            {
+
+            <div class="col-sm-4">
+                <div class="thumbnails-v1">
+                    <div class="thumbnail-img">
+                        <img class="img-responsive" src="@course.MainImage.Url" alt="@course.Name">
+                    </div>
+                    <div class="caption">
+                        <h3>
+                            <a href="@course.Url">@course.Name</a>
+                        </h3>
+                        <p>@Html.Raw(course.ShortDescription)<p>
+                        <p class="no-margin-bottom">
+                            <a class="read-more" href="@course.Url">See More</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
