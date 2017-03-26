@@ -29,6 +29,8 @@ namespace DotLms.Services.Data
 
         public PageViewModel GetPage(string pageName)
         {
+            Guard.WhenArgument(pageName,nameof(pageName)).IsNullOrEmpty().Throw();
+            
             string pageNameToLower = pageName.ToLowerInvariant();
             Page page = this.pageProjectableRepository
                 .All
@@ -38,7 +40,7 @@ namespace DotLms.Services.Data
             return mapped;
         }
 
-        public PageViewModel GetPage(int? pageId)
+        public PageViewModel GetPage(int pageId)
         {
             Page page = this.pageProjectableRepository.All.FirstOrDefault(x => x.Id == pageId);
             PageViewModel mapped = mapperProvider.Instance.Map<PageViewModel>(page);

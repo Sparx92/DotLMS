@@ -33,7 +33,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         }
 
         [Security(Roles = Common.Roles.Admin)]
-        public ActionResult EditPage(int? pageId)
+        public ActionResult EditPage(int pageId)
         {
             PageViewModel model = this.pageRetrivalService.GetPage(pageId);
             return View(model);

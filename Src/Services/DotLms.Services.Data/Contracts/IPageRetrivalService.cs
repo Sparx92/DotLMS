@@ -6,7 +6,7 @@ namespace DotLms.Services.Data.Contracts
     public interface IPageRetrivalService
     {
         PageViewModel GetPage(string pageName);
-        PageViewModel GetPage(int? pageId);
+        PageViewModel GetPage(int pageId);
         BackOfficeIndexViewModel GetAllPages();
     }
 }
