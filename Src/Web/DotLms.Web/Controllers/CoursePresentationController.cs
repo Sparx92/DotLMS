@@ -15,23 +15,19 @@ namespace DotLms.Web.Controllers
         private readonly IPageRetrivalService pageRetrivalService;
         private readonly ICourseService courseService;
         private readonly ICourseCategoryService categoryService;
-        private IJsonConvertProvider<CourseListViewModel> jsonConvertProvider;
 
         public CoursePresentationController(
             IPageRetrivalService pageRetrivalService,
             ICourseService courseService,
-            ICourseCategoryService categoryService,
-            IJsonConvertProvider<CourseListViewModel> jsonConvertProvider)
+            ICourseCategoryService categoryService)
         {
             Guard.WhenArgument(pageRetrivalService, nameof(pageRetrivalService)).IsNull().Throw();
             Guard.WhenArgument(courseService, nameof(courseService)).IsNull().Throw();
             Guard.WhenArgument(categoryService, nameof(categoryService)).IsNull().Throw();
-            Guard.WhenArgument(jsonConvertProvider, nameof(jsonConvertProvider)).IsNull().Throw();
 
             this.pageRetrivalService = pageRetrivalService;
             this.courseService = courseService;
             this.categoryService = categoryService;
-            this.jsonConvertProvider = jsonConvertProvider;
         }
 
         [AllowAnonymous]

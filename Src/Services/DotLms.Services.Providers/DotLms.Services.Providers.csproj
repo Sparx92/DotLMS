@@ -70,8 +70,6 @@
     <Compile Include="DateTimeProvider.cs" />
     <Compile Include="Contracts\IDateTimeProvider.cs" />
     <Compile Include="Contracts\IMemoryCacheProvider.cs" />
-    <Compile Include="Contracts\IJsonConvertProvider.cs" />
-    <Compile Include="JsonConvertProvider.cs" />
     <Compile Include="MapperProvider.cs" />
     <Compile Include="MemoryCacheProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

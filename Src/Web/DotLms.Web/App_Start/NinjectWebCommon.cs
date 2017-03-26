@@ -107,7 +107,6 @@ namespace DotLms.Web.App_Start
             kernel.Bind(typeof(IProjectableRepository<>)).To(typeof(ProjectableRepository<>)).InRequestScope();
 
             // Proiders
-            kernel.Bind(typeof(IJsonConvertProvider<>)).To(typeof(JsonConvertProvider<>)).InSingletonScope();
             kernel.Bind<IDateTimeProvider>().To<DateTimeProvider>();
             kernel.Bind<IMapperProvider>().To<MapperProvider>().InSingletonScope();
 
