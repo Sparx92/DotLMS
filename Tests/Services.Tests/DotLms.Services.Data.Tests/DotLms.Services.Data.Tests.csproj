@@ -73,6 +73,8 @@
     <Compile Include="CourseServiceUnitTests\UpdateCourse.cs" />
     <Compile Include="FileServiceUnitTests\ConstructorTests.cs" />
     <Compile Include="FileServiceUnitTests\SaveFileTests.cs" />
+    <Compile Include="PageCreationServiceUnitTests\CounstrctorTests.cs" />
+    <Compile Include="PageCreationServiceUnitTests\GetAllPagesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -65,17 +65,17 @@ namespace DotLms.Services.Data
                 //TODO change to false in the future
                 mappedPage.IsPublished = true;
                 mappedPage.UglyName = this.GeneratUglyName(mappedPage.Name);
-                mappedPage.Url = $"/{mappedPage.UglyName}";
+                mappedPage.Url = GenereateUrl(model.ParentCourse, mappedPage.UglyName);
             }
             this.pageProjectableRepository.Add(mappedPage);
             this.dotLmsEfData.SaveChanges();
         }
 
-        private string GenereateUrl(Page parentPage, string uglyName)
+        private string GenereateUrl(CourseViewModel parent, string uglyName)
         {
             Guard.WhenArgument(uglyName, nameof(uglyName)).IsNull().Throw();
 
-            if (parentPage == null)
+            if (parent == null)
             {
                 string url = $"/{uglyName}";
                 return url;
@@ -83,7 +83,7 @@ namespace DotLms.Services.Data
             else
             {
                 StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.Append($"/{parentPage.Url}");
+                stringBuilder.Append($"/{parent.Url}");
                 stringBuilder.Append($"/{uglyName}");
                 return stringBuilder.ToString();
             }
