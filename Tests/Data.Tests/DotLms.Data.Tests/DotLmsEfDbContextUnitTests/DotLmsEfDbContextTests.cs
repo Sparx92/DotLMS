@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Net.Mime;
 using System.Reflection;
 using DotLms.Data.Models;
+using Moq;
 using NUnit.Framework;
 
 namespace DotLms.Data.Tests.DotLmsEfDbContextUnitTests
@@ -11,12 +12,14 @@ namespace DotLms.Data.Tests.DotLmsEfDbContextUnitTests
     [Category(Common.TestConstants.UnitTestCategory)]
     public class DotLmsEfDbContextTests
     {
+        private Mock<DotLmsEfDbContext> mockedContext;
         private DotLmsEfDbContext context;
 
         [SetUp]
         public void Init()
         {
-            this.context = new DotLmsEfDbContext();
+            this.mockedContext = new Mock<DotLmsEfDbContext>();
+            this.context = this.mockedContext.Object;
         }
 
         [Test]
