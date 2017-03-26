@@ -15,29 +15,43 @@ namespace DotLms.Web.Controllers
         private readonly IPageRetrivalService pageRetrivalService;
         private readonly ICourseService courseService;
         private readonly ICourseCategoryService categoryService;
+        private readonly IMemoryCacheProvider memoryCacheProvider;
 
         public CoursePresentationController(
             IPageRetrivalService pageRetrivalService,
             ICourseService courseService,
-            ICourseCategoryService categoryService)
+            ICourseCategoryService categoryService,
+            IMemoryCacheProvider memoryCacheProvider)
         {
             Guard.WhenArgument(pageRetrivalService, nameof(pageRetrivalService)).IsNull().Throw();
             Guard.WhenArgument(courseService, nameof(courseService)).IsNull().Throw();
             Guard.WhenArgument(categoryService, nameof(categoryService)).IsNull().Throw();
+            Guard.WhenArgument(memoryCacheProvider, nameof(memoryCacheProvider)).IsNull().Throw();
 
             this.pageRetrivalService = pageRetrivalService;
             this.courseService = courseService;
             this.categoryService = categoryService;
+            this.memoryCacheProvider = memoryCacheProvider;
         }
 
         [AllowAnonymous]
         public ActionResult Index()
         {
-            CourseListViewModel model = new CourseListViewModel();
-            model.CourseCategoryViewModels = this.categoryService.GetAllCategories();
-            model.CourseViewModels = this.courseService.GetAllCourseViewModels();
+            string cachedModelName = "AllCourseViewModels";
+            object cachedModel = this.memoryCacheProvider.MemoryCache.Get(cachedModelName);
+            if (cachedModel == null)
+            {
+                IEnumerable<CourseViewModel> model = courseService.GetAllCourseViewModels();
+                this.memoryCacheProvider.MemoryCache.Add(cachedModelName, model,
+                    Common.DateTimeVariables.FiveMinutesFromUtcNow);
 
-            return View(model);
+                var monitor = this.memoryCacheProvider
+                    .MemoryCache.CreateCacheEntryChangeMonitor(new List<string> { cachedModelName });
+
+                return View(model);
+            }
+
+            return View(cachedModel);
         }
 
         [HttpPost]

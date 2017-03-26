@@ -76,6 +76,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Backoffice\BackOfficeCourseControllerUnitTests\ConstructorTests.cs" />
+    <Compile Include="Controllers\Backoffice\BackOfficeCourseControllerUnitTests\IndexTests.cs" />
     <Compile Include="Controllers\Backoffice\BackOfficeHomeControllerUnitTests\IndexTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -87,6 +89,14 @@
     <ProjectReference Include="..\..\..\Src\Common\DotLms.Common\DotLms.Common.csproj">
       <Project>{d0ab2b18-cc18-4595-9985-3cecb486a161}</Project>
       <Name>DotLms.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Src\Services\DotLms.Services.Data\DotLms.Services.Data.csproj">
+      <Project>{ACF8EF93-B7A4-465E-AA17-B0384CC243E5}</Project>
+      <Name>DotLms.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Src\Services\DotLms.Services.Providers\DotLms.Services.Providers.csproj">
+      <Project>{AB17B912-8E56-47B4-B9BC-523F2C081DDE}</Project>
+      <Name>DotLms.Services.Providers</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Src\Web\DotLms.Web\DotLms.Web.csproj">
       <Project>{f367175b-eeaf-46a6-b1c4-f703d78f8e27}</Project>

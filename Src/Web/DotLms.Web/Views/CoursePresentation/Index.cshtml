@@ -1,5 +1,5 @@
 ﻿@using DotLms.Web.Models
-@model CourseListViewModel
+@model IEnumerable<CourseViewModel>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -27,5 +27,5 @@
 }
 
 <div id="updatePannel">
-    @Html.Partial("_CourseGrid", Model.CourseViewModels)
+    @Html.Partial("_CourseGrid", Model)
 </div>

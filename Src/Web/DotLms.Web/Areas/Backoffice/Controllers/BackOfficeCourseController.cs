@@ -18,40 +18,25 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         private readonly ICourseCategoryService categoryService;
         private readonly ICourseService courseService;
         private readonly IFileService fileService;
-        private readonly IMemoryCacheProvider memoryCacheProvider;
 
         public BackOfficeCourseController(ICourseCategoryService categoryService,
-            ICourseService courseService, IFileService fileService, IMemoryCacheProvider memoryCacheProvider)
+            ICourseService courseService, IFileService fileService)
         {
             Guard.WhenArgument(categoryService, nameof(categoryService)).IsNull().Throw();
             Guard.WhenArgument(courseService, nameof(courseService)).IsNull().Throw();
             Guard.WhenArgument(fileService, nameof(fileService)).IsNull().Throw();
-            Guard.WhenArgument(memoryCacheProvider, nameof(memoryCacheProvider)).IsNull().Throw();
 
             this.categoryService = categoryService;
             this.courseService = courseService;
             this.fileService = fileService;
-            this.memoryCacheProvider = memoryCacheProvider;
         }
 
         [BackofficeAuthorizatuon]
         public ActionResult Index()
         {
-            string cachedModelName = "AllCourseViewModels";
-            object cachedModel = this.memoryCacheProvider.MemoryCache.Get(cachedModelName);
-            if (cachedModel == null)
-            {
-                IEnumerable<CourseViewModel> model = courseService.GetAllCourseViewModels();
-                this.memoryCacheProvider.MemoryCache.Add(cachedModelName, model,
-                    Common.DateTimeVariables.FiveMinutesFromUtcNow);
+            IEnumerable<CourseViewModel> model = courseService.GetAllCourseViewModels();
 
-                var monitor = this.memoryCacheProvider
-                    .MemoryCache.CreateCacheEntryChangeMonitor(new List<string> {cachedModelName});
-                
-                return View(model);
-            }
-
-            return View(cachedModel);
+            return View(model);
         }
 
         [BackofficeAuthorizatuon]
