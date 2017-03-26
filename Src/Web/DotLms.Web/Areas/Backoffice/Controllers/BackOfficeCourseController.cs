@@ -32,6 +32,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         }
 
         [BackofficeAuthorizatuon]
+        [HttpGet]
         public ActionResult Index()
         {
             IEnumerable<CourseViewModel> model = courseService.GetAllCourseViewModels();
@@ -40,6 +41,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         }
 
         [BackofficeAuthorizatuon]
+        [HttpGet]
         public ActionResult CreateCourse()
         {
             CourseCreationViewModel model = new CourseCreationViewModel
@@ -71,6 +73,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         }
 
         [BackofficeAuthorizatuon]
+        [HttpGet]
         public ActionResult CreateCourseCategory()
         {
             return View();
@@ -98,6 +101,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         }
 
         [BackofficeAuthorizatuon]
+        [HttpGet]
         public ActionResult ManageCourse(string courseName)
         {
             CourseCreationViewModel model = this.courseService.GetCourseCreationViewModel(courseName);
