@@ -46,12 +46,12 @@ namespace DotLms.Web.Tests.Controllers.Backoffice.BackOfficeCourseControllerUnit
         public void Index_ShouldHaveHttpGetAttribute()
         {
             // Arrange, Act
-            bool backofficeAuthorizatuonAttributeIsDefined = Attribute.IsDefined(
+            bool httpGetIsDefinded = Attribute.IsDefined(
                 typeof(BackOfficeCourseController).GetMethod(nameof(BackOfficeCourseController.Index)),
                 typeof(HttpGetAttribute));
 
             // Assert
-            Assert.IsTrue(backofficeAuthorizatuonAttributeIsDefined);
+            Assert.IsTrue(httpGetIsDefinded);
         }
 
         [Test]
