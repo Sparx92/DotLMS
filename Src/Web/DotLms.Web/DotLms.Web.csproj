@@ -205,7 +205,7 @@
     <Compile Include="Areas\Backoffice\Controllers\BackOfficePagesController.cs" />
     <Compile Include="Areas\Backoffice\Models\AuthViewModel.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
-    <Compile Include="Attributes\SecurityAttribute.cs" />
+    <Compile Include="Attributes\BackofficeAuthorizatuonAttribute.cs" />
     <Compile Include="Areas\User\Controllers\AccountController.cs" />
     <Compile Include="Controllers\CoursePresentationController.cs" />
     <Compile Include="Areas\User\Controllers\ManageController.cs" />
