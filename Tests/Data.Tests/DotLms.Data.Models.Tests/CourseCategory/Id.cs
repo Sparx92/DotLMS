@@ -8,13 +8,6 @@ namespace DotLms.Data.Models.Tests.CourseCategory
     {
         [TestCase(1)]
         [TestCase(2)]
-        [TestCase(3)]
-        [TestCase(15)]
-        [TestCase(1123)]
-        [TestCase(1123123)]
-        [TestCase(1231)]
-        [TestCase(15)]
-        [TestCase(1312)]
         public void Id_GetShouldReturnSetValue(int value)
         {
             // Arange 

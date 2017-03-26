@@ -68,6 +68,7 @@
     <Compile Include="CourseServiceUnitTests\CreateCourseTests.cs" />
     <Compile Include="CourseServiceUnitTests\GetAllCourseViewModelsTests.cs" />
     <Compile Include="CourseServiceUnitTests\GetCourseCreationViewModelTests.cs" />
+    <Compile Include="CourseServiceUnitTests\GetCourseViewModelsByNameTests.cs" />
     <Compile Include="CourseServiceUnitTests\GetCourseViewModelTests.cs" />
     <Compile Include="CourseServiceUnitTests\UpdateCourse.cs" />
     <Compile Include="FileServiceUnitTests\ConstructorTests.cs" />

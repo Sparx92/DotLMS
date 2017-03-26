@@ -5,8 +5,10 @@
 }
 
 
-@using (Ajax.BeginForm("Index", new { area = "", controller = "CoursePresentation" },
-                            new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "updatePannel" }, new { @class = "form" }))
+@using (Ajax.BeginForm("Index", 
+        new { area = "", controller = "CoursePresentation" },
+        new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "updatePannel" }, 
+        new { @class = "form" }))
 {
     @Html.AntiForgeryToken()
     <div class="search-block-v2">
