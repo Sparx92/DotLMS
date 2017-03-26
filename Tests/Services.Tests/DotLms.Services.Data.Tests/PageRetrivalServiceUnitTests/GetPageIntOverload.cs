@@ -9,6 +9,8 @@ using NUnit.Framework;
 
 namespace DotLms.Services.Data.Tests.PageRetrivalServiceUnitTests
 {
+    [TestFixture]
+    [Category(Common.TestConstants.UnitTestCategory)]
     public class GetPageIntOverload
     {
         private Mock<IProjectableRepository<Page>> mockedPageProjectableRepository;
