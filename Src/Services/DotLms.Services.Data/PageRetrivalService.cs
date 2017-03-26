@@ -42,6 +42,8 @@ namespace DotLms.Services.Data
 
         public PageViewModel GetPage(int pageId)
         {
+            Guard.WhenArgument(pageId,nameof(pageId)).IsLessThanOrEqual(0).Throw();
+
             Page page = this.pageProjectableRepository.All.FirstOrDefault(x => x.Id == pageId);
             PageViewModel mapped = mapperProvider.Instance.Map<PageViewModel>(page);
             return mapped;

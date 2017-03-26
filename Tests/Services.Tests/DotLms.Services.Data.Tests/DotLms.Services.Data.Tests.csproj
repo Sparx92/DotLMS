@@ -84,6 +84,7 @@
     <Compile Include="PageCreationServiceUnitTests\GetAllPagesTests.cs" />
     <Compile Include="PageRetrivalServiceUnitTests\CounstrctorTests.cs" />
     <Compile Include="PageRetrivalServiceUnitTests\GetAllPagesTests.cs" />
+    <Compile Include="PageRetrivalServiceUnitTests\GetPageIntOverload.cs" />
     <Compile Include="PageRetrivalServiceUnitTests\GetPageStringOverloadTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
