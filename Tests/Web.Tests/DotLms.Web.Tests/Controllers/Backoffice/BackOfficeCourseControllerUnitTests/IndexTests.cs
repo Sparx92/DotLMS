@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 using DotLms.Services.Data.Contracts;
 using DotLms.Services.Providers.Contracts;
 using DotLms.Web.Areas.Backoffice.Controllers;
 using DotLms.Web.Attributes;
+using DotLms.Web.Models;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace DotLms.Web.Tests.Controllers.Backoffice.BackOfficeCourseControllerUnitTests
 {
@@ -39,9 +43,40 @@ namespace DotLms.Web.Tests.Controllers.Backoffice.BackOfficeCourseControllerUnit
         }
 
         [Test]
-        public void Index_Should()
+        public void Index_ShouldHaveHttpGetAttribute()
         {
-            
+            // Arrange, Act
+            bool backofficeAuthorizatuonAttributeIsDefined = Attribute.IsDefined(
+                typeof(BackOfficeCourseController).GetMethod(nameof(BackOfficeCourseController.Index)),
+                typeof(HttpGetAttribute));
+
+            // Assert
+            Assert.IsTrue(backofficeAuthorizatuonAttributeIsDefined);
+        }
+
+        [Test]
+        public void Index_ShouldShouldRenderDefaultViewWithCorrectModel()
+        {
+            // Arrange
+            BackOfficeCourseController controller = this.GetController();
+
+            // Act & Assert
+            controller.WithCallTo(x => x.Index())
+                .ShouldRenderDefaultView()
+                .WithModel<IEnumerable<CourseViewModel>>();
+        }
+
+        [Test]
+        public void Index_ShouldCall_CouseServiceGetAllCourseViewModel_Once()
+        {
+            // Arrange
+            BackOfficeCourseController controller = this.GetController();
+
+            // Act
+            controller.Index();
+
+            // Assert
+            this.mockedCourseService.Verify(x => x.GetAllCourseViewModels(), Times.Once);
         }
 
         private BackOfficeCourseController GetController()
@@ -49,8 +84,7 @@ namespace DotLms.Web.Tests.Controllers.Backoffice.BackOfficeCourseControllerUnit
             return new BackOfficeCourseController(
                     this.mockedCategoryService.Object,
                     this.mockedCourseService.Object,
-                    this.mockedFileService.Object,
-                    this.mockedMemoryCacheProvider.Object
+                    this.mockedFileService.Object
                     );
         }
     }
