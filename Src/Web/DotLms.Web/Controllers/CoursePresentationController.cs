@@ -75,7 +75,7 @@ namespace DotLms.Web.Controllers
 
             if (model == null)
             {
-
+                return RedirectToAction("NotFound", "Error");
             }
 
             return View(model);
@@ -85,14 +85,14 @@ namespace DotLms.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(courseName))
             {
-                this.HttpContext.RedirectLocal("/");
+                return RedirectToAction("NotFound", "Error");
             }
 
             PageViewModel model = this.pageRetrivalService.GetPage(childPageName);
 
             if (model == null)
             {
-
+                return RedirectToAction("NotFound", "Error");
             }
 
             return View(model);

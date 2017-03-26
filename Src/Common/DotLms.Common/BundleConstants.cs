@@ -7,5 +7,7 @@
 
         public const string UnifyTemplateCssBundle = "~/bundles/unify/css";
         public const string UnifyTemplateJsBundle = "~/bundles/unify/js";
+
+        public const string UnifyTemplateCssErrorPagesBundle = "~/bundles/unify/errorcss";
     }
 }

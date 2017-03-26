@@ -6,7 +6,7 @@ namespace DotLms.Web
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            BundleTable.EnableOptimizations = false;
+            BundleTable.EnableOptimizations = true;
 
             bundles.Add(new ScriptBundle("~/bundles/jquery")
                 .Include("~/Scripts/jquery-{version}.js")
@@ -53,6 +53,10 @@ namespace DotLms.Web
                 .Include("~/Content/Assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css")
                 .Include("~/Content/Assets/css/blocks.css")
                 .Include("~/Content/Assets/css/custom.css")
+                );
+
+            bundles.Add(new StyleBundle(Common.BundleConstants.UnifyTemplateCssErrorPagesBundle)
+                .Include("~/Content/Assets/css/pages/page_404_error1.css")
                 );
 
             bundles.Add(new ScriptBundle(Common.BundleConstants.UnifyTemplateJsBundle)

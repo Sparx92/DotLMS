@@ -1,0 +1,47 @@
+﻿@using DotLms.Common
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <title>404 Error | DotLms</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+    <!-- CSS Global Compulsory -->
+    @Styles.Render(BundleConstants.UnifyTemplateCssBundle)
+    @Styles.Render(BundleConstants.UnifyTemplateCssErrorPagesBundle)
+</head>
+<body>
+    <!--=== Content Part ===-->
+    <div class="container valign__middle">
+        <!--Error Block-->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="error-v2">
+                    <span class="error-v2-title">500</span>
+                    <span>That’s an error!</span>
+                    <p>Internal Server Error. <br> That’s all we know.</p>
+                    @Html.ActionLink("Home", "Index", new { controller = "CoursePresentation" }, new { @class = "btn-u btn-u-sm btn-block btn-u-default" })
+                </div>
+            </div>
+        </div>
+        <!--End Error Block-->
+    </div><!--/container-->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render(BundleConstants.UnifyTemplateJsBundle)
+    @Scripts.Render(BundleConstants.UnifyTemplateLoginJsBundle)
+</body>
+</html>

@@ -12,6 +12,18 @@ namespace DotLms.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "404-NotFound",
+                url: "NotFound",
+                defaults: new { controller = "Error", action = "NotFound" }
+            );
+
+            routes.MapRoute(
+                name: "500-Error",
+                url: "Error",
+                defaults: new { controller = "Error", action = "Error" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "",
                 defaults: new { controller = "CoursePresentation", action = "Index" });
@@ -26,7 +38,11 @@ namespace DotLms.Web
                 url: "{courseName}/{childPageName}",
                 defaults: new { controller = "CoursePresentation", action = "GetPage" });
 
-
+            routes.MapRoute(
+                 name: "NotFound",
+                 url: "{*url}",
+                 defaults: new { controller = "Error", action = "NotFound" }
+            );
         }
     }
 }
