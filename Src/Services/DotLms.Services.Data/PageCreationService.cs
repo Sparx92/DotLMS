@@ -57,17 +57,16 @@ namespace DotLms.Services.Data
             Page mappedPage = this.mapperProvider.Instance.Map<Page>(model);
             model.HtmlContent = this.RemoveScriptTags(model.HtmlContent);
 
-            if (model.ParentCourse != null)
-            { 
-                mappedPage.Author = author;
-                mappedPage.LastEditedBy = author;
-                mappedPage.CreatedOn = this.dateTimeProvider.UtcNow();
-                mappedPage.LastEditedOn = this.dateTimeProvider.UtcNow();
-                //TODO change to false in the future
-                mappedPage.IsPublished = true;
-                mappedPage.UglyName = this.GeneratUglyName(mappedPage.Name);
-                mappedPage.Url = GenereateUrl(model.ParentCourse, mappedPage.UglyName);
-            }
+
+            mappedPage.Author = author;
+            mappedPage.LastEditedBy = author;
+            mappedPage.CreatedOn = this.dateTimeProvider.UtcNow();
+            mappedPage.LastEditedOn = this.dateTimeProvider.UtcNow();
+            //TODO change to false in the future
+            mappedPage.IsPublished = true;
+            mappedPage.UglyName = this.GeneratUglyName(mappedPage.Name);
+            mappedPage.Url = GenereateUrl(model.ParentCourse, mappedPage.UglyName);
+
             this.pageProjectableRepository.Add(mappedPage);
             this.dotLmsEfData.SaveChanges();
         }

@@ -8,9 +8,9 @@
 <script src="~/Content/Assets/js/tinyMCE-config.js" data-selector=".tinymceflag"></script>
 
 
-@using (Html.BeginForm("CreatePage","BackOfficePages", new { area="Backoffice" }))
-{ 
-    <div>asdasdas</div>
+@using (Html.BeginForm("CreatePage", "BackOfficePages", FormMethod.Post))
+{
+
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
