@@ -13,5 +13,7 @@ namespace DotLms.Services.Data.Contracts
         /// <param name="model">The Model sent back from the form</param>
         /// <param name="username">The user invoking the method</param>
         void CreatePage(PageViewModel model, string username);
+
+        PageViewModel UpdatePage(PageViewModel model);
     }
 }

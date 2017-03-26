@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using AutoMapper.Execution;
 using Bytes2you.Validation;
 
 using DotLms.Data.Contracts;
@@ -101,6 +102,21 @@ namespace DotLms.Services.Data
                 .Replace(' ', '-');
 
             return uglyName;
+        }
+
+
+        public PageViewModel UpdatePage(PageViewModel model)
+        {
+            Guard.WhenArgument(model, nameof(model)).IsNull().Throw();
+
+            Page existingPage = this.pageProjectableRepository
+                .All
+                .FirstOrDefault(x => x.Id == model.Id);
+
+            existingPage.HtmlContent = this.RemoveScriptTags(model.HtmlContent);
+            this.pageProjectableRepository.Update(existingPage);
+            this.dotLmsEfData.SaveChanges();
+            return this.mapperProvider.Instance.Map<PageViewModel>(existingPage);
         }
 
         private string RemoveScriptTags(string source)

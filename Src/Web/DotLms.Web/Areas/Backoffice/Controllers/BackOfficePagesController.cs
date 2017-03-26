@@ -39,6 +39,14 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [BackofficeAuthorizatuon]
+        public ActionResult EditPage(PageViewModel pageViewModel)
+        {
+            PageViewModel model = this.pageCreationService.UpdatePage(pageViewModel);
+            return View(model);
+        }
+
         [BackofficeAuthorizatuon]
         [HttpPost]
         public ActionResult CreatePage(PageViewModel model)
