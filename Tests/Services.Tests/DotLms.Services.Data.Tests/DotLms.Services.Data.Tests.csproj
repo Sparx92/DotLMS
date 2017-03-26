@@ -83,6 +83,7 @@
     <Compile Include="PageCreationServiceUnitTests\CreatePageTests.cs" />
     <Compile Include="PageCreationServiceUnitTests\GetAllPagesTests.cs" />
     <Compile Include="PageRetrivalServiceUnitTests\CounstrctorTests.cs" />
+    <Compile Include="PageRetrivalServiceUnitTests\GetAllPagesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
