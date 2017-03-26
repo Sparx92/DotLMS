@@ -1,5 +1,6 @@
 ﻿using System.Collections.Specialized;
 using System.Runtime.Caching;
+using Bytes2you.Validation;
 using DotLms.Services.Providers.Contracts;
 
 namespace DotLms.Services.Providers
@@ -10,6 +11,8 @@ namespace DotLms.Services.Providers
 
         public MemoryCacheProvider(MemoryCache memoryCache)
         {
+            Guard.WhenArgument(memoryCache,nameof(memoryCache)).IsNull().Throw();
+
             this.memoryCache = memoryCache;
         }
 
