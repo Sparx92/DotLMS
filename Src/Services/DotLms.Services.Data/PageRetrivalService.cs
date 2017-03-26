@@ -13,29 +13,18 @@ namespace DotLms.Services.Data
 {
     public class PageRetrivalService : IPageRetrivalService
     {
-        private readonly IDotLmsEfData dotLmsEfData;
         private readonly IProjectableRepository<Page> pageProjectableRepository;
-        private readonly IEntityFrameworkRepository<User> userRepository;
-        private readonly IDateTimeProvider dateTimeProvider;
         private readonly IMapperProvider mapperProvider;
 
-        public PageRetrivalService(IDotLmsEfData dotLmsEfData, 
+        public PageRetrivalService(
             IProjectableRepository<Page> pageProjectableRepository,
-            IDateTimeProvider dateTimeProvider,
-            IMapperProvider mapperProvider,
-            IEntityFrameworkRepository<User> userRepository)
+            IMapperProvider mapperProvider)
         {
-            Guard.WhenArgument(dotLmsEfData, nameof(dotLmsEfData)).IsNull().Throw();
             Guard.WhenArgument(pageProjectableRepository, nameof(pageProjectableRepository)).IsNull().Throw();
-            Guard.WhenArgument(dateTimeProvider, nameof(dateTimeProvider)).IsNull().Throw();
             Guard.WhenArgument(mapperProvider, nameof(mapperProvider)).IsNull().Throw();
-            Guard.WhenArgument(userRepository, nameof(userRepository)).IsNull().Throw();
 
-            this.dotLmsEfData = dotLmsEfData;
             this.pageProjectableRepository = pageProjectableRepository;
-            this.dateTimeProvider = dateTimeProvider;
             this.mapperProvider = mapperProvider;
-            this.userRepository = userRepository;
         }
 
         public PageViewModel GetPage(string pageName)
