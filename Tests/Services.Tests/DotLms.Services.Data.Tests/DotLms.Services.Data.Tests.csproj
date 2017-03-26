@@ -89,10 +89,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DotLms.Services.Http\DotLms.Services.Http.csproj">
-      <Project>{EB724616-1EF5-460B-A10E-3F9250A23B0C}</Project>
-      <Name>DotLms.Services.Http</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Src\Common\DotLms.Common\DotLms.Common.csproj">
       <Project>{d0ab2b18-cc18-4595-9985-3cecb486a161}</Project>
       <Name>DotLms.Common</Name>
@@ -108,6 +104,10 @@
     <ProjectReference Include="..\..\..\Src\Services\DotLms.Services.Data\DotLms.Services.Data.csproj">
       <Project>{ACF8EF93-B7A4-465E-AA17-B0384CC243E5}</Project>
       <Name>DotLms.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Src\Services\DotLms.Services.Http\DotLms.Services.Http.csproj">
+      <Project>{218293c7-fa4e-437b-9083-3de4e3e47c60}</Project>
+      <Name>DotLms.Services.Http</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Src\Services\DotLms.Services.Providers\DotLms.Services.Providers.csproj">
       <Project>{AB17B912-8E56-47B4-B9BC-523F2C081DDE}</Project>

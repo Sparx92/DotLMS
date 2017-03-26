@@ -524,10 +524,6 @@
     <Content Include="Scripts\jquery-3.0.0.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DotLms.Services.Http\DotLms.Services.Http.csproj">
-      <Project>{eb724616-1ef5-460b-a10e-3f9250a23b0c}</Project>
-      <Name>DotLms.Services.Http</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Common\DotLms.Common\DotLms.Common.csproj">
       <Project>{d0ab2b18-cc18-4595-9985-3cecb486a161}</Project>
       <Name>DotLms.Common</Name>
@@ -543,6 +539,10 @@
     <ProjectReference Include="..\..\Services\DotLms.Services.Data\DotLms.Services.Data.csproj">
       <Project>{acf8ef93-b7a4-465e-aa17-b0384cc243e5}</Project>
       <Name>DotLms.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\DotLms.Services.Http\DotLms.Services.Http.csproj">
+      <Project>{218293c7-fa4e-437b-9083-3de4e3e47c60}</Project>
+      <Name>DotLms.Services.Http</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\DotLms.Services.Providers\DotLms.Services.Providers.csproj">
       <Project>{ab17b912-8e56-47b4-b9bc-523f2c081dde}</Project>
