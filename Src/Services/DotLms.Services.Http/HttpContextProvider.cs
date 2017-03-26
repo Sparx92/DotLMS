@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using Bytes2you.Validation;
 using DotLms.Services.Http.Contracts;
 
 namespace DotLms.Services.Http
@@ -9,6 +10,8 @@ namespace DotLms.Services.Http
 
         public HttpContextProvider(HttpContextBase contextBase)
         {
+            Guard.WhenArgument(contextBase,nameof(contextBase)).IsNull().Throw();
+
             this.HttpContext = contextBase;
         }
 

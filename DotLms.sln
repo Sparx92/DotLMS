@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLms.Services.Providers.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLms.Services.Http", "Src\Services\DotLms.Services.Http\DotLms.Services.Http.csproj", "{218293C7-FA4E-437B-9083-3DE4E3E47C60}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLms.Services.Http.Tests", "Tests\Services.Tests\DotLms.Services.Http.Tests\DotLms.Services.Http.Tests.csproj", "{676D0995-32A6-470B-988C-F4E93F5EAD1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +131,10 @@ Global
 		{218293C7-FA4E-437B-9083-3DE4E3E47C60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{218293C7-FA4E-437B-9083-3DE4E3E47C60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{218293C7-FA4E-437B-9083-3DE4E3E47C60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{676D0995-32A6-470B-988C-F4E93F5EAD1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{676D0995-32A6-470B-988C-F4E93F5EAD1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{676D0995-32A6-470B-988C-F4E93F5EAD1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{676D0995-32A6-470B-988C-F4E93F5EAD1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -158,5 +164,6 @@ Global
 		{6B2D0C9B-82A1-484C-8DBF-E4001611F51C} = {F7025438-73B2-4EBB-BBA4-DDF3F29C5E9D}
 		{C03816DC-AA90-42A6-AFF7-490E5E06180E} = {F7025438-73B2-4EBB-BBA4-DDF3F29C5E9D}
 		{218293C7-FA4E-437B-9083-3DE4E3E47C60} = {5BA2FA0E-1C47-48E2-9006-16A017B78E06}
+		{676D0995-32A6-470B-988C-F4E93F5EAD1A} = {F7025438-73B2-4EBB-BBA4-DDF3F29C5E9D}
 	EndGlobalSection
 EndGlobal
