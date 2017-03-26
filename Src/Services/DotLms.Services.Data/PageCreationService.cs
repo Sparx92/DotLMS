@@ -50,14 +50,14 @@ namespace DotLms.Services.Data
         public void CreatePage(PageViewModel model, string username)
         {
             Guard.WhenArgument(model, nameof(model)).IsNull().Throw();
-            Guard.WhenArgument(username, nameof(username)).IsNull().Throw();
+            Guard.WhenArgument(username, nameof(username)).IsNullOrEmpty().Throw();
 
             User author = this.userRepository.All.FirstOrDefault(x => x.UserName == username);
             Page mappedPage = this.mapperProvider.Instance.Map<Page>(model);
             model.HtmlContent = this.RemoveScriptTags(model.HtmlContent);
 
-            if (model.ParentPage == null)
-            {
+            if (model.ParentCourse != null)
+            { 
                 mappedPage.Author = author;
                 mappedPage.LastEditedBy = author;
                 mappedPage.CreatedOn = this.dateTimeProvider.UtcNow();
