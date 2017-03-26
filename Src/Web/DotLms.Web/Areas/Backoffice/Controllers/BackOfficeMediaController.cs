@@ -18,20 +18,20 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
             this.fileService = fileService;
         }
 
-        [BackofficeAuthorizatuon(Roles = Common.Roles.Admin)]
+        [BackofficeAuthorizatuon]
         public ActionResult Index()
         {
             return View();
         }
 
-        [BackofficeAuthorizatuon(Roles = Common.Roles.Admin)]
+        [BackofficeAuthorizatuon]
         public ActionResult Add()
         {
             return View();
         }
 
         [HttpPost]
-        [BackofficeAuthorizatuon(Roles = Common.Roles.Admin)]
+        [BackofficeAuthorizatuon]
         public ActionResult Add(MediaItemViewModel model)
         {
             if (ModelState.IsValid)

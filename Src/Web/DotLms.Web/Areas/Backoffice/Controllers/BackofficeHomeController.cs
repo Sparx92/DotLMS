@@ -5,7 +5,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
 {
     public class BackOfficeHomeController : Controller
     {
-        [BackofficeAuthorizatuon(Roles = Common.Roles.Admin)]
+        [BackofficeAuthorizatuon]
         public ActionResult Index()
         {
             return View();

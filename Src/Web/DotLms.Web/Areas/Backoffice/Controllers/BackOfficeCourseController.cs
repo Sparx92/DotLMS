@@ -34,7 +34,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
             this.memoryCacheProvider = memoryCacheProvider;
         }
 
-        [BackofficeAuthorizatuon(Roles = Common.Roles.Admin)]
+        [BackofficeAuthorizatuon]
         public ActionResult Index()
         {
             string cachedModelName = "AllCourseViewModels";
@@ -54,7 +54,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
             return View(cachedModel);
         }
 
-        [BackofficeAuthorizatuon(Roles = Common.Roles.Admin)]
+        [BackofficeAuthorizatuon]
         public ActionResult CreateCourse()
         {
             CourseCreationViewModel model = new CourseCreationViewModel
@@ -65,7 +65,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         }
 
         [HttpPost]
-        [BackofficeAuthorizatuon(Roles = Common.Roles.Admin)]
+        [BackofficeAuthorizatuon]
         public ActionResult CreateCourse(CourseCreationViewModel model)
         {
             model.Categories = this.categoryService.GetAllCategories();
@@ -85,14 +85,14 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
             return View(model);
         }
 
-        [BackofficeAuthorizatuon(Roles = Common.Roles.Admin)]
+        [BackofficeAuthorizatuon]
         public ActionResult CreateCourseCategory()
         {
             return View();
         }
 
         [HttpPost]
-        [BackofficeAuthorizatuon(Roles = Common.Roles.Admin)]
+        [BackofficeAuthorizatuon]
         public ActionResult CreateCourseCategory(CourseCategoryViewModel model)
         {
             if (ModelState.IsValid)
@@ -112,7 +112,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
             return View(model);
         }
 
-        [BackofficeAuthorizatuon(Roles = Common.Roles.Admin)]
+        [BackofficeAuthorizatuon]
         public ActionResult ManageCourse(string courseName)
         {
             CourseCreationViewModel model = this.courseService.GetCourseCreationViewModel(courseName);
@@ -123,7 +123,7 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
         }
 
         [HttpPost]
-        [BackofficeAuthorizatuon(Roles = Common.Roles.Admin)]
+        [BackofficeAuthorizatuon]
         public ActionResult ManageCourse(CourseCreationViewModel model)
         {
             model.Categories = this.categoryService.GetAllCategories();

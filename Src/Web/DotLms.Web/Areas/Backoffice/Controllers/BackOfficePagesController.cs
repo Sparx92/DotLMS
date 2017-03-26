@@ -18,28 +18,28 @@ namespace DotLms.Web.Areas.Backoffice.Controllers
             this.pageRetrivalService = pageRetrivalService;
         }
 
-        [BackofficeAuthorizatuon(Roles = Common.Roles.Admin)]
+        [BackofficeAuthorizatuon]
         public ActionResult Index()
         {
             BackOfficeIndexViewModel model = this.pageRetrivalService.GetAllPages();
             return View(model);
         }
 
-        [BackofficeAuthorizatuon(Roles = Common.Roles.Admin)]
+        [BackofficeAuthorizatuon]
         public ActionResult CreatePage(int courseId)
         {
             PageViewModel model = new PageViewModel { ParentCourseId = courseId };
             return View(model);
         }
 
-        [BackofficeAuthorizatuon(Roles = Common.Roles.Admin)]
+        [BackofficeAuthorizatuon]
         public ActionResult EditPage(int pageId)
         {
             PageViewModel model = this.pageRetrivalService.GetPage(pageId);
             return View(model);
         }
 
-        [BackofficeAuthorizatuon(Roles = Common.Roles.Admin)]
+        [BackofficeAuthorizatuon]
         [HttpPost]
         public ActionResult CreatePage(PageViewModel model)
         {
