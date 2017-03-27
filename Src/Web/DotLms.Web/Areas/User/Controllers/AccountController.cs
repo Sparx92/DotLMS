@@ -155,7 +155,7 @@ namespace DotLms.Web.Areas.User.Controllers
         {
             string userResponse = HttpContext.Request.Params["g-recaptcha-response"];
             bool validCaptcha = ReCaptcha.ValidateCaptcha(userResponse);
-            model.BotChallange = validCaptcha;
+            //model.BotChallange = validCaptcha;
 
             if (ModelState.IsValid && validCaptcha)
             {

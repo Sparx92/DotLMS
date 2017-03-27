@@ -84,9 +84,7 @@ namespace DotLms.Web.Areas.User.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Display(Name = "Challange")]
-        [Range(typeof(bool),"true","true", ErrorMessage = "Must complete the challange.")]
-        public bool BotChallange { get; set; }
+       
     }
 
     public class ResetPasswordViewModel
